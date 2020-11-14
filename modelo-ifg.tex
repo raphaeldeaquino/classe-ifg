@@ -1,0 +1,164 @@
+\immediate\write18{makeindex -s nomencl.ist -o "\jobname.nls" "\jobname.nlo"}
+
+% Exemplo de documento do PPGTPS com texto em português formatado com LaTeX
+\documentclass[dissertacao]{formatacao/classe-ifg}
+% Opções da classe-ifg (ao usar mais de uma, separe por vírgulas): 
+%   [tese]  	              -> Tese de doutorado.
+%   [dissertacao]     -> Dissertação de mestrado (padrão).
+%   [monografia]     -> Monografia de especialização.
+%   [tcc]   	              -> Trabalho de conclusão de curso (graduação).
+%   [qualificacaom]  -> Qualificação de mestrado.
+%   [qualificacaoe]   -> Qualificação de especialização.
+%   [qualificacaot]   -> Qualificação de TCC.
+%   [nocolorlinks] 	  -> Os links de navegação no texto ficam na cor 
+%                                 preta. Use esta opção para gerar o arquivo 
+%                                 para impressão da versão final do seu texto!!!
+
+% Caso precise, corrija hifenização aqui
+\hyphenation{mo-no-gra-fi-a pro-ces-so}
+
+%INICIO DO DOCUMENTO ---------------------------------------------- %
+\begin{document}
+
+
+
+% EDITAR - Todos os cursos  --------------------------------------- %
+% -------- Autor(es)
+\autor{Fulano de Tal} % (Ex.: José da Silva)
+% Se houver segundo autor descomente e preencha o comando abaixo
+%\sautor{Fulano de Tal} % (Ex.: José da Silva)
+% Se houver terceiro autor descomente e preencha o comando abaixo
+%\tautor{Fulano de Tal} % (Ex.: José da Silva)
+% -------- Título e subtitulo
+\titulo{Título do Trabalho}
+\subtitulo{Subtítulo quando houver}
+% -------- Curso
+% Bacharelado, Licenciatura, Mestrado Profissional
+\tipocurso{Mestrado Profissional} 
+\curso{Tecnologia de Processos Sustentáveis}
+% -------- Local e data
+\campus{Goiânia} % Câmpus em foi desenvolvido o trabalho
+\dia{18} % Data da apresentação/defesa do trabalho
+\mes{07} % Formato numérico: \dia{01}, \mes{01} e \ano{2007}
+\ano{2020} % 
+% -------- Orientador(a)
+\orientador{Dr. Fulano de Tal}
+% Unidade do(a) orientador(a) dentro da instituição. No caso de haver
+% mais de um departamento inclua o departamento, a sigla da 
+% instituição e o câmpus, como no modelo. Em câmpus com um único 
+% departamento inclua somente a sigla da instituição e o câmpus.
+\unidade{Departamento IV - IFG / Câmpus Goiânia} 
+% Use o comandos a seguir se for Orientadora e não Orientador. 
+% Neste caso comente o comando acima inserindo % no início
+%\orientadora{\textless Nome da Orientadora\textgreater}
+% -------- Co-orientador(a)
+% Se não houver co-orientador comende os dois comandos abaixo
+\coorientador{Dr. Fulano de Tal}
+% Unidade do(a) orientador(a) dentro da instituição. No caso de haver
+% mais de um departamento inclua o departamento, a sigla da 
+% instituição e o câmpus, como no modelo. Em câmpus com um único 
+% departamento inclua somente a sigla da instituição e o câmpus.
+\unidadeco{Departamento IV - IFG / Câmpus Goiânia} 
+% Use o comando a seguir se for Coorientadora e não Co-orientador. 
+% Neste caso comente o primeiro comandos acima inserindo % no início 
+%\coorientadora{\textless Nome da Coorientadora\textgreater}
+
+
+
+% EDITAR - Apenas mestrado  --------------------------------------- %
+% Program de Pós-Graduação
+\programa{Programa de Pós-Graduação Stricto Sensu em Tecnologia de Processos Sustentáveis}
+% Área de concentração
+\concentracao{Tecnologia de Sistemas de Produção Limpa}
+% Linha de pesquisa 
+\linha{Energias Renováveis e Engenharia Econômica Aplicada}
+
+
+
+% NÃO EDITAR. Se necessário edite apenas os arquivos na pasta "pre" %
+\capa % Capa
+\rosto % Primeira folha interna do trabalho
+\ficha
+% Inclui o termo de autorização para disponibilização no repositório digital do IFG. 
+% O arquivo editável para gerar o termo pode ser obtido em https://www.ifg.edu.br/attachments/article/132/termo_autorizacao_rd_ifg.doc
+\termo
+\aprovacao
+\cdedicatoria
+\cagradecimentos
+\cepigrafe
+\cresumo
+\cabstract
+
+
+% EDITAR - Todos os cursos  --------------------------------------- % 
+% Define os índices a serem gerados. Coloque a opção de acordo com o
+% texto. Índices incluídos sem nenhum caso no texto serão 
+% apresentados vazios
+\tabelas[fig,tab,qua,alg,cod,sig,sim]
+%Opções:
+% nada [] -> Gera apenas o sumário
+% fig     -> Gera o sumário e a lista de figuras
+% tab     -> Sumário e lista de tabelas
+% qua     -> Sumário e lista de quadros
+% alg     -> Sumário e lista de algoritmos
+% cod     -> Sumário e lista de códigos de programas
+% sig     -> Sumário e lista de abreviaturas e siglas
+% sim     -> Sumário e lista de símbolos
+%
+% Pode-se usar qualquer combinação dessas opções.
+% Por exemplo:
+%  fig,tab                              	-> Sumário e listas de figuras e 
+%                                                   tabelas
+%  fig,tab,qua                        	-> Sumário e listas de figuras, 
+%                                                   tabelas e quadros
+%  fig,tab,qua,alg                   	-> Sumário e listas de figuras, 
+%                                                  tabelas, quadros e algoritmos
+%  fig,tab,qua,alg,cod             	-> Sumário e listas de figuras, 
+%                                                  quadros, algoritmos e códigos de 
+%                                                  programas
+%  fig,tab,qua,alg,cod,sig        	-> Sumário e listas de figuras, 
+%                                                   tabelas, quadros, algoritmos, 
+%                                                   códigos de programas e 
+%                                                   abreviaturas e siglas
+%  fig,tab,qua,alg,cod,sig,sim   -> Sumário e listas de figuras, 
+%                                                   tabelas, quadros, algoritmos, 
+%                                                   códigos de programas e 
+%                                                   abreviaturas, siglas e símbolos
+
+
+
+% EDITAR - Todos os cursos --------------------------------------- % 
+% Arquivos com o texto do documento. Para facilitar a organização é 
+% recomendado criar um arquivo para cada capítulo. O nome do arquivo
+% pode ser qualquer um, desde que contenha apenas letras e números.
+% Certifique-se de que os nomes coincidem com o que foi incluído 
+\input{./tex/cap01}
+\input{./tex/cap02}
+\input{./tex/cap03}
+\input{./tex/cap04}
+
+
+
+% NÃO EDITAR ------------------------------------------------------ %
+\bibliografia
+
+
+
+% EDITAR - Todos os cursos ---------------------------------------- %
+% Use o trecho abaixo para inserir apêndices e anexos usando o
+% comando input da mesma forma que para capítulos. NÃO edite nem 
+% altere a ordem dos comandos \apendices e \anexos. 
+% Se não houver apêndice e anexo remova os comandos input 
+% equivalentes
+% ---- Apêndices
+\apendices
+\input{./apendices/apendI}
+% ---- Anexos
+\anexos
+\input{./anexos/anexoI}
+
+\end{document}
+
+%------------------------------------------------------------------ %
+%         F I M   D O  A R Q U I V O :  modelo-tese-ifg.tex         %
+%------------------------------------------------------------------ %

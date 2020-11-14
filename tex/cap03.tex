@@ -1,0 +1,109 @@
+\chapter{Descrição da \textsf{classe-ifg}}
+\label{cap:descr}
+
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Opções da classe}
+\label{sec:opcoes}
+Para usar esta classe num documento \LaTeXe, coloque a pasta \verb|formatacao| numa pasta onde o compilador \LaTeX\ pode achá--lo (normalmente na mesma pasta que seu arquivo \verb|.tex|), e defina--o como o estilo do seu documento. Por exemplo, uma dissertação de mestrado:
+\begin{verbatim}
+\documentclass[dissertacao]{classe-ifg}
+...
+\begin{document}
+\end{verbatim}
+
+As opções da classe são \verb|[dissertacao]| (para dissertação de mestrado), \verb|[qualificacaom]| (para qualificação de mestrado) e \verb|[monografia]| (para monografia final de especialização). Se nenhuma opção for declarada, o documento é considerado como uma dissertação de mestrado. %Com a opção \verb|[nocolorlinks]| todos os {\em links} de navegação no texto ficam na cor preta. O ideal é usar esta opção para gerar o arquivo para impressão, pois a qualidade da impressão dos {\em links} fica superior.
+
+
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Parâmetros da classe}
+\label{sec:param}
+Os elementos pré-textuais são definidos página por página e dependem da correta definição dos parâmetros listados a seguir (os elementos que não foram aplicáveis como, por exemplo, \verb|\orientadora| quando orientador é do sexo masculino, devem permanecer comentados usando \% no início da respectiva linha):
+
+% \setlength{\topsep}{5.2em}
+ \begin{itemize}%\addtolength{\itemsep}{-0.7em}
+\item \verb|\autor| : Nome completo do autor, começando pelo primeiro nome (ex.: José da Silva);
+\item \verb|\autorR| : Nome completo do autor, começando pelo último sobrenome (ex.: da Silva, José);
+\item \verb|\sautor| : Nome completo do segundo autor (quando aplicável), começando pelo primeiro nome (ex.: José da Silva);
+\item \verb|\sautorR| : Nome completo do segundo autor (quando aplicável), começando pelo último sobrenome (ex.: da Silva, José);
+\item \verb|\titulo| : Título da dissertação ou monografia de conclusão de curso;
+\item \verb|\subtitulo| : Se tiver um subtítulo, use este macro para defini--lo;
+
+\item \verb|\cidade| : A cidade de edição. 
+\item \verb|\dia| : Dia do mês da data de defesa (01--31);
+\item \verb|\mes| : Mês da data de defesa (01--12);
+\item \verb|\ano| : Ano da data de defesa;
+
+\item \verb|\orientador| : Nome completo do orientador, começando pelo primeiro nome;
+\item \verb|\orientadorR| : Nome completo do orientador, começando pelo último sobrenome;
+
+\item \verb|\orientadora| : Nome completo da orientadora, começando pelo primeiro nome; use este comando e o próximo se for orientadora e não orientador.
+\item \verb|\orientadoraR| : Nome completo do orientadora, começando pelo último sobrenome;
+
+\item \verb|\coorientador| : Nome completo do co--orientador, começando pelo primeiro nome;
+\item \verb|\coorientadorR| : Nome completo do co--orientador, começando pelo último sobrenome;
+
+\item \verb|\coorientadora| : Nome completo da coorientadora, começando pelo primeiro nome; use este comando e o próximo se for coorientadora e não coorientador.
+\item \verb|\coorientadoraR| : Nome completo do coorientadora, começando pelo último sobrenome;
+
+\item \verb|\universidadeco| : Nome da universidade do coorientador;
+\item \verb|\unico| : Sigla da universidade do coorientador;
+\item \verb|\unidadeco| : Nome da unidade acadêmica do coorientador.\footnote{Se não tiver um co--orientador, não defina esses últimos sete parâmetros.}
+\end{itemize}
+
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Elementos Pré--Textuais}
+\label{sec:pre}
+Os elementos pré--textuais são definidos página por página, conforme descritos a seguir:
+
+\paragraph{capa\\}
+\verb|\capa| : Gera o modelo da capa externa do trabalho. Esta página servirá apenas como modelo para a encadernação da versão final do texto. Nenhum dado é necessário.
+
+\paragraph{rosto\\}
+\verb|\rosto| : Gera a folha de rosto, a qual é a primeira folha interna do trabalho. Nenhum dado é necessário.
+
+\paragraph{ficha\\}
+\verb|\ficha| : Inclui a ficha catalográfica que deve constar como um arquivo PDF cujo nome deve necessariamente ser \verb|ficha.pdf|. Este arquivo deve estar localizado na mesma pasta que seu arquivo \verb|.tex|. Comente este comando até ter a versão final da dissertação.
+
+\paragraph{aprovacao\\}
+\verb|\input{./pre/preAprovacao}| : Entrada para o nome dos examinadores, exceto o(s) orientador(es). Edite o arquivo equivalente com os parâmetros nele descritos.
+
+%\paragraph{curriculo\\}
+%\verb|\aprovacao| : ambiente para a reprodução do termo de aprovação da Banca Examinadora da tese ou dissertação.
+%
+
+\paragraph{dedicatória\\}
+\verb|\input{./pre/preDedicatoria| : ambiente para escrever a dedicatória. É possível trocar o espaçamento dentro desse ambiente do mesmo jeito que no \LaTeX\ padrão.
+
+\paragraph{agradecimentos\\}
+\verb|\input{./pre/preAgradecimentos}| : ambiente para escrever os agradecimentos. É possível trocar o espaçamento dentro desse ambiente do mesmo jeito que no \LaTeX\ padrão.
+
+\paragraph{resumo\\}
+\verb|\input{./pre/preResumo}| : A lista das palavras chaves, separadas por `;'. Deve ser definido antes do ambiente \verb|\resumo|, o qual é usado para escrever o resumo em português.
+
+\paragraph{abstract\\}
+\verb|\keys| : A lista das palavras chaves em inglês, separadas por `;'. Deve ser definido antes do ambiente \verb|\abstract|, o qual contém 1 argumento e é usado escrever o resumo em inglês. O argumento deve ser o título do trabalho em inglês.
+
+\paragraph{tabelas\\}
+\verb|\tabelas| : Macro com 1 argumento opcional para gerar as tabelas. O argumento pode ser:
+\begin{itemize}
+ \item nada [] : gera apenas o sumário;
+ \item \textsf{fig} : gera o sumário e uma lista de figuras;
+ \item \textsf{tab} : gera o sumário e uma lista de tabelas;
+ \item \textsf{alg} : gera o sumário e uma lista de algoritmos;
+ \item \textsf{cod} : gera o sumário e uma lista de programas.
+ \item \textsf{figtab} : gera o sumário, uma lista de tabelas, e uma lista de figuras;
+ \item \textsf{figtabalg} : gera o sumário e listas de tabelas, de figuras e de algoritmos;
+ \item \textsf{figtabalgcod} : gera o sumário e listas de tabelas, de figuras, de algoritmos e de programas;
+ \item (qualquer outra coisa) : gera somente o sumário.
+\end{itemize}
+
+Pode-se usar qualquer combinação dessas opções. Por exemplo:
+\begin{itemize}
+ \item \textsf{figtab} : gera o sumário e listas de figuras e tabelas,
+ \item \textsf{figtabcod} : gera o sumário e listas de figuras, tabelas e códigos de programas;
+ \item \textsf{figtabalg} : gera o sumário e listas de figuras, tabelas e algoritmos;
+ \item \textsf{figtabalgcod} : gera o sumário e listas de figuras, tabelas, algoritmos e códigos de programas
+\end{itemize}
+
+\paragraph{epígrafe\\}
+\verb|\epigrafe| : Macro com 3 argumentos que permite editar um epígrafe. O primeiro argumento é o texto da citação. O segundo argumento é o nome do autor da citação. O terceiro argumento é o título da referência à qual a citação pertence.
