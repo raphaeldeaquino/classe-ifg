@@ -39,7 +39,7 @@ Se você quiser, pode utilizar o [Overleaf](https://www.overleaf.com), um sistem
 
 Se você já tiver uma conta no Overleaf pode fazer o *upload* do arquivo `.zip` baixado em [releases](../../releases).
 
-Você também pode fazer o *upload* automaticamente para Overleaf com a última versão disponível clicando [aqui](https://overleaf.com/docs?snip_uri=https://github.com/raphaeldeaquino/classe-ifg/releases/latest/download/classe-ifg.zip).
+Você também pode fazer o *upload* automaticamente para Overleaf com a última versão disponível clicando [aqui](https://overleaf.com/docs?snip_uri=https://github.com/raphaeldeaquino/classe-ifg/archive/main.zip).
 
 ## Mudanças
 
