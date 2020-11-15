@@ -1,37 +1,216 @@
 \chapter{Elementos do texto}
 \label{cap:texto}
 
+Neste capítulo é dada uma visão geral sobre os elementos que podem ser utilizados no texto e código de inserção em \LaTeX.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Seccionamento de Documentos}
+\label{sec:sec} 
+
+O \LaTeX pode organizar, numerar e indexar capítulos e seções do documento. Existem até 7 níveis de profundidade para definir seções, dependendo da classe do documento:
+
+\begin{quadro}[!ht]
+\caption{Níveis de seccionamento de documentos em \LaTeX.}
+\label{qua:niveis}
+\begin{center}
+\begin{tabular}{|c|c|}        
+\hline
+\textbf{Nível} & \textbf{Comando}\\ \hline\hline
+-1 & \verb|\part| \\
+\hline
+0 & \verb|\chaper| \\
+\hline
+1 & \verb|\section| \\
+\hline
+2 & \verb|\subsection| \\
+\hline
+3 & \verb|\subsubsection| \\
+\hline
+4 & \verb|\paragraph| \\
+\hline
+5 & \verb|\subparagraph| \\
+\hline
+\end{tabular}
+\end{center}
+\fontequa{Elaborado pelo autor}
+\end{quadro}
+
+Para documentos com a \texttt{classe-ifg} utilize somente a partir do nível 0. Como exemplo, o código abaixo insere um capítulo que possui uma seção com uma subseção:
+
+\begin{verbatim}
+\chapter{Título do capítulo}
+\label{cap:id}
+
+Texto inicial do capítulo ...
+
+\section{Título da seção}
+\label{cap:sec}
+
+Texto inicial da seção ...
+
+\subsection{Título do subseção}
+\label{cap:subsec}
+
+Texto da subseção ...
+\end{verbatim}
+
+O comando \verb|\label| define um rótulo para fazer referência ao elemento rotulado. Como exemplo, este capítulo foi rotulado usando \verb|\label{cap:texto}|, de forma que o código \verb|Capítulo \ref{cap:texto}| produz Capítulo \ref{cap:texto}.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Listas}
+\label{sec:listas} 
+
+As listas são criadas definindo o tipo de lista e os itens que as formam, conforme descrito a seguir.
+
+\subsection{Listas não ordenadas}
+
+As listas não ordenadas (não numeradas) são produzidas pelo ambiente \verb|itemize|. Cada entrada deve ser precedida pelo comando \verb|\item|. A seguir está o código de uma lista não ordenada e o resultado produzido.
+
+Código:
+
+\begin{verbatim}
+\begin{itemize}
+    \item As entradas individuais são indicadas com um ponto preto, o 
+denominado marcador.
+    \item O texto nas entradas pode ter qualquer comprimento.
+\end{itemize}
+\end{verbatim}
+
+Resultado:
+
+\begin{itemize}
+	\item As entradas individuais são indicadas com um ponto preto, o denominado marcador.
+	\item O texto nas entradas pode ter qualquer comprimento.
+\end{itemize}
+
+\subsection{Listas ordenadas}
+
+As listas ordenadas são geradas por um ambiente \verb|enumerate| e cada entrada deve ser precedida pelo comando \verb|\item|, que irá gerar automaticamente o número que rotula o item. Os rótulos enumerados consistem em números sequenciais; esses números começam em 1 com cada chamada para o ambiente enumerado.
+
+Código:
+
+\begin{verbatim}
+\begin{enumerate}
+    \item Os rótulos consistem em números sequenciais.
+    \item Os números começam em 1 com cada chamada para o ambiente 
+enumerado.
+\end{enumerate}
+\end{verbatim}
+
+Resultado:
+
+\begin{enumerate}
+    \item Os rótulos consistem em números sequenciais.
+    \item Os números começam em 1 com cada chamada para o ambiente enumerado.
+\end{enumerate}
+
+\subsection{Listas Aninhadas}
+
+Em \LaTeX\ é possível inserir uma lista dentro de outra lista. As listas acima podem ser incluídas umas nas outras, misturadas ou de um tipo, em uma profundidade de quatro níveis.
+
+Código:
+
+\begin{verbatim}
+\begin{enumerate}
+    \item Os rótulos consistem em números sequenciais.
+    \begin{itemize}
+        \item As entradas individuais são indicadas com um ponto preto, 
+o denominado marcador.
+        \item O texto nas entradas pode ter qualquer comprimento.
+    \end{itemize}
+    \item Os números começam em 1 com cada chamada para o ambiente 
+enumerado.
+\end{enumerate}
+\end{verbatim}
+
+Resultado:
+
+\begin{enumerate}
+    \item Os rótulos consistem em números sequenciais.
+    \begin{itemize}
+      \item As entradas individuais são indicadas com um ponto preto, o denominado marcador.
+      \item O texto nas entradas pode ter qualquer comprimento.
+    \end{itemize}
+    \item Os números começam em 1 com cada chamada para o ambiente enumerado.
+\end{enumerate}
+
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Figuras}
 \label{sec:figs} 
-Rótulos de figuras e tabelas devem ser centralizados se tiverem até uma linha (Figura~\ref{fig:exemploFig1}), caso contrário devem estar justificados e identados em ambas as margens, como mostrado na Figura ~\ref{fig:exemploFig2}. Essa formatação já é realizada automaticamente pela classe \textsf{inf-ufg}.
+Rótulos de figuras e tabelas devem ser centralizados se tiverem até uma linha (Figura~\ref{fig:exemploFig1}), caso contrário devem estar justificados e identados em ambas as margens, como mostrado na Figura ~\ref{fig:exemploFig2}. Essa formatação já é realizada automaticamente pela \textsf{classe-ifg}.
 
-Os compiladores \LaTeX\ provêem um mecanismo bastante simples para inclusão de figuras, o que pode ser feito com o auxílio de várias classes auxiliares (as mais comuns são \verb|graphic| e \verb|graphicx|). A classe \verb|inf-ufg| usa o comando \verb|\includegraphics|, da classe \verb|graphicx|, para a inclusão de figuras e não é necessário você colocar a extensão do arquivo neste comando. Por exemplo, para a figura \ref{fig:exemploFig1} os comandos usados foram:
-\begin{Verbatim}
- \begin{figure}[htb]
+Os compiladores \LaTeX\ provêem um mecanismo bastante simples para inclusão de figuras, o que pode ser feito com o auxílio de várias classes auxiliares (as mais comuns são \verb|graphic| e \verb|graphicx|). A \textsf{classe-ifg} usa o comando \verb|\includegraphics|, da classe \verb|graphicx|, para a inclusão de figuras e não é necessário você colocar a extensão do arquivo neste comando. Por exemplo, para a figura \ref{fig:exemploFig1} os comandos usados foram:
+
+\begin{verbatim}
+\begin{figure}[ht!]
   \centering
-  \includegraphics[width=0.40\textwidth]{fig/logo-ifg-vertical-goiania}
+  \includegraphics[width=0.4\textwidth]{fig/logo-ifg-vertical-goiania}
   \caption{Logo IFG.}
   \label{fig:exemploFig1}
  \end{figure}
  \fontefig{\cite{ifg2020}}
-\end{Verbatim}
+\end{verbatim}
+
+O código \verb|[ht!]| após \verb|\begin{figure}| define como a figura deve ser posicionada na página. O parâmetro especificador de posicionamento nos permite ter um maior controle sobre onde uma figura é colocada. Mas embora o \LaTeX\ faça o possível para seguir o posicionamento que especificamos, pode nem sempre ser possível aderir a ele. As opções possíveis são apresentadas na Tabela \ref{tab:pos}, sendo que pode ser especificado mais de um, o que indica que se um não for possível o próximo será tentado.
+
+\begin{table}[ht!]
+\caption{Especificadores de posicionamento no \LaTeX.}
+\label{tab:pos}
+\begin{center}
+\begin{tabular}{c|p{11.5cm}}
+\hline
+\textbf{Especificador} & \textbf{Permissão} \\
+\hline
+\verb|h| & Coloque a figura aqui, ou seja, aproximadamente no mesmo ponto em que ocorre no texto de origem (no entanto, não exatamente no local) \\
+\hline
+\verb|t| & Posicione no topo da página. \\
+\hline
+\verb|b| & Posicione na parte inferior da página. \\
+\hline
+\verb|p| & Coloque em uma página especial somente com figuras.\\
+\hline
+\verb|!| & Substitua os parâmetros internos que o \LaTeX\ usa para determinar as posições adequadas.\\
+\hline
+\verb|H| &  Coloca a figura precisamente no local do código \LaTeX. Isso é um pouco equivalente a \verb|h!|, embora alguns erros possam surgir se você tiver muitos flutuadores consecutivos com \verb|[H]|.\\
+\hline
+\end{tabular}
+\end{center}
+\fontetab{Elaborada pelo autor}
+\end{table}
+
+O arquivo da figura deve ser inserido na pasta \verb|fig| e seu nome deve coincidir com o utilizado no comando \verb|\includegraphics|. O número inserido após \verb|width=| representa o tamanho da figura de maneira proporcional à largura do texto. Neste exemplo, \verb|0.4| significa 40\%. Dessa forma o valor máximo é \verb|1.0| (100\% da largura do texto).
+
+O comando \verb|\fontefig| especifica a fonte de onde a figura foi retirada. Neste exemplo, foi utilizada uma figura de uma fonte externa, cuja descrição é descrita no documento \verb|bib/bibliografia.bib| usando o seguinte código:
+
+\begin{verbatim}
+@MISC{ifg2020,
+  organization = {Instituto Federal de Educação, Ciência e Tecnologia 
+de Goiás (IFG)}, 
+  org-short = {IFG},
+  year = {2020},
+  title = {Apresentação}, 
+  url = {http://ifg.edu.br/goiania/apresentacao},
+  urlaccessdate = {07 nov 2020},
+}
+\end{verbatim}
+
+Com isso, ao utilizar o comando \verb|\cite{ifg2020}| é criada uma citação a essa referência uma vez que \verb|ifg2020| foi usada como chave na descrição da fonte. Caso a figura tenha sido elaborada pelo próprio autor coloque \verb|\fontefig{Elaborada pelo autor}|. Note que nos dois casos não é necessário definir o ponto final pois ele é incluído automaticamente.
 
 
 Ao se usar o compilador \LaTeX, as figuras podem estar nos formatos \textit{eps} e \textit{ps}. Ao se usar o PDF\LaTeX, as figuras podem estar nos formatos \textit{png}, \textit{jpg}, \textit{pdf} e \textit{mps}. A classe \verb|graphicx| também pode ser usada para a inclusão de figuras, nos formatos listados, ao se usar o PDF\LaTeX. Os comandos necessários são os mesmos ao se incluir figuras ao se usar o compilador \LaTeX. O uso do comando \verb|\includegraphics| faz com com que PDF\LaTeX\ procure primeiro por figuras com extensão \textit{pdf}, depois \textit{jpg}, depois \textit{mps} e por último \textit{png}. Aqui também não é necessário especificar a extensão do arquivo.
 
 Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os comandos usados, tanto no \LaTeX\ quanto no PDF\LaTeX, seriam os mesmos. É claro que em cada caso devem estar disponíveis as figuras nos formatos suportados por cada compilador. Por exemplo, para a inclusão da figura \ref{fig:exemploFig3} foram usados:
-\begin{Verbatim}
- \begin{figure}[!ht]
+\begin{verbatim}
+ \begin{figure}[ht!]
   \centering
   \includegraphics[width=0.40\textwidth]{./fig/foto-ifg}
   \caption{Câmpus Goiânia do IFG.}
   \label{fig:exemploFig3}
 \end{figure}
 \fontefig{\cite{ifg2020}}
-\end{Verbatim}
+\end{verbatim}
 
-\begin{figure}[!ht]
+\begin{figure}[ht!]
  \centering
   \includegraphics[width=0.30\textwidth]{./fig/logo-ifg-vertical-goiania}
  \caption{Logo IFG.}
@@ -39,7 +218,7 @@ Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os c
 \fontefig{\cite{ifg2020}}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[ht!]
  \centering
  \includegraphics[width=0.60\textwidth]{./fig/logo-ifg}
  \caption{Esta figura é um exemplo de um rótulo de figura que ocupa mais de uma linha, devendo ser identado e justificado.}
@@ -57,8 +236,9 @@ Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os c
 
 \subsection{Subfiguras}
 \label{subsec:subfigs} 
+
 A classe \verb|subfigure| pode ser usada para a inclusão de figuras dentro de figuras (consulte a documentação da classe para maiores detalhes). Por exemplo, a Figura \ref{fig:subfiguras} contém duas subfiguras. Estas podem ser referencidas por rótulos independentes, ou seja, podem ser referenciadas como Figuras \ref{subfig:ex1} e \ref{subfig:ex2} ou Subfiguras \subref{subfig:ex1} e \subref{subfig:ex2}.
-\begin{figure}[h]
+\begin{figure}[ht!]
  \centering
 %   \subfigure[][Primeira subfigura.]
   \subfigure[][Primeira subfigura.]
@@ -66,7 +246,7 @@ A classe \verb|subfigure| pode ser usada para a inclusão de figuras dentro de f
     \includegraphics[width=0.35\textwidth]{./fig/triangulo}
     \label{subfig:ex1}
    } \qquad
-  \subfigure[Segunda subfigura (um pedaço).]
+  \subfigure[Segunda subfigura.]
    {
     \includegraphics[width=0.30\textwidth]{./fig/quadrado}
     \label{subfig:ex2}
@@ -76,16 +256,17 @@ A classe \verb|subfigure| pode ser usada para a inclusão de figuras dentro de f
 \fontefig{Elaborado pelo autor}
 \end{figure}
 
-A figura \ref{fig:subfiguras} foi incluída com os comandos listados a seguir. Observe que há rótulos independentes para cada uma das subfiguras e um rótulo geral para a figura, os quais podem ser todos referenciados.
-\begin{Verbatim}
-\begin{figure}[h]
+A figura \ref{fig:subfiguras} foi incluída com os comandos listados a seguir. Observe que há rótulos independentes para cada uma das subfiguras e um rótulo geral para a figura, os quais podem ser todos referenciados. Dessa forma, os textos \aspas{Figuras \ref{subfig:ex1} e \ref{subfig:ex2}} ou \aspas{Subfiguras \subref{subfig:ex1} e \subref{subfig:ex2}} podem ser gerados utilizando os códigos \verb|Figuras \ref{subfig:ex1} e \ref{subfig:ex2}| ou \verb|Subfiguras \subref{subfig:ex1} e \subref{subfig:ex2}|.
+
+\begin{verbatim}
+\begin{figure}[ht!]
  \centering
   \subfigure[Primeira subfigura.]
    {
     \includegraphics[width=0.35\textwidth]{./fig/exemploFig1}
     \label{subfig:ex1}
    } \qquad
-  \subfigure[Segunda subfigura (um pedaço).]
+  \subfigure[Segunda subfigura.]
    {
     \includegraphics[width=0.30\textwidth]{./fig/exemploFig2}
     \label{subfig:ex2}
@@ -96,19 +277,100 @@ A figura \ref{fig:subfiguras} foi incluída com os comandos listados a seguir. O
   \label{fig:subfiguras}
   \fontefig{Elaborado pelo autor}
 \end{figure}
-\end{Verbatim}
- Caso uma subfiguras não tenha rótulo, para evitar que o apenas o número da mesma apareça na Lista de Figuras, use o comando \verb|\subfigure[][]|.  Caso uma subfigura tenha rótulo e deseja-se evitar que a mesma apareça na Lista de Figuras, use o comando \verb|\subfigure[][Rótulo]|.
+\end{verbatim}
+
+\subsection{Figuras usando o pacote TikZ}
+
+Figuras podem ser desenhadas diretamente em \LaTeX\ usando o pacote TikZ. Inicialmente é preciso definir o código da figura em um arquivo com a extensão \verb|tikz| que deve ser colocado na pasta \verb|fig|. Em seguida, a figura é inserida usando o comando \verb|inputTikZ| com o tamanho da figura.
+
+Como exemplo, a Figura \ref{fig:tikz} foi inserida usando o código a seguir.
+
+\begin{verbatim}
+\begin{figure}[!ht]
+ \centering
+\inputTikZ{0.6}{./fig/exemplo.tikz}
+\caption{Exemplo de figura usando o pacote TikZ.}
+\label{fig:tikz}
+\fontefig{Elaborada pelo autor}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}[!ht]
+ \centering
+\inputTikZ{0.6}{./fig/exemplo.tikz}
+\caption{Exemplo de figura usando o pacote TikZ.}
+\label{fig:tikz}
+\fontefig{Elaborada pelo autor}
+\end{figure}
+
+O conteúdo do arquivo \verb|exemplo.tikz| é dado a seguir.
+
+\begin{verbatim}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,
+node distance=3.8cm,thick,main node/.style={circle,draw,
+font=\sffamily\bfseries,align=center,
+text width={width("directory")}}]
+
+  \node[main node] (b) {$b$};
+  \node[main node] (sales) [right of=b] {Depart. vendas};
+  \node[main node] (ands1) [right of=sales,
+  font=\sffamily\it] {\textit{AND$^s$}};
+  \node[main node] (inventory) [above right of=ands1] 
+  {Geren. invent{\'a}rio};
+  \node[main node] (freight) [below right of=ands1] 
+  {Escalon. de frete};
+  \node[main node] (andj1) [below right of=inventory,
+  font=\sffamily\it] {\textit{AND$^j$}};
+  \node[main node] (crm) [below of=sales, 
+  node distance=7.8cm] {CRM};
+  \node[main node] (xors1) [right of=crm,
+  font=\sffamily\it] {\textit{XOR$^s$}};
+  \node[main node] (bank) [above right of=xors1] 
+  {Sistema banc{\'a}rio};
+  \node[main node] (payment) [below right of=xors1] 
+  {Sistema pagamento};
+  \node[main node] (xorj1) [below right of=bank,
+  font=\sffamily\it] {\textit{XOR$^j$}};
+  \node[main node, accepting, node distance=2.5cm] 
+  (z) [right of=xorj1] {$z$};
+
+  \path[every node/.style={font=\sffamily\small},
+  align=center]
+    (b) 			edge node {Submeter\\pedido} (sales)
+    (sales) 		edge node {} (ands1)
+    (sales) 		edge node [left] {Processar ordem\\ 
+    de pagamento} (crm)
+    (ands1) 		edge [bend left] node [above left]
+    {Processar\\pedido} (inventory)
+    (ands1) 		edge [bend right] node [below left] 
+    {Escalonar\\frete} (freight)
+    (inventory) 	edge [bend left] node {} (andj1)
+    (freight) 		edge [bend right] node {} (andj1)
+    (crm) 			edge node {} (xors1)
+    (xors1) 		edge [bend left] node [above left] 
+    {Enviar\\cobran\c{c}a\\: $p=0.3$} (bank)
+    (xors1) 		edge [bend right] node [below left] 
+    {Processar ordem\\ de pagamento\\: $p=0.7$} 
+    (payment)
+    (bank) 			edge [bend left] node {} (xorj1)
+    (payment) 		edge [bend right] node {} (xorj1)
+    (xorj1) 		edge node {} (z);
+    
+%\node[draw=none] at (0.0,-2.0) {$\lambda = 65$};
+\end{tikzpicture}
+\end{verbatim}
  
  %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Tabelas}
 \label{sec:tabs} 
+
 Em tabelas, deve-se evitar usar cor de fundo diferente do branco e o uso de linhas grossas ou duplas. Ao relatar dados empíricos, não se deve usar mais dígitos decimais do aqueles que possam ser garantidos pela sua precisão e reprodutibilidade. Rótulos de tabelas devem ser colocados
 antes das mesmas (veja a Tabela \ref{tab:MarcMNem}).
 
-\begin{table}[!ht]
-\centering
+\begin{table}[ht!]
 \caption{Conteúdo do diretório}
 \label{tab:MarcMNem} 
+\begin{center}
 \begin{tabular}{c|c|c|c|c|c|c}
 \hline Tag & Comprimento & Início &   & Tag & Comprimento & Início \\ 
 \hline 001 & 0020 & 00000 && 100 & 0032 & 00235\\ 
@@ -123,16 +385,94 @@ antes das mesmas (veja a Tabela \ref{tab:MarcMNem}).
 \hline 082 & 0018 & 00217 && 650 & 0012 & 00763\\ 
 \hline 
 \end{tabular} 
+\end{center}
 \fontetab{\cite{Arm1979}}
 \end{table}
 
-% Exemplos de 2 tabelas avançadas 
+A Tabela \ref{tab:MarcMNem} foi gerada usando o código a seguir.
 
-\begin{table}[!ht]
-\centering
+\begin{verbatim}
+\begin{table}[ht!]
+\caption{Conteúdo do diretório}
+\label{tab:MarcMNem} 
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c|c}
+\hline Tag & Comprimento & Início &   & Tag & Comprimento & Início \\ 
+\hline 001 & 0020 & 00000 && 100 & 0032 & 00235\\ 
+\hline 003 & 0004 & 00020 && 245 & 0087 & 00267\\ 
+\hline 005 & 0017 & 00024 && 246 & 0036 & 00354\\ 
+\hline 008 & 0041 & 00041 && 250 & 0012 & 00390\\ 
+\hline 010 & 0024 & 00082 && 260 & 0037 & 00402\\ 
+\hline 020 & 0025 & 00106 && 300 & 0029 & 00439\\ 
+\hline 020 & 0044 & 00131 && 500 & 0042 & 00468\\ 
+\hline 040 & 0018 & 00175 && 520 & 0220 & 00510\\ 
+\hline 050 & 0024 & 00193 && 650 & 0033 & 00730\\ 
+\hline 082 & 0018 & 00217 && 650 & 0012 & 00763\\ 
+\hline 
+\end{tabular} 
+\end{center}
+\fontetab{\cite{Arm1979}}
+\end{table}
+\end{verbatim}
+
+O ambiente \verb|tabular| é usado para digitar tabelas. Para ficar mais claro sobre como funciona, a seguir está uma descrição de cada comando.
+
+\begin{verbatim}
+{c|c|c|c|c|c|c}
+\end{verbatim}
+
+Isso declara que sete colunas, separadas por uma linha vertical, serão usadas na tabela. Cada \verb|c| significa que o conteúdo da coluna será centralizado, você também pode usar \verb|r| para alinhar o texto à direita e \verb|l| para o alinhamento à esquerda.
+
+\begin{verbatim}
+\hline
+\end{verbatim}
+
+Isso irá inserir uma linha horizontal na tabela. Não há restrição quanto ao número de vezes que você pode usar \verb|\hline|.
+
+\begin{verbatim}
+cell1 & cell2 & cell3 & cell4 & cell5 & cell6 & cell7 \\
+\end{verbatim}
+
+Cada \& é um separador de células e a barra invertida dupla $\backslash\backslash$ define o final desta linha.
+
+Outro exemplo é representado pela Tabela \ref{tab:outro}. O código para gerá-la é apresentado a seguir.
+
+\begin{verbatim}
+\begin{table}[h!]
 \caption{Outro exemplo de tabela}
+\label{tab:outro}
 \renewcommand{\baselinestretch}{1.2}% for tabular environment
 \small
+\begin{center}
+\begin{tabular}{cccccc}
+\hline
+   & \multirow{2}{22mm}{\renewcommand{\baselinestretch}{0.7}
+   \small\centering Quantitative measures} & \multicolumn{4}{c}{Markers} 
+   \\ \cline{3-6}
+   & & \multicolumn{1}{c}{RO} & \multicolumn{1}{c}{ASF} & 
+   \multicolumn{1}{c}{ISO} & \multicolumn{1}{c}{ADF} \\ \hline
+   \multirow{3}{20mm}{\renewcommand{\baselinestretch}{0.7}
+   \small\centering Test image scale 2}
+& RMSE & 0.126 & 0.187 & 0.118 & 0.103 \\
+& NMSE & 0.046 & 0.101 & 0.040 & 0.031 \\
+& SSIM & 0.9981 & 0.9956 & 0.9984 & 0.9989 \\ \hline
+   \multirow{3}{18mm}{\renewcommand{\baselinestretch}{0.7}\small
+   \centering Cameraman scale 4}
+& RMSE & 13.748 & 15.649 & 10.132 & 4.325 \\
+& NMSE & 0.011 & 0.014 & 0.006 & 0.001 \\
+& SSIM & 0.923 & 0.847 & 0.904 & 0.933 \\ \hline
+\end{tabular}
+\end{center}
+\fontetab{Referência à fonte da tabela.}
+\end{table}
+\end{verbatim}
+
+\begin{table}[h!]
+\caption{Outro exemplo de tabela}
+\label{tab:outro}
+\renewcommand{\baselinestretch}{1.2}% for tabular environment
+\small
+\begin{center}
 \begin{tabular}{cccccc}
 \hline
    & \multirow{2}{22mm}{\renewcommand{\baselinestretch}{0.7}\small\centering Quantitative measures} & \multicolumn{4}{c}{Markers} \\ \cline{3-6}
@@ -145,23 +485,54 @@ antes das mesmas (veja a Tabela \ref{tab:MarcMNem}).
 & RMSE & 13.748 & 15.649 & 10.132 & 4.325 \\
 & NMSE & 0.011 & 0.014 & 0.006 & 0.001 \\
 & SSIM & 0.923 & 0.847 & 0.904 & 0.933 \\ \hline
-   \multirow{3}{18mm}{\renewcommand{\baselinestretch}{0.7}\small\centering Cameraman scale 7}
-& RMSE & 20.963 & 22.652 & 13.108 & 4.650 \\
-& NMSE & 0.024 & 0.029 & 0.010 & 0.001 \\
-& SSIM & 0.851 & 0.757 & 0.866 & 0.925 \\ \hline
-   \multirow{3}{23mm}{\renewcommand{\baselinestretch}{1.2}\small\centering Crop of cameraman scale 7}
-& RMSE & 30.914 & 31.943 & 17.831 & 2.870 \\
-& NMSE & 0.053 & 0.057 & 0.018 & 0.001 \\
-& SSIM & 0.831 & 0.772 & 0.891 & 0.983 \\ \hline
 \end{tabular}
+\end{center}
 \fontetab{Referência à fonte da tabela.}
 \end{table}
 
+Mais um exemplo de tabela é dado pela Tabela \ref{tab:maisum}, cujo código é apresentado a seguir.
+
+\begin{verbatim}
 \begin{table}[!ht]
-\centering
 \caption{Mais um exemplo de tabela}
+\label{tab:maisum}
 \renewcommand{\baselinestretch}{1.2}% for tabular environment
 \small
+\begin{center}
+\begin{tabular}{ccccc}
+\hline
+\multirow{4}{16mm}{\renewcommand{\baselinestretch}{0.7}
+\small\centering Leveling's Scale} & \multicolumn{4}{c}
+{Values for the scale relation of the four different type of markers} 
+\\ \cline{2-5}
+& \multirow{3}{29mm}{\renewcommand{\baselinestretch}{1}\small
+\centering Structure element's size $r$ for RO and ASF} & 
+\multicolumn{2}{c}{Isotropic diffusion} & 
+\multirow{3}{20mm}{\renewcommand{\baselinestretch}{1}\small
+\centering Anisotropic diffusion iterations $t$} \\ \cline{3-4}
+& & \multirow{2}{23mm}{\renewcommand{\baselinestretch}{0.7}
+\small\centering Standard deviation $\sigma$} & \multirow{2}{12mm}
+{\renewcommand{\baselinestretch}{0.7}\small\centering Kernel size} & \\
+& & & & \\ \hline
+1 & 1 & 0.5 & $5 \times 5$ & 100 \\
+2 & 2 & 1.0 & $7 \times 7$ & 200 \\
+3 & 3 & 1.5 & $11 \times 11$ & 300 \\
+4 & 4 & 2.0 & $13 \times 13$ & 400 \\
+5 & 5 & 2.5 & $17 \times 17$ & 500 \\
+6 & 6 & 3.0 & $19 \times 19$ & 600 \\
+7 & 7 & 3.5 & $23 \times 23$ & 700 \\ \hline
+\end{tabular}
+\end{center}
+\fontetab{Referência à fonte da tabela.}
+\end{table} 
+\end{verbatim}
+
+\begin{table}[!ht]
+\caption{Mais um exemplo de tabela}
+\label{tab:maisum}
+\renewcommand{\baselinestretch}{1.2}% for tabular environment
+\small
+\begin{center}
 \begin{tabular}{ccccc}
 \hline
 \multirow{4}{16mm}{\renewcommand{\baselinestretch}{0.7}\small\centering Leveling's Scale} & \multicolumn{4}{c}{Values for the scale relation of the four different type of markers} \\ \cline{2-5}
@@ -176,12 +547,50 @@ antes das mesmas (veja a Tabela \ref{tab:MarcMNem}).
 6 & 6 & 3.0 & $19 \times 19$ & 600 \\
 7 & 7 & 3.5 & $23 \times 23$ & 700 \\ \hline
 \end{tabular}
+\end{center}
 \fontetab{Referência à fonte da tabela.}
 \end{table} 
 
+A Tabela \ref{tab:longas} é um exemplo de tabela longa que ocupa várias páginas. O código para incluí-la é apresentado a seguir, sendo omitido parte das linhas da tabela gerada.
+
+\begin{verbatim}
 \setlongtables
 \begin{longtable}[c]{c|c|c|c|c|c}
-\caption{Exemplo de tabela longa que atravessa várias páginas.}\label{tab:longas}\\
+\caption{Exemplo de tabela longa que atravessa várias páginas.}
+\label{tab:longas}\\
+\hline
+\textbf{Campo1} & \textbf{Campo2} & \textbf{Campo3} & 
+\textbf{Campo4} & \textbf{Campo5} & \textbf{Campo6} \\
+\hline\hline
+\endfirsthead
+\caption[]{Continuação} \\
+\hline
+\textbf{Campo1} & \textbf{Campo2} & \textbf{Campo3} & 
+\textbf{Campo4} & \textbf{Campo5} & \textbf{Campo6} \\
+\hline\hline
+\endhead
+\hline\hline
+\endlastfoot
+\hline
+\multicolumn{6}{r}{\captionlabelfont\captionsize(Continua)}\\
+\endfoot
+	campo1 & campo2 & campo3 & campo4 & campo5 & campo6 \\
+	...
+	campo1 & campo2 & campo3 & campo4 & campo5 & campo6 \\
+\hline
+\end{longtable}
+% o comando \fontetab{} não pode ser usado neste caso
+\vspace{-8mm}
+\begin{center}
+\footnotesize
+Fonte: Referência a fonte da tabela.
+\end{center}
+\end{verbatim}
+
+\setlongtables
+\begin{longtable}[c]{c|c|c|c|c|c}
+\caption{Exemplo de tabela longa que atravessa várias páginas.}
+\label{tab:longas}\\
 \hline
 \textbf{Campo1} & \textbf{Campo2} & \textbf{Campo3} & \textbf{Campo4} & \textbf{Campo5} & \textbf{Campo6} \\
 \hline\hline
@@ -278,7 +687,48 @@ antes das mesmas (veja a Tabela \ref{tab:MarcMNem}).
 Fonte: Referência a fonte da tabela.
 \end{center}
 
-A \autoref{tab:longa} é um exemplo de tabela no modo paisagem e que ocupa também várias páginas.
+A \autoref{tab:longa} é um exemplo de tabela no modo paisagem e que ocupa também várias páginas. O código para incluí-la é apresentado a seguir, sendo omitido parte das linhas da tabela gerada.
+
+\begin{verbatim}
+\setlongtables
+\begin{landscape}
+\begin{longtable}[c]{c|c|c|c|c|c|c|c|c|c}
+\caption{Exemplo de tabela longa, em paisagem, que atravessa 
+várias páginas.}\label{tab:longa}\\
+\hline
+\textbf{BOX1} & \textbf{BOX2} & \textbf{BOX3} & \textbf{BOX4} & 
+\textbf{BOX5} & \textbf{BOX6} & \textbf{BOX7} & \textbf{BOX8} & 
+\textbf{BOX9} & \textbf{BOX10} \\
+\hline\hline
+\endfirsthead
+\caption[]{Conclusão}\\
+\hline
+\textbf{BOX1} & \textbf{BOX2} & \textbf{BOX3} & \textbf{BOX4} & 
+\textbf{BOX5} & \textbf{BOX6} & \textbf{BOX7} & \textbf{BOX8} & 
+\textbf{BOX9} & \textbf{BOX10} \\
+\hline\hline
+\endhead
+\endlastfoot
+\hline
+\multicolumn{10}{r}{\captionlabelfont\captionsize(Continua)}\\
+\endfoot
+	
+	BOX1 & BOX2 & BOX3 & BOX4 & BOX5 & BOX6 & BOX7 & BOX8 
+	& BOX9 & BOX10 \\
+	...
+	BOX1 & BOX2 & BOX3 & BOX4 & BOX5 & BOX6 &	BOX7 & BOX8 
+	& BOX9 & BOX10 \\
+\hline
+\end{longtable}
+\vspace{-8mm}
+% o comando \fontetab{} não pode ser usado neste caso
+\begin{center}
+\footnotesize
+Fonte: Referência a fonte da tabela.
+\end{center}
+\end{landscape}
+
+\end{verbatim}
 
 \setlongtables
 \begin{landscape}
@@ -339,7 +789,7 @@ Fonte: Referência a fonte da tabela.
 %% - - - - - - - - - - - - - - - -- - - - - - - - - - - - - - - - - -
 \section{Algoritmos}
 \label{sec:algor} 
-Algoritmos devem ser representados no formato do Algoritmo \ref{alg:poten}, que foi descrito com o uso da classe \textsf{algorithm2e}. A rigor não é obrigatório o uso dessa classe, contudo o uso da mesma permite que seja gerada automaticamente uma lista de algoritmos logo após o sumário.
+Algoritmos devem ser representados no formato do Algoritmo \ref{alg:poten}, que foi descrito com o uso da classe \textsf{algorithm2e}. A rigor não é obrigatório o uso dessa classe, contudo o uso da mesma permite que seja gerada automaticamente uma lista de algoritmos.
 
 \medskip
 \begin{center}
@@ -363,10 +813,39 @@ Algoritmos devem ser representados no formato do Algoritmo \ref{alg:poten}, que 
 \end{minipage}
 \end{center}
 
+O código utilizado para gerar o algoritmo é apresentado a seguir. A lista completa de palavras-chave é apresentada no Apêndice \ref{apend:algorithm2e}.
+
+\begin{verbatim}
+\medskip
+\begin{center}
+\begin{minipage}{0.92\textwidth}
+\begin{algorithm2e}[H]
+ \DontPrintSemicolon
+ \LinesNumbered
+ \SetAlgoLined
+ \BlankLine
+ \Entrada{vetor $A[i\,.\,.\,j]$, inteiros não negativos $i$ e $j$.}
+ \Saida{vetor $A[i\,.\,.\,j]$ ordenado.}
+ \BlankLine
+ $n \leftarrow j - i$.\;
+ \eSe{$(n<4)$}
+   {Ordene com $\leq 3$ comparações.}
+   {Divida $A$ em $\lceil\sqrt{n}\,\,\rceil$ subvetores de 
+   comprimento máximo $\lfloor\sqrt{n}\,\rfloor$.\;
+    Aplique $MSR$ a cada um dos subvetores.\;
+    Intercale os subvetores.\;}
+\caption{$MSR(A,i,j)$ \label {alg:poten}}
+\end{algorithm2e}
+\end{minipage}
+\end{center}
+\end{verbatim}
+
 %% - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Códigos de Programa}
 \label{sec:progs} 
-Códigos de programa podem ser importados, mantendo-se a formatação original, conforme se pode ver no exemplo do Código \ref{code:prog1}. Este exemplo usa o ambiente \textsf{codigo}, definido na classe \textsf{classe-ifg}, que permite que uma lista de programas seja gerada automaticamente logo após o sumário.
+
+Códigos de programa podem ser importados, mantendo-se a formatação original, conforme se pode ver no exemplo do Código \ref{code:prog1}. Este exemplo usa o ambiente \textsf{codigo}, definido na \textsf{classe-ifg}, que permite que uma lista de programas seja gerada automaticamente.
+
 \begin{center}
  \begin{codigo}[H]
    \small
@@ -375,6 +854,19 @@ Códigos de programa podem ser importados, mantendo-se a formatação original, 
    \label{code:prog1}
   \end{codigo}
 \end{center}
+
+Para inserir o código coloque na pasta \verb|prog| o arquivo com o conteúdo a ser inserido. Depois utilize o código a seguir. Atualmente a \textsf{classe-ifg} permite formatar códigos das linguagens XML, Java, Matlab e Python.
+
+\begin{verbatim}
+\begin{center}
+ \begin{codigo}[H]
+   \small
+   \lstinputlisting[language=Matlab]{prog/retangular.m}
+   \caption{\texttt{funcao\_retangular()} }
+   \label{code:prog1}
+  \end{codigo}
+\end{center}
+\end{verbatim}
 
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Teoremas, Corolários e Demonstrações}
@@ -407,35 +899,6 @@ Para demonstrar o Teorema de Pitágoras \dots
 \end{proof}
 
 Além desses dois ambientes, estão definidos os ambientes \textsf{definition} (Definição), \textsf{corollary} (Corolário), \textsf{lemma} (Lema)), \textsf{proposition} (Proposição), \textsf{comment} (Observação).
-
-%% - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - -
-\section{Citações Longas}
-\label{sec:citacoes}
-
-Segundo as normas da ABNT, uma citação longa (mais de 3 linhas) deve seguir uma formação especial. Para tanto foi criado o ambiente \verb|citacao|, o qual é baseado no ambiente de mesmo nome:
-
-\begin{citacao}
-Uma citação longa (mais de 3 linhas) deve vir em parágrafo separado,
-com recuo de 4cm da margem esquerda, em fonte menor, sem as aspas
-e com espaçamento simples.
-Uma regra de como fazer citações em geral não é simples. É prudente
-ler a norma da ABNT se você optar for fazer uso freqüente de citações.
-Para satisfazer às exigências tipográficas que a norma pede para
-citações longas, use o ambiente citacao.
-\end{citacao}
-
-Este exemplo de citação longa foi produzido com o uso do ambiente \verb|citacao|, como descrito logo a seguir:
-
-\begin{verbatim}
-\begin{citacao}
-Uma citação longa (mais de 3 linhas) deve vir em parágrafo separado,
-com recuo de 4cm da margem esquerda, em fonte menor, sem as aspas
-e com espaçamento simples.
-Uma regra de como fazer citações em geral não é simples. É prudente
-ler a norma da ABNT se você optar for fazer uso freqüente de citações.
-Para satisfazer às exigências tipográficas que a norma pede para
-citações longas, use o ambiente citacao.
-\end{verbatim}
 
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Referências e citações}

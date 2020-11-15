@@ -1,5 +1,6 @@
 \immediate\write18{makeindex -s nomencl.ist -o "\jobname.nls" "\jobname.nlo"}
 
+
 % Exemplo de documento do PPGTPS com texto em português formatado com LaTeX
 \documentclass[dissertacao]{formatacao/classe-ifg}
 % Opções da classe-ifg (ao usar mais de uma, separe por vírgulas): 
@@ -13,7 +14,8 @@
 %   [nocolorlinks] 	  -> Os links de navegação no texto ficam na cor 
 %                                 preta. Use esta opção para gerar o arquivo 
 %                                 para impressão da versão final do seu texto!!!
-
+%  [online}				  -> No caso de defesa final realizada virtualmente.
+ 
 % Caso precise, corrija hifenização aqui
 \hyphenation{mo-no-gra-fi-a pro-ces-so}
 
@@ -22,7 +24,7 @@
 
 
 
-% EDITAR - Todos os cursos  --------------------------------------- %
+% EDITAR - Todos os cursos  ------------------------------------------- %
 % -------- Autor(es)
 \autor{Fulano de Tal} % (Ex.: José da Silva)
 % Se houver segundo autor descomente e preencha o comando abaixo
@@ -66,7 +68,7 @@
 
 
 % EDITAR - Apenas mestrado  --------------------------------------- %
-% Program de Pós-Graduação
+% Programa de Pós-Graduação
 \programa{Programa de Pós-Graduação Stricto Sensu em Tecnologia de Processos Sustentáveis}
 % Área de concentração
 \concentracao{Tecnologia de Sistemas de Produção Limpa}

@@ -43,6 +43,7 @@
 \newboolean{qualt} \setboolean{qualt}{false}
 \newboolean{link} \setboolean{link}{true}
 \newboolean{old} \setboolean{old}{true}
+\newboolean{virtual} \setboolean{link}{false}
 
 \DeclareOption{tese}{
  \setboolean{tese}{true}
@@ -116,6 +117,9 @@
 
 \DeclareOption{nocolorlinks}{
  \setboolean{link}{false}}
+ 
+\DeclareOption{online}{
+ \setboolean{virtual}{true}}
 
 \DeclareOption{american,english,french,german,brazil,portuguese}{
  \PassOptionsToPackage{\CurrentOption}{babel,fancyref}}
@@ -244,6 +248,10 @@
 
 %% Figuras usando TikZ
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\RequirePackage[table]{xcolor}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,petri,matrix,shadows.blur,shapes.symbols,shadows,positioning,decorations.pathreplacing,fadings,fit,calc,shadows}
+\RequirePackage{tikzscale}
 \newcommand{\inputTikZ}[2]{%  
      \scalebox{#1}{\input{#2}}  
 }
@@ -264,9 +272,8 @@
 \newcolumntype{Z}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{N}{@{}m{0pt}@{}}
 \newcommand{\fontetab}[1]{
+	\centering
     \footnotesize
-    \vspace{0.3cm}
-    \newline
     Fonte: #1.
 }
 
@@ -279,7 +286,7 @@
 \newcommand{\quadroname}{Quadro}
 \newcommand{\quadrorefname}{Quadro}
 \newcommand{\chartautorefname}{Quadro}
-\newfloat{quadro}{!htbp}{loq}[chapter]
+\newfloat{quadro}{tbp}{loq}[chapter]
 \floatname{quadro}{\quadroname}
 \floatstyle{plaintop}
 \restylefloat{quadro}
@@ -295,8 +302,7 @@
 }
 \newcommand{\fontequa}[1]{
     \footnotesize
-    \vspace{0.3cm}
-    \newline
+    \centering
     Fonte: #1.
 }
 
@@ -321,7 +327,6 @@
  }
 \RequirePackage{listings}
 \renewcommand{\lstlistingname}{Código}
-\RequirePackage[table]{xcolor}
 \definecolor{maroon}{rgb}{0.5,0,0}
 \definecolor{darkgreen}{rgb}{0,0.5,0}
 \definecolor{darkblue}{rgb}{0.0,0.0,0.5}
@@ -916,8 +921,13 @@
 
 %% Termo de aprova\c{c}\~{a}o
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\newcommand{\membro}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Prof. #1}\\#2} \vspace*{\stretch{0.2}}\par}
-\newcommand{\membra}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Profa. #1}\\#2} \vspace*{\stretch{0.2}}\par}
+\ifthenelse{\boolean{virtual}}{
+	\newcommand{\membro}[2]{\textoC{1}{\footnotesize \textit{(Assinado eletronicamente)}\\ \vspace{0.2cm} \small \textbf{Prof. #1}\\#2} \vspace*{\stretch{0.2}}\par}
+	\newcommand{\membra}[2]{\textoC{1}{\footnotesize \textit{(Assinado eletronicamente)}\\ \vspace{0.2cm} \small \textbf{Profa. #1}\\#2} \vspace*{\stretch{0.2}}\par}
+}{
+	\newcommand{\membro}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Prof. #1}\\#2} \vspace*{\stretch{0.2}}\par}
+	\newcommand{\membra}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Profa. #1}\\#2} \vspace*{\stretch{0.2}}\par}
+}
 \newcommand{\aprovacao}{
 \ifthenelse{\boolean{tese} \OR \boolean{diss} \OR \boolean{mngr} \OR \boolean{tcc}}{
   \IfFileExists{./aproffsvacao.pdf}{

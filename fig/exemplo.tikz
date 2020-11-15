@@ -1,0 +1,32 @@
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.8cm,thick,main node/.style={circle,draw,font=\sffamily\bfseries,align=center,text width={width("directory")}}]
+
+  \node[main node] (b) {$b$};
+  \node[main node] (sales) [right of=b] {Depart. vendas};
+  \node[main node] (ands1) [right of=sales,font=\sffamily\it] {\textit{AND$^s$}};
+  \node[main node] (inventory) [above right of=ands1] {Geren. invent{\'a}rio};
+  \node[main node] (freight) [below right of=ands1] {Escalon. de frete};
+  \node[main node] (andj1) [below right of=inventory,font=\sffamily\it] {\textit{AND$^j$}};
+  \node[main node] (crm) [below of=sales, node distance=7.8cm] {CRM};
+  \node[main node] (xors1) [right of=crm,font=\sffamily\it] {\textit{XOR$^s$}};
+  \node[main node] (bank) [above right of=xors1] {Sistema banc{\'a}rio};
+  \node[main node] (payment) [below right of=xors1] {Sistema pagamento};
+  \node[main node] (xorj1) [below right of=bank,font=\sffamily\it] {\textit{XOR$^j$}};
+  \node[main node, accepting, node distance=2.5cm] (z) [right of=xorj1] {$z$};
+
+  \path[every node/.style={font=\sffamily\small},align=center]
+    (b) 			edge node {Submeter\\pedido} (sales)
+    (sales) 		edge node {} (ands1)
+    (sales) 		edge node [left] {Processar ordem\\ de pagamento} (crm)
+    (ands1) 		edge [bend left] node [above left] {Processar\\pedido} (inventory)
+    (ands1) 		edge [bend right] node [below left] {Escalonar\\frete} (freight)
+    (inventory) 	edge [bend left] node {} (andj1)
+    (freight) 		edge [bend right] node {} (andj1)
+    (crm) 			edge node {} (xors1)
+    (xors1) 		edge [bend left] node [above left] {Enviar\\cobran\c{c}a\\: $p=0.3$} (bank)
+    (xors1) 		edge [bend right] node [below left] {Processar ordem\\ de pagamento\\: $p=0.7$} (payment)
+    (bank) 			edge [bend left] node {} (xorj1)
+    (payment) 		edge [bend right] node {} (xorj1)
+    (xorj1) 		edge node {} (z);
+    
+%\node[draw=none] at (0.0,-2.0) {$\lambda = 65$};
+\end{tikzpicture}

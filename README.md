@@ -43,7 +43,7 @@ Você também pode fazer o *upload* automaticamente para Overleaf com a última 
 
 ## Mudanças
 
-Para ver as mudanças, acesse o histórico do `git` no endereço [commits/master](../../commits/master).
+Para ver as mudanças, acesse o histórico do `git` no endereço [commits/main](../../commits/main).
 
 Ou clone este repositório e execute seguinte comando do cliente git:
 ```bash
