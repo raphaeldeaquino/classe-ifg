@@ -26,14 +26,15 @@
 %%==================================================================
 %% Histórico de versões
 %%==================================================================
-% v1.0 : 14 nov 2020 -----------------------------------------------
+% v1.0 : 14 nov 2020 ---------------------------------------------------------------------------
 % - Primeira versão da classe-ifg
-% v1.1 : 16 nov 2020 -----------------------------------------------
+% v1.1 : 16 nov 2020 ---------------------------------------------------------------------------
 % - Correção da fonte no sumário
 % - Correção do arquivo exemplo.tikz
 % - Removido warning pslatex
 % - Reduzido tamanho das imagens
 % - Cabeçalho apenas com número da página
+% - Adicionada a opção fancy
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -50,6 +51,7 @@
 \newboolean{link} \setboolean{link}{true}
 \newboolean{old} \setboolean{old}{true}
 \newboolean{virtual} \setboolean{link}{false}
+\newboolean{fancylayout} \setboolean{fancylayout}{false} 
 
 \DeclareOption{tese}{
  \setboolean{tese}{true}
@@ -123,6 +125,11 @@
 
 \DeclareOption{nocolorlinks}{
  \setboolean{link}{false}}
+ 
+ \DeclareOption{fancy}{
+ \setboolean{old}{false}
+ \setboolean{fancylayout}{true}
+ }
  
 \DeclareOption{online}{
  \setboolean{virtual}{true}}
@@ -641,12 +648,17 @@
 \RequirePackage{fancyhdr}
 \fancyhf{} % delete current setting for header and footer
 
-%\renewcommand{\sectionmark}[1]{ \markright{\thesection\ #1}{}}
-%\fancyhead[L]{\footnotesize \nouppercase{\rightmark}}
-\fancyhead[R]{\footnotesize \thepage}
-\renewcommand{\headrulewidth}{0pt}
-%\renewcommand{\headrulewidth}{0.5pt}
-%\fancypagestyle{plain}{\fancyhead{} \fancyfoot{} \renewcommand{\headrulewidth}{0pt}}
+\ifthenelse{\boolean{fancylayout}}
+{
+ \renewcommand{\sectionmark}[1]{ \markright{\thesection\ #1}{}}  
+ \fancyhead[L]{\footnotesize \nouppercase{\rightmark}}
+ \fancyhead[R]{\footnotesize \thepage}
+ \renewcommand{\headrulewidth}{0.5pt}
+ \fancypagestyle{plain}{\fancyhead{} \fancyfoot{} \renewcommand{\headrulewidth}{0pt}}
+}{
+ \fancyhead[R]{\footnotesize \thepage}
+ \renewcommand{\headrulewidth}{0pt}
+}
 
 \newcommand{\apendices}{
 \rm
