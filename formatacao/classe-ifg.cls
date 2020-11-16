@@ -33,6 +33,7 @@
 % - Correção do arquivo exemplo.tikz
 % - Removido warning pslatex
 % - Reduzido tamanho das imagens
+% - Cabeçalho apenas com número da página
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -640,11 +641,12 @@
 \RequirePackage{fancyhdr}
 \fancyhf{} % delete current setting for header and footer
 
-\renewcommand{\sectionmark}[1]{ \markright{\thesection\ #1}{}}
-\fancyhead[L]{\footnotesize \nouppercase{\rightmark}}
+%\renewcommand{\sectionmark}[1]{ \markright{\thesection\ #1}{}}
+%\fancyhead[L]{\footnotesize \nouppercase{\rightmark}}
 \fancyhead[R]{\footnotesize \thepage}
-\renewcommand{\headrulewidth}{0.5pt}
-\fancypagestyle{plain}{\fancyhead{} \fancyfoot{} \renewcommand{\headrulewidth}{0pt}}
+\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\headrulewidth}{0.5pt}
+%\fancypagestyle{plain}{\fancyhead{} \fancyfoot{} \renewcommand{\headrulewidth}{0pt}}
 
 \newcommand{\apendices}{
 \rm
