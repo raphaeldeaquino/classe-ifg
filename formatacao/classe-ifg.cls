@@ -28,6 +28,8 @@
 %%==================================================================
 % v1.0 : 14 nov 2020 -----------------------------------------------
 % Primeira versão da classe-ifg
+% v1.1 : 16 nov 2020 -----------------------------------------------
+% Correção da fonte no sumário
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -693,12 +695,10 @@
 \renewcommand{\cftchapindent}{0pt}
 \renewcommand{\cftsecindent}{18pt}
 \renewcommand{\cftsubsecindent}{46pt}
-\renewcommand{\cftchapfont}{\arial\bfseries\scshape}
-\renewcommand{\cftsecfont}{\arial\small}
-\renewcommand{\cftsubsecfont}{\arial\footnotesize}
-\renewcommand{\cftsubsubsecfont}{\arial\footnotesize}
-\renewcommand{\cftfigfont}{\arial}
-\renewcommand{\cfttabfont}{\arial}
+\renewcommand{\cftchapfont}{\bfseries\scshape}
+\renewcommand{\cftsecfont}{\small}
+\renewcommand{\cftsubsecfont}{\footnotesize}
+\renewcommand{\cftsubsubsecfont}{\footnotesize}
 
 %% theorems environments
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
