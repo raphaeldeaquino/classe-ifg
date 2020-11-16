@@ -27,9 +27,11 @@
 %% Histórico de versões
 %%==================================================================
 % v1.0 : 14 nov 2020 -----------------------------------------------
-% Primeira versão da classe-ifg
+% - Primeira versão da classe-ifg
 % v1.1 : 16 nov 2020 -----------------------------------------------
-% Correção da fonte no sumário
+% - Correção da fonte no sumário
+% - Correção do arquivo exemplo.tikz
+% - Removido warning pslatex
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -177,6 +179,8 @@
 %% Fontes adicionais
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \RequirePackage{amsfonts}
+\RequirePackage{silence}
+\WarningsOff[pslatex]
 \RequirePackage{pslatex}
 \RequirePackage{etoolbox}
 \newcommand{\arial}{\sf}
@@ -672,7 +676,6 @@
 
 %% table of contents
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\usepackage{silence}
 \WarningsOff[tocbibind,tocbasic]
 \RequirePackage[nottoc,notlof]{tocbibind}
 \RequirePackage{titletoc}

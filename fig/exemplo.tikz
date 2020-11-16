@@ -1,4 +1,4 @@
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.8cm,thick,main node/.style={circle,draw,font=\sffamily\bfseries,align=center,text width={width("directory")}}]
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.8cm,thick,main node/.style={circle,draw,font=\sffamily\bfseries,align=center,text width={1.5cm}}]
 
   \node[main node] (b) {$b$};
   \node[main node] (sales) [right of=b] {Depart. vendas};
