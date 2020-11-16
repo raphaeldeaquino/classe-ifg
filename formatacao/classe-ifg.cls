@@ -32,6 +32,7 @@
 % - Correção da fonte no sumário
 % - Correção do arquivo exemplo.tikz
 % - Removido warning pslatex
+% - Reduzido tamanho das imagens
 
 %%==================================================================
 %% classe-ifg Class Options
