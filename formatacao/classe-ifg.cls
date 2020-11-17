@@ -35,6 +35,8 @@
 % - Reduzido tamanho das imagens
 % - Cabeçalho apenas com número da página
 % - Adicionada a opção fancy
+% v1.2 : 17 nov 2020 ---------------------------------------------------------------------------
+% - Inserção da verificação do tipo de curso quando TCC
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -880,21 +882,27 @@
   \ifthenelse{\boolean{quale}}{
     Qualifica\c{c}\~{a}o de Especializa\c{c}\~{a}o realizada no curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a} do t\'{i}tudo de Especialista em \@curso.}{}
   \ifthenelse{\boolean{tcc}}{
-    \ifthenelse{\equal{\@tipocurso}{Bacharelado}}{
+  	\ifthenelse{\equal{\@tipocurso}{Bacharelado}}{
         \newcommand\grau{Bacharel}
-    }{}
-    \ifthenelse{\equal{\@tipocurso}{Licenciatura}}{
-        \newcommand\grau{Licenciado}
-    }{}
+    }{
+    	\ifthenelse{\equal{\@tipocurso}{Licenciatura}}{
+        	\newcommand\grau{Licenciado}
+    	}{
+    		\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado ou Licenciatura}{Tipo de curso inadequado para o documento}
+    	}
+    }
     Trabalho de Conclus\c{c}\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
   \ifthenelse{\boolean{qualt}}{
     \ifthenelse{\equal{\@tipocurso}{Bacharelado}}{
         \newcommand\grau{Bacharel}
-    }{}
-    \ifthenelse{\equal{\@tipocurso}{Licenciatura}}{
-        \newcommand\grau{Licenciado}
-    }{}
-    Qualifica\c{c}\~{a}o de Trabalho de Conclus\c{c}\~{a}o de Curso realizada no curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
+    }{
+    	\ifthenelse{\equal{\@tipocurso}{Licenciatura}}{
+        	\newcommand\grau{Licenciado}
+    	}{
+    		\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado ou Licenciatura}{Tipo de curso inadequado para o documento}
+    	}
+    }
+    Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
  }
  \vspace{0.2cm}
  \par%
