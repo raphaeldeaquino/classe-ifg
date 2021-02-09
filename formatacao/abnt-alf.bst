@@ -290,7 +290,7 @@ FUNCTION {bbl.edition} { "ed." }
 FUNCTION {bbl.empty} {""}
 FUNCTION {bbl.etal}{abnt.etal.text "" = {""} {" " abnt.etal.text *} if$}
 FUNCTION {bbl.doi.url} {"http://dx.doi.org/"}
-FUNCTION {bbl.in}{ "In" iso.abbreviation 'skip$ { bbl.colon *} if$}
+FUNCTION {bbl.in}{ "\textit{In}" iso.abbreviation 'skip$ { bbl.colon *} if$}
 FUNCTION {bbl.ldots} %#0 use nothing, #1 use \ldots, #2 use $\ldots$, 3# use {...}
 {abnt.ldots.type
   {abnt.ldots.type #1 = {"\ldots"}   'skip$ if$
@@ -306,6 +306,7 @@ FUNCTION {bbl.missing.year}
  if$}
 FUNCTION {bbl.monography} { "Monografia" }
 FUNCTION {bbl.mthesis} { "Dissertação" }
+FUNCTION {bbl.tcc} { "Trabalho de Conclusão de Curso" }
 FUNCTION {bbl.no.address} {"[S.l.]"}
 FUNCTION {bbl.no.address.no.publisher} {"[S.l.: s.n.]"}
 FUNCTION {bbl.no.publisher} {"[s.n.]"}
@@ -1004,7 +1005,7 @@ FUNCTION {compose.url}
    abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$
    * "$>$" *} 'skip$ if$
  abnt.url.package #1 =
-   { "<\url{" * s * "}>" *} 'skip$ if$
+   { "\url{" * s * "}" *} 'skip$ if$
  abnt.url.package #2 =
    {url.type http.url =
      {"\htmladdnormallink{$<$" * filter.url.tex * "$>$}{" * filter.url.html * "}" *}
@@ -1211,6 +1212,9 @@ FUNCTION {format.editor.or.organization}
   if$
   compare.authorship
 }
+
+FUNCTION {format.organization}
+{  organization "u" bibinfo.check output  }
 
 FUNCTION {format.author.or.editor.or.organization}
 { author empty$
@@ -1840,13 +1844,13 @@ FUNCTION {misc}
 
 FUNCTION {patent}
 { output.bibitem
-  format.editor.or.organization new.sentence
-  iso.year.label
-% format.authors.plain  output new.sentence
-  format.furtherresp new.sentence
+  format.authors  output new.sentence
   format.btitle output new.sentence
+  format.organization new.sentence
+  iso.year.label
+  format.furtherresp new.sentence
   format.date output  new.block
-  format.patent.number output
+  format.patent.number output new.sentence
   format.howpublished output  new.block
   format.note output  new.block
   format.url
@@ -1861,7 +1865,10 @@ FUNCTION {format.thesis.type}
        {bbl.mthesis}
        {type$ "monography" =
           {bbl.monography}
+             {type$ "tcc" =
+          {bbl.tcc}
 	  {bbl.void}
+	        if$}
         if$}
      if$}
   if$
@@ -1903,6 +1910,7 @@ FUNCTION {thesis}
 FUNCTION {phdthesis}     { thesis }
 FUNCTION {mastersthesis} { thesis }
 FUNCTION {monography}    { thesis }
+FUNCTION {tcc}    { thesis }
 
 FUNCTION {proceedings}
 { output.bibitem

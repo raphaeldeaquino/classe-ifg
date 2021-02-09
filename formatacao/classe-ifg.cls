@@ -37,6 +37,8 @@
 % - Adicionada a opção fancy
 % v1.2 : 17 nov 2020 ---------------------------------------------------------------------------
 % - Inserção da verificação do tipo de curso quando TCC
+% v1.3 : 09 fev 2021 ---------------------------------------------------------------------------
+% - Adequação à norma ABNT 2018
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -1230,7 +1232,7 @@
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \usepackage{backref}
 %%% Pacote da ABNTeX para referências dentro das normas %%%
-\usepackage[alf,abnt-emphasize=bf,abnt-etal-cite=2,abnt-etal-list=0,abnt-repeated-title-omit=yes,abnt-show-options=no,abnt-verbatim-entry=no,abnt-url-package=url]{formatacao/abntcite}%testebib 
+\usepackage[alf,abnt-emphasize=bf,abnt-etal-cite=2,abnt-etal-list=3,abnt-full-initials=yes,abnt-repeated-title-omit=yes,abnt-show-options=no,abnt-verbatim-entry=no,abnt-url-package=url]{formatacao/abntcite}%testebib 
 
 \newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
 \newlength{\bibparskip}\setlength{\bibparskip}{10pt}

@@ -1015,3 +1015,424 @@ observar apenas o recuo \cite[5.3]{NBR10520:2002}.
 \end{citacao}
 \end{verbatim}
 
+\section{Referências Bibliográficas}
+
+As referências bibliográficas utilizadas neste modelo estão de acordo com a Norma Brasileira ABNT 6023:2018 Informação e documentação - Referências - Elaboração \cite{abnt}. A seguir são apresentados exemplos em cada um das categorias, considerando somente os elementos essenciais. Adicionalmente, é apresentado o código \BibTeX~para geração da referência.
+
+\subsection{Monografia no todo}\label{sec:monografia}
+
+Inclui livro e/ou folheto (manual, guia, catálogo, enciclopédia, dicionário, entre outros) e trabalho acadêmico (tese, dissertação, trabalho de conclusão de curso, entre outros).
+
+Os elementos essenciais para livro e/ou folheto são: autor, título, subtítulo (se houver), edição (se houver), local, editora e data de publicação. Quando necessário, acrescentam-se elementos complementares à referência para melhor identificar o documento.
+
+EXEMPLO 1
+
+LUCK, Heloisa. \textbf{Liderança em gestão escolar}. 4. ed. Petrópolis: Vozes, 2010.
+
+\begin{verbatim}
+@book{luck2014e,
+ author = {Heloisa Luck},
+ title = {Liderança em gestão escolar},
+ edition = {2},
+ address = {Petrópolis},
+ publisher = {Vozes},
+ year = {2010}
+}
+\end{verbatim}
+
+EXEMPLO 2
+
+BAUMAN, Zygmunt. \textbf{Globalização}: as consequências humanas. Rio de Janeiro: Jorge Zahar, 1999.
+
+\begin{verbatim}
+@book{bauman99,
+ author = {Zygmunt Bauman},
+ title = {Globalização},
+ subtitle = {as consequências humanas},
+ address = {Rio de Janeiro},
+ publisher = {Jorge Zahar},
+ year = {1999}
+}
+\end{verbatim}
+
+Os elementos essenciais para trabalho acadêmico são: autor, título, subtítulo (se houver), ano de depósito, tipo do trabalho (tese, dissertação, trabalho de conclusão de curso e outros), grau (especialização, doutorado, entre outros) e curso entre parênteses, vinculação acadêmica, local e data de apresentação ou defesa. Quando necessário, acrescentam-se elementos complementares à referência para melhor identificar o documento.
+
+EXEMPLO 1
+
+AGUIAR, André Andrade de. \textbf{Avaliação da microbiota bucal em pacientes sob uso crônico de penicilina e benzatina}. Tese (Doutorado em Cardiologia) — Faculdade de Medicina, Universidade de São Paulo, São Paulo, 2009.
+
+\begin{verbatim}
+@phdthesis{aguiar09,
+ author = {André Andrade de Aguiar},
+ title = {Avaliação da microbiota bucal em pacientes sob uso crônico de penicilina e benzatina},
+ year = {2009},
+ type = {Doutorado em Cardiologia},
+ school = {Faculdade de Medicina, Universidade de São Paulo},
+ address = {São Paulo}
+}
+\end{verbatim}
+
+EXEMPLO 2
+
+ALVES, Daian Péricles. \textbf{Implementação de conceitos de manufatura colaborativa}: um projeto virtual. Trabalho de Conclusão de Curso (Bacharelado em Engenharia Industrial Mecânica) — Universidade Tecnológica Federal do Paraná, Curitiba, 2008.
+
+\begin{verbatim}
+@tcc{alves08,
+ author = {Daian Péricles Alves},
+ title = {Implementação de conceitos de manufatura colaborativa},
+ subtitle = {um projeto virtual},
+ year = {2008},
+ type = {Bacharelado em Engenharia Industrial Mecânica},
+ school = {Universidade Tecnológica Federal do Paraná},
+ address = {Curitiba}
+}
+\end{verbatim}
+
+EXEMPLO 3 
+
+RODRIGUES, Ana Lúcia Aquilas. \textbf{Impacto de um programa de exercícios no local de trabalho sobre o nível de atividade física e o estágio de prontidão para a mudança de comportamento}. Dissertação (Mestrado em Fisiopatologia Experimental) — Faculdade de Medicina, Universidade de São Paulo, São Paulo, 2009.
+
+\begin{verbatim}
+@mastersthesis{rodrigues09,
+ author = {Ana Lúcia Aquilas Rodrigues},
+ title = {Impacto de um programa de exercícios no local de trabalho sobre o nível de atividade física e o estágio de prontidão para a mudança de comportamento},
+ year = {2009},
+ type = {Mestrado em Fisiopatologia Experimental},
+ school = {Faculdade de Medicina, Universidade de São Paulo},
+ address = {São Paulo}
+}
+\end{verbatim}
+
+EXEMPLO 4 
+
+PANIAGO, Cecília Yade Nogueira Alves. \textbf{A relação entre professor-aluno na educação de jovens e adultos (EJA)}. Monografia (Especialização em Docência na Educação Profissional, Técnica e Tecnológica) — Instituto Federal de Educação, Ciência e Tecnologia de Goiás, Senador Canedo, 2020.
+
+\begin{verbatim}
+@monography{paniago20,
+ author = {Cecília Yade Nogueira Alves Paniago},
+ title = {A relação entre professor - aluno na educação de jovens e adultos (EJA)},
+ year = {2020},
+ type = {Especialização em Docência na Educação Profissional, Técnica e Tecnológica},
+ school = {Instituto Federal de Educação, Ciência e Tecnologia de Goiás},
+ address = {Senador Canedo}
+}
+\end{verbatim}
+
+\subsection{Monografia no todo em meio eletrônico}
+
+Para documentos em meio eletrônico, as referências devem obedecer aos padrões indicados para os documentos monográficos no todo, de acordo com a Seção~\ref{sec:monografia}, acrescidas da descrição do endereço eletrônico.
+
+EXEMPLO 1 
+
+BAVARESCO, Agemir; BARBOSA, Evandro; ETCHEVERRY, Katia Martin. \textbf{Projetos de filosofia}. Porto Alegre: EDIPUCRS, 2011. Disponível em: http://ebooks.pucrs.br/edipucrs/projetosdefilosofia.pdf. Acesso em: 21 ago. 2011.
+
+\begin{verbatim}
+@book{bavaresco11,
+ author = {Agemir Bavaresco and Evandro Barbosa and Katia Martin Etcheverry},
+ title = {Projetos de filosofia},
+ year = {2011},
+ address = {Porto Alegre},
+ publisher = {EDIPUCRS},
+ url = {http ://ebooks.pucrs.br/edipucrs/projetosdefilosofia.pdf},
+ urlaccessdate = {21 ago. 2011}
+}
+\end{verbatim}
+
+EXEMPLO 2
+
+COELHO, Ana Cláudia. \textbf{Fatores determinantes de qualidade de vida física e mental em pacientes com doença pulmonar intersticial}: uma análise multifatorial. Dissertação (Mestrado em Ciências Médicas) — Faculdade de Medicina, Universidade Federal do Rio Grande do Sul, Porto Alegre, 2009. Disponível em: http://www.lume. ufrgs.br/bitstream/handle/10183/16359/000695147.pdf?sequence=1. Acesso em: 4 set. 2009.
+
+\begin{verbatim}
+@mastersthesis{coelho09,
+ author = {Ana Cláudia Coelho},
+ title = {Fatores determinantes de qualidade de vida física e mental em pacientes com doença pulmonar intersticial},
+ subtitle = {uma análise multifatorial},
+ year = {2009},
+ type = {Mestrado em Ciências Médicas},
+ school = {Faculdade de Medicina, Universidade Federal do Rio Grande do Sul},
+ address = {Porto Alegre},
+ url = {http://www.lume.ufrgs.br/bitstream/handle/10183/16359/000695147.pdf?sequence=1},
+ urlaccessdate = {4 set. 2009}
+}
+\end{verbatim}
+
+\subsection{Parte de monografia}
+
+Inclui secção, capítulo, volume, fragmento e outras partes de uma obra, com autor e/ou título próprios.
+
+Os elementos essenciais são: autor e título da parte, seguidos da expressão \textit{In:}, e da referência completa da monografia no todo. No final da referência, deve-se informar a descrição física da parte. Quando necessário, acrescentam-se elementos complementares à referência para melhor identificar o documento.
+
+EXEMPLO 1 
+
+SANTOS, Fernando Rodrigues dos. A colonização da terra do tucujús. \textit{In}: \_\_\_\_. \textbf{História do Amapá, 1$^o$ grau}. 2. ed. Macapá: Valcan, 1994. cap. 3, p. 15–24.
+
+\begin{verbatim}
+@inbook{santos94,
+ author = {Fernando Rodrigues dos Santos},
+ booktitle = {História do Amapá, 1$^o$ grau},
+ title = {A colonização da terra do Tucujús},
+ chapter = {3},
+ edition = {2},
+ pages = {15-24},
+ publisher = {Valcan},
+ year = {1994},
+ address = {Macapá}
+}
+\end{verbatim}
+
+EXEMPLO 2 
+
+ROMANO, G. Imagens da juventude na era moderna. \textit{In}: LEVI, G.; SCHMIDT, J. (Org.). \textbf{História dos jovens 2}: a época contemporânea. São Paulo: Companhia das Letras, 1996. p. 7–16.
+
+\begin{verbatim}
+@incollection{romano96,
+ author = {G. Romano},
+ booktitle = {História dos jovens 2},
+ booksubtitle = {a época contemporânea},
+ title = {Imagens da juventude na era moderna},
+ editor = {G. Levi and J. Schmidt},
+ editortype = {Org.},
+ pages ={7-16},
+ publisher = {Companhia das Letras},
+ year = {1996},
+ address = {São Paulo}
+}
+\end{verbatim}
+
+\subsection{Publicação periódica}
+
+Inclui o todo ou partes de: coleção, fascículo ou número de revista, jornal, entre outros.
+
+\subsubsection{Coleção de publicação periódica}
+
+A referência de toda a coleção de um título de periódico é utilizada em listas de referências e catálogos de obras preparados por livreiros, bibliotecas ou editoras.
+
+Os elementos essenciais são: título, subtítulo (se houver), local de publicação, editora, datas de início e de encerramento da publicação (se houver), e ISSN (se houver). Quando necessário, acrescentam-se elementos complementares para melhor identificar o documento.
+
+EXEMPLO 1 
+
+REVISTA BRASILEIRA DE GEOGRAFIA. Rio de Janeiro: IBGE, 1939--. ISSN 0034-723X.
+
+\begin{verbatim}
+@book{geografia39,
+ address = {Rio de Janeiro},
+ issn = {0034-723X},
+ organization = {Revista Brasileira de Geografia},
+ publisher = {IBGE},
+ year = {1939--}
+}
+\end{verbatim}
+
+EXEMPLO 2 
+
+ACTA CIRúRGICA BRASILEIRA. São Paulo: Sociedade Brasileira para o Desenvolvimento da Pesquisa em Cirurgia, 1997–. ISSN 1678-2674 versão \textit{online}. Disponível em: http://www.scielo.br/scielo.php?script=sci\_serial\&pid=0102-8650\&lng=pt\&nrm=iso. Acesso em: 22 ago. 2013.
+
+\begin{verbatim}
+@book{acta97,
+ address = {São Paulo},
+ issn = {1678-2674 versão \textit{online}},
+ organization = {Acta Cirúrgica Brasileira},
+ publisher = {Sociedade Brasileira para o Desenvolvimento da Pesquisa em Cirurgia},
+ year = {1997--},
+ url = {http://www.scielo.br/scielo.php?script=sci_ serial&pid=0102-8650&lng=pt&nrm=iso},
+ urlaccessdate = {22 ago. 2013}
+}
+\end{verbatim}
+
+\subsubsection{Artigo, seção e/ou matéria de publicação periódica}
+
+Inclui partes de publicação periódica, artigo, comunicação, editorial, entrevista, recensão, reportagem, resenha e outros.
+
+Os elementos essenciais são: autor, título do artigo ou da matéria, subtítulo (se houver), título do periódico, subtítulo (se houver), local de publicação, numeração do ano e/ou volume, número e/ou edição, tomo (se houver), páginas inicial e final, e data ou período de publicação.
+
+EXEMPLO 1
+
+COSTA, V. R. À margem da lei: o programa comunidade solidária. \textbf{Em Pauta} — Revista da Faculdade de Serviço Social da UERJ, Rio de Janeiro, n. 12, p. 131–148, 1998.
+
+\begin{verbatim}
+@article{costa98,
+ address = {Rio de Janeiro},
+ author = {V. R. Costa},
+ journal = {Em Pauta},
+ number = {12},
+ pages = {131-148},
+ section = {Revista da Faculdade de Serviço Social da UERJ},
+ title = {À Margem da Lei: o Programa Comunidade Solidária},
+ year = {1998}
+}
+\end{verbatim}
+
+\subsubsection{Artigo e/ou matéria de jornal}
+
+Inclui comunicação, editorial, entrevista, recensão, reportagem, resenha e outros.
+
+Os elementos essenciais são: autor, título, subtítulo (se houver), título do jornal, subtítulo do jornal (se houver), local de publicação, numeração do ano e/ou volume, número (se houver), data de publicação, seção, caderno ou parte do jornal e a paginação correspondente. 
+
+EXEMPLO 1 
+
+NAVES, P. Lagos andinos dão banho de beleza. \textbf{Folha de S. Paulo}, São Paulo, 28 jun. 1999. Folha Turismo, Caderno 8, p. 13.
+
+\begin{verbatim}
+@article{naves99,
+ address = {São Paulo},
+ author = {P. Naves},
+ journal = {Folha de S. Paulo},
+ month = {28 jun.},
+ note = {Folha Turismo, Caderno 8, p.~13},
+ title = {Lagos andinos dão banho de beleza},
+ year = {1999}
+}
+\end{verbatim}
+
+\subsection{Eventos}
+
+Inclui o conjunto dos documentos resultantes de evento (atas, anais, \textit{proceedings}, entre outros).
+
+\subsubsection{Evento no todo em monografia}
+
+Os elementos essenciais são: nome do evento, numeração (se houver), ano e local (cidade) de realização, título do documento, seguidos dos dados de local, editora e data da publicação. 
+
+EXEMPLO 1
+
+SIMPóSIO BRASILEIRO DE REDES DE COMPUTADORES, 13., 1995, Belo Horizonte. \textbf{Anais [...]}. Belo Horizonte: UFMG, 1995. 665 p.
+
+\begin{verbatim}
+@proceedings{redes95,
+ address = {Belo Horizonte},
+ conference-number = {13},
+ conference-year = {1995},
+ conference-location = {Belo Horizonte},
+ organization = {Simpósio Brasileiro de Redes de Computadores},
+ pages = {665},
+ publisher = {UFMG},
+ title = {Anais [...]},
+ year = {1995}
+}
+\end{verbatim}
+
+EXEMPLO 2 
+
+IUFROST INTERNATIONAL SYMPOSIUM ON CHEMICAL CHANGES DURING FOOD PROCESSING, 1984, Valencia. \textbf{Proceedings [...]}. Valencia: Instituto de Agroquimica y Tecnologia de Alimentos, 1984.
+
+\begin{verbatim}
+@proceedings{chemical84,
+ address = {Valencia},
+ conference-year = {1984},
+ conference-location = {Valencia},
+ organization = {IUFROST International Symposium on Chemical Changes During Food Processing},
+ publisher = {Instituto de Agroquimica y Tecnologia de Alimentos},
+ title = {Proceedings [...]},
+ year = {1984}
+}
+\end{verbatim}
+
+\subsubsection{Parte de evento}
+
+Inclui trabalhos publicados em eventos.
+
+EXEMPLO 1 
+
+BRAYER, A. R. A.; MEDEIROS, C. B. Incorporação do tempo em SGBD orientado a objetos. In: SIMPóSIO BRASILEIRO DE BANCO DE DADOS, 9., 1994, São Paulo. \textbf{Anais [...]}. São Paulo: USP, 1994. p. 16–29. 
+
+\begin{verbatim}
+@inproceedings{brayer94,
+ address = {São Paulo},
+ author = {A. R. A. Brayer and C. B. Medeiros},
+ conference-number = {9},
+ conference-year = {1994},
+ conference-location = {São Paulo},
+ organization = {Simpósio Brasileiro de Banco de Dados},
+ pages = {16-29},
+ publisher = {USP},
+ booktitle = {Anais [...]},
+ title = {Incorporação do tempo em {SGBD} orientado a objetos},
+ year = {1994}
+}
+\end{verbatim}
+
+\subsection{Patentes}
+
+Os elementos essenciais são: inventor (autor), título, nomes do depositante e/ou titular e do procurador (se houver), número da patente, data de depósito e data de concessão da patente (se houver).
+
+EXEMPLO 1 
+
+BERTAZZOLI, Rodnei. \textbf{Eletrodos de difusão gasosa modificados com catalisadores redox, processo e reator eletroquímico de síntese de peróxido de hidrogênio utilizando os mesmos}. Depositante: Universidade Estadual de Campinas. BR n. PI0600460-1A. Depósito: 27 jan. 2006. Concessão: 25 mar. 2008. 
+
+\begin{verbatim}
+@patent{bertazzoli08,
+ author = {Rodnei Bertazzoli},
+ title = {Eletrodos de difusão gasosa modificados com catalisadores redox, processo e reator eletroquímico de síntese de peróxido de hidrogênio utilizando os mesmos},
+ organization = {Depositante: Universidade Estadual de Campinas},
+ number = {BR n. PI0600460-1A},
+ howpublished = {Depósito: 27 jan. 2006. Concessão: 25 mar. 2008}
+}
+\end{verbatim}
+
+\subsection{Documento cartográfico}
+
+Inclui atlas, mapa, globo, fotografia aérea, entre outros.
+
+Os elementos essenciais são: autor, título, subtítulo (se houver), local, editora, data de publicação, descrição física e escala (se houver). 
+
+EXEMPLO 1 
+
+INSTITUTO GEOGRáFICO E CARTOGRáFICO (São Paulo, SP). \textbf{Regiões de governo do Estado de São Paulo}. São Paulo, 1994. Plano Cartográfico do Estado de São Paulo. Escala 1:2.000.
+
+\begin{verbatim}
+@manual{geografico94,
+ address = {São Paulo},
+ note = {Plano Cartográfico do Estado de São Paulo. Escala 1:2.000},
+ organization = {Instituto Geográfico e Cartográfico {(São Paulo, SP)}},
+ title = {Regiões de governo do Estado de São Paulo},
+ year = {1994}
+}
+\end{verbatim}
+
+EXEMPLO 2
+
+BRASIL e parte da América do Sul: mapa político, escolar, rodoviário, turístico e regional. São Paulo: Michalany, 1981. 1 mapa, color., 79 cm$\times$95 cm. Escala 1:600.000.
+
+\begin{verbatim}
+@manual{michalany81,
+ address = {São Paulo},
+ note = {1 mapa, color., 79~cm$\times$95~cm. Escala 1:600.000},
+ publisher = {Michalany},
+ title = {Brasil e parte da América do Sul},
+ subtitle = {mapa político, escolar, rodoviário, turístico e regional},
+ year = {1981}
+}
+\end{verbatim}
+
+\subsection{Documento de acesso exclusivo em meio eletrônico}
+
+Inclui bases de dados, listas de discussão, programas de computador, redes sociais, mensagens eletrônicas, entre outros.
+
+Os elementos essenciais são: autor, título da informação ou serviço ou produto, versão ou edição (se houver), local, data e descrição física do meio eletrônico.
+
+EXEMPLO 1 
+
+MICROSOFT Project for Windows 95, version 4.1: project planning software. [S.l.]: Microsoft Corporation, 1995. Conjunto de programas. 1 CD-ROM.
+
+\begin{verbatim}
+@misc{microsoft95,
+ howpublished = {Conjunto de programas. 1 CD-ROM},
+ publisher = {Microsoft Corporation},
+ title = {Microsoft Project for Windows 95, version 4.1},
+ subtitle = {project planning software},
+ year = {1995}
+}
+\end{verbatim}
+
+EXEMPLO 2 
+
+LOURES, Clarissa Lima. \textbf{Qual é a Diferença entre Inteligência Artificial, Machine Learning e Deep Learning?} 2020. Disponível em: https://medium.com/@clarissalloures/qual-é-a-diferença-entre-inteligência-artificial-machine-learning-e-deep-learning-dd9e7c9c5178. Acesso em: 05 fev. 2021.
+
+\begin{verbatim}
+@misc{loures20,
+ title = {Qual é a Diferença entre Inteligência Artificial, Machine Learning e Deep Learning?},
+ author = {Clarissa Lima Loures},
+ url = {https://medium.com/@clarissalloures/qual-é-a-diferença-entre-inteligência-artificial-machine-learning-e-deep-learning-dd9e7c9c5178},
+ urlaccessdate={05 fev. 2021},
+ year = {2020}
+}
+\end{verbatim}
