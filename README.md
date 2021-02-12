@@ -6,7 +6,7 @@ Modelo canônico para Trabalho de Conclusão de Curso (TCC), monografia de espec
 
 Esse projeto não está vinculado a nenhum órgão do IFG.
 
-Qualquer problema com a utilização ou com o modelo em si, basta criar um issue aqui no GitHub no nosso issue tracker: [issues](../../issues)
+Qualquer problema com a utilização ou com o modelo em si, basta criar um issue aqui no GitHub no nosso issue tracker: [issues](../../issues).
 
 
 ## Modelo em PDF
@@ -16,7 +16,7 @@ Se você quer ter uma ideia de como é o modelo, a compilação deve resultar no
 
 ## Material de apoio
 
-Para aprender a utilizar o modelo assista o minicurso ministrado em 10/02/2021 disponível [aqui](https://drive.google.com/file/d/1T36KlAAG79cMF4r0tCW3uirqEbTuoB11/view?usp=sharing)
+Para aprender a utilizar o modelo assista o minicurso ministrado em 10/02/2021 disponível [aqui](https://drive.google.com/file/d/1T36KlAAG79cMF4r0tCW3uirqEbTuoB11/view?usp=sharing).
 
 Consulte também os [slides](https://www.dropbox.com/s/vet8s4kcp9nbt0c/slides-minicurso-latex.pdf?dl=0) do minicurso.
 
