@@ -41,6 +41,8 @@
 % - Adequação à norma ABNT 2018
 % v1.4 : 12 fev 2021 ---------------------------------------------------------------------------
 % - Adicionado suporte a arquivos Yaml
+% v1.5 : 22 fev 2021 ---------------------------------------------------------------------------
+% - Corrigido problema com autores no resumo e abstract
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -1146,7 +1148,14 @@
  \begin{minipage}{13.5cm}
   \singlespacing%
 \textbf{Título:} \@titulo\\
-\textbf{Autor:} \@autor\\
+\ifthenelse{\equal{\@tautor}{}}{}{
+    \textbf{Autores:} \@autor,~\@sautor~e~\@tautor\\
+ }
+ \ifthenelse{\equal{\@sautor}{}}{
+    \textbf{Autor:} \@autor\\
+ }{
+    \textbf{Autores:} \@autor~e~\@sautor\\
+ }
 \textbf{Orientador:} \@orientador\\
 \ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Coorientador:} \@coorientador}
  \end{minipage}%
@@ -1180,7 +1189,14 @@
   \begin{minipage}{13.5cm}
    \singlespacing%
 \textbf{Title:} ##1\\
-\textbf{Author:} \@autor\\
+\ifthenelse{\equal{\@tautor}{}}{}{
+    \textbf{Authors:} \@autor,~\@sautor,~and~\@tautor\\
+ }
+ \ifthenelse{\equal{\@sautor}{}}{
+    \textbf{Author:} \@autor\\
+ }{
+    \textbf{Authors:} \@autor~and~\@sautor\\
+ }
 \textbf{Advisor:} \@orientador\\
 \ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Co-advisor:} \@coorientador}
   \end{minipage}\onehalfspacing%
