@@ -43,6 +43,8 @@
 % - Adicionado suporte a arquivos Yaml
 % v1.5 : 22 fev 2021 ---------------------------------------------------------------------------
 % - Corrigido problema com autores no resumo e abstract
+% v1.6 : 02 mar 2021 ---------------------------------------------------------------------------
+% - Corrigido erro de grafia da palavra coorientador
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -945,11 +947,11 @@
    {}
    {\vspace{0.1cm}
     \par%
-    \margemD{\textbf{Co-Orientadora:} Profa. \@coorientadora}}%
+    \margemD{\textbf{Coorientadora:} Profa. \@coorientadora}}%
   }
   {\vspace{0.1cm}
    \par%
-   \margemD{\textbf{Co-Orientador:} Prof. \@coorientador}}%
+   \margemD{\textbf{Coorientador:} Prof. \@coorientador}}%
  \vspace*{\stretch{1}}%
  \par%
  \textoC{1}{\@campus, \@ano.}%
@@ -1198,7 +1200,7 @@
     \textbf{Authors:} \@autor~and~\@sautor\\
  }
 \textbf{Advisor:} \@orientador\\
-\ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Co-advisor:} \@coorientador}
+\ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Coadvisor:} \@coorientador}
   \end{minipage}\onehalfspacing%
   \vspace*{\stretch{1}}%
   \par%
