@@ -45,6 +45,8 @@
 % - Corrigido problema com autores no resumo e abstract
 % v1.6 : 02 mar 2021 ---------------------------------------------------------------------------
 % - Corrigido erro de grafia da palavra coorientador
+% v1.7 : 13 mar 2021 ---------------------------------------------------------------------------
+% - Corrigido formatação ABNT, erro de grafia da palavra conclusão e lista de figuras
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -924,7 +926,7 @@
     		\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado ou Licenciatura}{Tipo de curso inadequado para o documento}
     	}
     }
-    Trabalho de Conclus\c{c}\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
+    Trabalho de Conclus\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
   \ifthenelse{\boolean{qualt}}{
     \ifthenelse{\equal{\@tipocurso}{Bacharelado}}{
         \newcommand\grau{Bacharel}
@@ -1048,7 +1050,7 @@
         \newcommand\grau{Licenciado}
     }{}
     \textoF{
-      Trabalho de Conclus\c{c}\~{a}o de Curso defendido no Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso, aprovada em %
+      Trabalho de Conclus\~{a}o de Curso defendido no Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso, aprovada em %
         \@dia\ de\@mesP\ de \@ano, pela Banca Examinadora constitu\'{i}da pelos professores:
      }}{}
      \vspace*{\stretch{1}}
@@ -1247,7 +1249,9 @@
 \fi
 \clearpage\singlespacing%
 \IfSubStringInString{fig}{#1}
- {\listoffigures\clearpage
+ {
+\addcontentsline{toc}{chapter}{\listfigurename} 
+ \listoffigures\clearpage
  }{}
 \IfSubStringInString{tab}{#1}
  {\listoftables\clearpage
@@ -1277,7 +1281,7 @@
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \usepackage{backref}
 %%% Pacote da ABNTeX para referências dentro das normas %%%
-\usepackage[alf,abnt-emphasize=bf,abnt-etal-cite=2,abnt-etal-list=3,abnt-full-initials=yes,abnt-repeated-title-omit=yes,abnt-show-options=no,abnt-verbatim-entry=no,abnt-url-package=url]{formatacao/abntcite}%testebib 
+\usepackage[alf,abnt-emphasize=bf,abnt-etal-cite=3,abnt-etal-text=it,abnt-etal-list=0,abnt-full-initials=yes,abnt-repeated-title-omit=yes,abnt-show-options=no,abnt-verbatim-entry=no,abnt-url-package=url]{formatacao/abntcite}
 
 \newlength{\bibitemsep}\setlength{\bibitemsep}{.2\baselineskip plus .05\baselineskip minus .05\baselineskip}
 \newlength{\bibparskip}\setlength{\bibparskip}{10pt}
