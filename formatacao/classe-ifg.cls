@@ -47,6 +47,8 @@
 % - Corrigido erro de grafia da palavra coorientador
 % v1.7 : 13 mar 2021 ---------------------------------------------------------------------------
 % - Corrigido formatação ABNT, erro de grafia da palavra conclusão e lista de figuras
+% v1.8 : 17 mar 2021 ---------------------------------------------------------------------------
+% - Corrigido erro na importação da folha de aprovação na versão final
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -991,7 +993,7 @@
 }
 \newcommand{\aprovacao}{
 \ifthenelse{\boolean{tese} \OR \boolean{diss} \OR \boolean{mngr} \OR \boolean{tcc}}{
-  \IfFileExists{./aproffsvacao.pdf}{
+  \IfFileExists{aprovacao.pdf}{
     \includepdf[page={-},offset=0mm -30mm]{aprovacao.pdf}
   }{
     \newenvironment{banca}{
