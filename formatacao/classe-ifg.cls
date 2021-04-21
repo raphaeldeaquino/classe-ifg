@@ -49,6 +49,8 @@
 % - Corrigido formatação ABNT, erro de grafia da palavra conclusão e lista de figuras
 % v1.8 : 17 mar 2021 ---------------------------------------------------------------------------
 % - Corrigido erro na importação da folha de aprovação na versão final
+% v1.9 : 20 abr 2021 ---------------------------------------------------------------------------
+% - Removido pontuação automática em legendas
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -266,7 +268,7 @@
 \newcommand{\fontefig}[1]{
     \footnotesize
     \vspace{0.2cm}
-    Fonte: #1.
+    Fonte: #1
 }
 
 
@@ -303,7 +305,7 @@
 \newcommand{\fontetab}[1]{
 	\centering
     \footnotesize
-    Fonte: #1.
+    Fonte: #1
 }
 
 
@@ -332,7 +334,7 @@
 \newcommand{\fontequa}[1]{
     \footnotesize
     \centering
-    Fonte: #1.
+    Fonte: #1
 }
 
 
