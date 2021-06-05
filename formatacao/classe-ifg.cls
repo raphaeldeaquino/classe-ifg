@@ -51,6 +51,8 @@
 % - Corrigido erro na importação da folha de aprovação na versão final
 % v1.9 : 20 abr 2021 ---------------------------------------------------------------------------
 % - Removido pontuação automática em legendas
+% v1.10 : 05 jun 2021 ---------------------------------------------------------------------------
+% - Correção para abstract gerado em várias páginas
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -194,6 +196,7 @@
 %%==================================================================
 \LoadClass[a4paper,12pt]{report}
 \RequirePackage{texnames}
+\RequirePackage{lipsum}
 
 % Hyphenation
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1208,12 +1211,13 @@
 \textbf{Advisor:} \@orientador\\
 \ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Coadvisor:} \@coorientador}
   \end{minipage}\onehalfspacing%
-  \vspace*{\stretch{1}}%
+\onehalfspacing
+  \vspace*{\stretch{2}}%
   \par%
   \noindent\begin{minipage}{15cm}%
+  	 \end{minipage}%
   }
   {%
-  \end{minipage}%
   \vspace*{\stretch{3}}%
   \par%
   \noindent \arial \textbf{Keywords} \normalfont \normalsize%
