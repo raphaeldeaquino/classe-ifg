@@ -53,6 +53,8 @@
 % - Removido pontuação automática em legendas
 % v1.10 : 05 jun 2021 ---------------------------------------------------------------------------
 % - Correção para abstract gerado em várias páginas
+% v1.11 : 22 jul 2021 ---------------------------------------------------------------------------
+% - Inclusão de suporte a códigos Json
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -513,6 +515,43 @@
                 {\ -\ }{{\mdseries\ -\ }}3
                 {á}{{\'a}}1 {ã}{{\~a}}1 {à}{{\`a}}1 {â}{{\^a}}1 {é}{{\'e}}1 {ê}{{\^e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {õ}{{\~o}}1 {ò}{{\`o}}1 {ô}{{\^o}}1 {ú}{{\'u}}1 {ç}{{\c c}}1 {Á}{{\'A}}1 {Ã}{{\~A}}1 {À}{{\`A}}1 {Â}{{\^A}}1 {É}{{\'E}}1 {Ê}{{\^E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Õ}{{\~O}}1 {Ò}{{\`O}}1 {Ô}{{\^O}}1 {Ú}{{\'U}}1 {Ç}{{\c C}}1
 }
+\newcommand\JSONnumbervaluestyle{\color{red}}
+\newcommand\JSONstringvaluestyle{\color{blue}}
+% switch used as state variable
+\newif\ifcolonfoundonthisline
+\lstdefinelanguage{json}{
+	basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
+    showstringspaces    = false,
+  	keywords            = {false,true},
+  	alsoletter          = 0123456789.,
+  	morestring          = [s]{"}{"},
+  	stringstyle         = \ifcolonfoundonthisline\JSONstringvaluestyle\fi,
+  	MoreSelectCharTable =%
+    \lst@DefSaveDef{`:}\colon@json{\processColon@json},
+  	keywordstyle        = \ttfamily\bfseries,
+}
+% flip the switch if a colon is found in Pmode
+\newcommand\processColon@json{%
+  \colon@json%
+  \ifnum\lst@mode=\lst@Pmode%
+    \global\colonfoundonthislinetrue%
+  \fi
+}
+
+\lst@AddToHook{Output}{%
+  \ifcolonfoundonthisline%
+    \ifnum\lst@mode=\lst@Pmode%
+      \def\lst@thestyle{\JSONnumbervaluestyle}%
+    \fi
+  \fi
+  %override by keyword style if a keyword is detected!
+  \lsthk@DetectKeywords% 
+}
+
+% reset the switch at the end of line
+\lst@AddToHook{EOL}%
+  {\global\colonfoundonthislinefalse}
+
 \newenvironment{BNF}
   {\captionsetup{type=lstlisting}}
   {}
