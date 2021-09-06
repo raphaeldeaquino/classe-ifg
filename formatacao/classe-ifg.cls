@@ -55,6 +55,9 @@
 % - Correção para abstract gerado em várias páginas
 % v1.11 : 22 jul 2021 ---------------------------------------------------------------------------
 % - Inclusão de suporte a códigos Json
+% v1.12 : 06 set 2021 ---------------------------------------------------------------------------
+% - Correção de autores em resumo e abstract quando há 3 autores
+% - Inclusão de suporte a pré-projeto
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -68,6 +71,9 @@
 \newboolean{mngr} \setboolean{mngr}{false}
 \newboolean{tcc} \setboolean{tcc}{false}
 \newboolean{qualt} \setboolean{qualt}{false}
+\newboolean{prem} \setboolean{prem}{false}
+\newboolean{pree} \setboolean{pree}{false}
+\newboolean{pret} \setboolean{pret}{false}
 \newboolean{link} \setboolean{link}{true}
 \newboolean{old} \setboolean{old}{true}
 \newboolean{virtual} \setboolean{link}{false}
@@ -81,6 +87,9 @@
  \setboolean{tcc}{false}
  \setboolean{qualt}{false}
  \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
 }
 
 \DeclareOption{dissertacao}{
@@ -91,6 +100,9 @@
  \setboolean{tcc}{false}
  \setboolean{qualt}{false}
  \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
 }
 
 \DeclareOption{qualificacaom}{
@@ -101,6 +113,9 @@
  \setboolean{tcc}{false}
  \setboolean{qualt}{false}
  \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
 }
 
 \DeclareOption{monografia}{
@@ -111,6 +126,9 @@
  \setboolean{tcc}{false}
  \setboolean{qualt}{false}
  \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
 }
 
 \DeclareOption{qualificacaoe}{
@@ -121,6 +139,9 @@
  \setboolean{tcc}{false}
  \setboolean{qualt}{false}
  \setboolean{quale}{true}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
 }
 
 \DeclareOption{tcc}{
@@ -131,6 +152,9 @@
  \setboolean{tcc}{true}
  \setboolean{qualt}{false}
  \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
 }
 
 \DeclareOption{qualificacaot}{
@@ -141,6 +165,48 @@
  \setboolean{tcc}{false}
  \setboolean{qualt}{true}
  \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
+}
+
+\DeclareOption{preprojetom}{
+ \setboolean{tese}{false}
+ \setboolean{diss}{false}
+ \setboolean{qualm}{false}
+ \setboolean{mngr}{false}
+ \setboolean{tcc}{false}
+ \setboolean{qualt}{false}
+ \setboolean{quale}{false}
+ \setboolean{prem}{true}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
+}
+
+\DeclareOption{preprojetoe}{
+ \setboolean{tese}{false}
+ \setboolean{diss}{false}
+ \setboolean{qualm}{false}
+ \setboolean{mngr}{false}
+ \setboolean{tcc}{false}
+ \setboolean{qualt}{false}
+ \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{true}
+ \setboolean{pret}{false}
+}
+
+\DeclareOption{preprojetot}{
+ \setboolean{tese}{false}
+ \setboolean{diss}{false}
+ \setboolean{qualm}{false}
+ \setboolean{mngr}{false}
+ \setboolean{tcc}{false}
+ \setboolean{qualt}{false}
+ \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{true}
 }
 
 \DeclareOption{nocolorlinks}{
@@ -730,7 +796,6 @@
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \RequirePackage{fancyhdr}
 \fancyhf{} % delete current setting for header and footer
-
 \ifthenelse{\boolean{fancylayout}}
 {
  \renewcommand{\sectionmark}[1]{ \markright{\thesection\ #1}{}}  
@@ -765,12 +830,21 @@
 \appendix
 }
 
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+\renewcommand\chapter{
+  \@mkboth{}{}
+  \thispagestyle{plain}
+  \global\@topnum\z@
+  \@afterindentfalse
+  \secdef\@chapter\@schapter}
+}{
 \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
   \@mkboth{}{}
   \thispagestyle{plain}
   \global\@topnum\z@
   \@afterindentfalse
   \secdef\@chapter\@schapter}
+}
 
 %% table of contents
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -838,7 +912,7 @@
 \makeatletter
 \ministerio{Servi\c{c}o P\'{u}blico Federal}
 \instituicao{Instituto Federal de Educa\c{c}\~{a}o, Ci\^{e}ncia e Tecnologia de Goi\'{a}s}
-\ifthenelse{\boolean{tcc} \OR \boolean{qualt}}
+\ifthenelse{\boolean{tcc} \OR \boolean{qualt} \OR \boolean{pret}}
 {
  \reitoria{Pr\'{o}-Reitoria de Ensino}   
 }{
@@ -859,6 +933,8 @@
 \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 \setlength\extrarowheight{10pt}
 \newcommand{\capa}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+}{
  \ifpdf
   \pdfbookmark[0]{Elementos Pr\'{e}-Textuais}{pretexto}
   \pdfbookmark[1]{Capa}{pretexto.1}
@@ -918,6 +994,7 @@
  \normalfont%
  \end{titlepage}%
 }
+}
 
 %% Folha de rosto
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -925,6 +1002,28 @@
  \ifpdf
   \pdfbookmark[1]{Folha de Rosto}{pretexto.3}
  \fi
+ \ifthenelse{\boolean{prem}}
+{
+ \begin{minipage}[t]{0.3\textwidth}
+   \includegraphics[width=\textwidth]{formatacao/logoIFG}
+ \end{minipage}
+ \hspace{2cm}
+ \begin{minipage}[b]{0.1\textwidth}
+   \includegraphics[width=\textwidth]{formatacao/logoBrasao}
+ \end{minipage}
+ \hspace{3cm}
+ \begin{minipage}[b]{0.15\textwidth}
+   \includegraphics[width=\textwidth]{formatacao/logoMestrado}
+ \end{minipage} 
+}{} 
+\ifthenelse{\boolean{pree} \OR \boolean{pret}}
+{
+\begin{center}
+ \begin{minipage}[t]{0.3\textwidth}
+   \includegraphics[width=\textwidth]{formatacao/logoIFG}
+ \end{minipage}
+\end{center}
+}{} 
  \textoC{1}{\normalsize \scshape \@ministerio \normalsize \upshape}%
  \vspace{-0.6cm}
  \textoC{1}{\normalsize \scshape \@instituicao \normalsize \upshape}%
@@ -984,7 +1083,22 @@
     	}
     }
     Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
- }
+\ifthenelse{\boolean{prem}}{
+    \@programa~do \@instituicao~- Pr\'{e}-Projeto de \@tipocurso. \'{A}rea de Concentra\c{c}\~{a}o: Tecnologia de Sistemas de Produ\c{c}\~{a}o Limpa. Linha de Pesquisa: \@linha.}{}
+\ifthenelse{\boolean{pree}}{
+    Pr\'{e}-Projeto de Especializa\c{c}\~{a}o apresentado ao curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a} do t\'{i}tudo de Especialista em \@curso.}{}
+\ifthenelse{\boolean{pret}}{
+    \ifthenelse{\equal{\@tipocurso}{Bacharelado}}{
+        \newcommand\grau{Bacharel}
+    }{
+    	\ifthenelse{\equal{\@tipocurso}{Licenciatura}}{
+        	\newcommand\grau{Licenciado}
+    	}{
+    		\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado ou Licenciatura}{Tipo de curso inadequado para o documento}
+    	}
+    }
+    Pr\'{e}-Projeto de Trabalho de Conclus\~{a}o de Curso apresentado ao curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
+    }
  \vspace{0.2cm}
  \par%
  \ifthenelse{\equal{\@orientador}{}}
@@ -1190,6 +1304,8 @@
 %% Resumo
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \newcommand{\cresumo}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+}{
 \newenvironment{resumo}{%
  \ifpdf
   \pdfbookmark[1]{Resumo}{pretexto.8}
@@ -1198,13 +1314,14 @@
  \begin{minipage}{13.5cm}
   \singlespacing%
 \textbf{Título:} \@titulo\\
-\ifthenelse{\equal{\@tautor}{}}{}{
-    \textbf{Autores:} \@autor,~\@sautor~e~\@tautor\\
- }
+\ifthenelse{\equal{\@tautor}{}}{
  \ifthenelse{\equal{\@sautor}{}}{
     \textbf{Autor:} \@autor\\
  }{
     \textbf{Autores:} \@autor~e~\@sautor\\
+ }
+ }{
+    \textbf{Autores:} \@autor,~\@sautor~e~\@tautor\\
  }
 \textbf{Orientador:} \@orientador\\
 \ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Coorientador:} \@coorientador}
@@ -1227,10 +1344,13 @@
 }
 \input{./pre/preResumo}
 }
+}
 
 %% Abstract
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \newcommand{\cabstract}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+}{
 \renewenvironment{abstract}[1]{%
  \ifpdf
   \pdfbookmark[1]{Abstract}{pretexto.9} % Sets a PDF bookmark for the abstract
@@ -1239,13 +1359,14 @@
   \begin{minipage}{13.5cm}
    \singlespacing%
 \textbf{Title:} ##1\\
-\ifthenelse{\equal{\@tautor}{}}{}{
-    \textbf{Authors:} \@autor,~\@sautor,~and~\@tautor\\
- }
+\ifthenelse{\equal{\@tautor}{}}{
  \ifthenelse{\equal{\@sautor}{}}{
     \textbf{Author:} \@autor\\
  }{
     \textbf{Authors:} \@autor~and~\@sautor\\
+ }
+ }{
+    \textbf{Authors:} \@autor,~\@sautor,~and~\@tautor\\
  }
 \textbf{Advisor:} \@orientador\\
 \ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Coadvisor:} \@coorientador}
@@ -1267,6 +1388,7 @@
   \clearpage%
   }
   \input{./pre/preAbstract}
+}
 }
 
 %% Sumário
@@ -1295,6 +1417,8 @@
  \pdfbookmark[0]{Sumário}{sumario}
 \fi
 \clearpage\singlespacing%
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+}{
 \IfSubStringInString{fig}{#1}
  {
 \addcontentsline{toc}{chapter}{\listfigurename} 
@@ -1318,6 +1442,7 @@
 \IfSubStringInString{sim}{#1}
  {\listofsymbols\clearpage
  }{}
+ }
 \tableofcontents%
 \clearpage%
 \normalfont\pagestyle{fancy}%
