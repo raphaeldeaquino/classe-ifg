@@ -58,6 +58,8 @@
 % v1.12 : 06 set 2021 ---------------------------------------------------------------------------
 % - Correção de autores em resumo e abstract quando há 3 autores
 % - Inclusão de suporte a pré-projeto
+% v1.13 : 29 nov 2021 ---------------------------------------------------------------------------
+% - Remoção das cores em links
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -74,9 +76,7 @@
 \newboolean{prem} \setboolean{prem}{false}
 \newboolean{pree} \setboolean{pree}{false}
 \newboolean{pret} \setboolean{pret}{false}
-\newboolean{link} \setboolean{link}{true}
 \newboolean{old} \setboolean{old}{true}
-\newboolean{virtual} \setboolean{link}{false}
 \newboolean{fancylayout} \setboolean{fancylayout}{false} 
 
 \DeclareOption{tese}{
@@ -208,9 +208,6 @@
  \setboolean{pree}{false}
  \setboolean{pret}{true}
 }
-
-\DeclareOption{nocolorlinks}{
- \setboolean{link}{false}}
  
  \DeclareOption{fancy}{
  \setboolean{old}{false}
@@ -312,17 +309,8 @@
  pdfstartview=FitH,
  hypertexnames=false,
  naturalnames=true,
+ pdfborder = {0 0 0}
 }
-
-\ifthenelse{\boolean{link}}
-{\hypersetup{
- colorlinks=true,
- linkcolor=blue, %%% Color for normal internal links.
- citecolor=blue, %%% Color for bibliographical citations in text.
- urlcolor=blue,  %%% Color for linked URLs.
- filecolor=blue, %%% Color for URLs which open local files.
-}}
-{}
 
 % Figures
 % - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - -
@@ -1142,13 +1130,8 @@
 
 %% Termo de aprova\c{c}\~{a}o
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\ifthenelse{\boolean{virtual}}{
-	\newcommand{\membro}[2]{\textoC{1}{\footnotesize \textit{(Assinado eletronicamente)}\\ \vspace{0.2cm} \small \textbf{Prof. #1}\\#2} \vspace*{\stretch{0.2}}\par}
-	\newcommand{\membra}[2]{\textoC{1}{\footnotesize \textit{(Assinado eletronicamente)}\\ \vspace{0.2cm} \small \textbf{Profa. #1}\\#2} \vspace*{\stretch{0.2}}\par}
-}{
-	\newcommand{\membro}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Prof. #1}\\#2} \vspace*{\stretch{0.2}}\par}
-	\newcommand{\membra}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Profa. #1}\\#2} \vspace*{\stretch{0.2}}\par}
-}
+\newcommand{\membro}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Prof. #1}\\#2} \vspace*{\stretch{0.2}}\par}
+\newcommand{\membra}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Profa. #1}\\#2} \vspace*{\stretch{0.2}}\par}
 \newcommand{\aprovacao}{
 \ifthenelse{\boolean{tese} \OR \boolean{diss} \OR \boolean{mngr} \OR \boolean{tcc}}{
   \IfFileExists{aprovacao.pdf}{
