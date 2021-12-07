@@ -62,6 +62,8 @@
 % - Remoção das cores em links
 % v1.14 : 30 nov 2021 ---------------------------------------------------------------------------
 % - Bibliografia justificada
+% v1.15 : 07 dez 2021 ---------------------------------------------------------------------------
+% - Resumo incluído em pré-projeto
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -820,6 +822,8 @@
 \appendix
 }
 
+%% chapters
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
 \renewcommand\chapter{
   \@mkboth{}{}
@@ -1074,7 +1078,7 @@
     }
     Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
 \ifthenelse{\boolean{prem}}{
-    \@programa~do \@instituicao~- Pr\'{e}-Projeto de \@tipocurso. \'{A}rea de Concentra\c{c}\~{a}o: Tecnologia de Sistemas de Produ\c{c}\~{a}o Limpa. Linha de Pesquisa: \@linha.}{}
+    \Large \textbf{Plano de Trabalho}}{}
 \ifthenelse{\boolean{pree}}{
     Pr\'{e}-Projeto de Especializa\c{c}\~{a}o apresentado ao curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a} do t\'{i}tudo de Especialista em \@curso.}{}
 \ifthenelse{\boolean{pret}}{
@@ -1330,6 +1334,40 @@
 \input{./pre/preResumo}
 }
 }
+\newcommand{\cresumopre}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+\addcontentsline{toc}{chapter}{Resumo}
+\newenvironment{resumo}{%
+ \ifpdf
+  \pdfbookmark[1]{Resumo}{pretexto.8}
+ \fi
+ \parindent0pt
+ \vspace*{10\p@}%
+  { \parindent \z@ \raggedright
+    \interlinepenalty\@M
+    \raggedright\large\rm\bfseries\centering{Resumo} \par\nobreak \vskip -30\p@
+    \vskip 10\p@
+  }
+ \onehalfspacing
+ \vspace{1.0cm}%
+ 
+  \list{}{
+      \leftmargin=1.0cm
+      \labelwidth=\z@
+      \listparindent=\z@
+      \itemindent\listparindent
+      \rightmargin\leftmargin}\item
+}
+{%
+ \vspace{0.5cm}%
+ \par%
+ \noindent \arial \textbf{Palavras--chave} \normalfont \normalsize%
+ \par%
+ \indent \@chaves%
+}
+\input{./pre/preResumo}
+}{}
+}
 
 %% Abstract
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1432,6 +1470,7 @@
 \clearpage%
 \normalfont\pagestyle{fancy}%
 \onehalfspacing
+\cresumopre
 }
 
 %% Bibliografia
@@ -1471,7 +1510,6 @@
 }
 
 \makeatother
-
 
 %%==================================================================
 %% classe-ifg Class Delayed Codes
