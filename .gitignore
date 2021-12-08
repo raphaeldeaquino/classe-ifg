@@ -15,4 +15,5 @@
 *.sim
 *.synctex.gz
 *.toc
+.DS_Store
 makefile
