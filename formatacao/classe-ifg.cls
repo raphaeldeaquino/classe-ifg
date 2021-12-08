@@ -64,6 +64,8 @@
 % - Bibliografia justificada
 % v1.15 : 07 dez 2021 ---------------------------------------------------------------------------
 % - Resumo incluído em pré-projeto
+% v1.16 : 08 dez 2021 ---------------------------------------------------------------------------
+% - Incluída folha de assinatura em pré-projeto
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -246,7 +248,6 @@
     Julho\or Agosto\or Setembro\or 
     Outubro\or Novembro\or Dezembro\fi}
 \def\ano#1{\def\@ano{#1}}                       \ano{}
-\def\ministerio#1{\def\@ministerio{#1}}         \ministerio{}
 \def\instituicao#1{\def\@instituicao{#1}}       \instituicao{}
 \def\reitoria#1{\def\@reitoria{#1}}             \reitoria{}
 \def\unidade#1{\def\@unidade{#1}}               \unidade{}
@@ -904,7 +905,6 @@
 %% Pre-textual elements
 %%==================================================================
 \makeatletter
-\ministerio{Servi\c{c}o P\'{u}blico Federal}
 \instituicao{Instituto Federal de Educa\c{c}\~{a}o, Ci\^{e}ncia e Tecnologia de Goi\'{a}s}
 \ifthenelse{\boolean{tcc} \OR \boolean{qualt} \OR \boolean{pret}}
 {
@@ -944,23 +944,18 @@
 \ifthenelse{\boolean{diss} \OR \boolean{qualm}}
 {
  \begin{minipage}[t]{0.3\textwidth}
+ \hspace*{-0.6in}
    \includegraphics[width=\textwidth]{formatacao/logoIFG}
  \end{minipage}
- \hspace{2cm}
- \begin{minipage}[b]{0.1\textwidth}
-   \includegraphics[width=\textwidth]{formatacao/logoBrasao}
- \end{minipage}
- \hspace{3cm}
+ \hspace{6.5cm}
  \begin{minipage}[b]{0.15\textwidth}
-   \includegraphics[width=\textwidth]{formatacao/logoMestrado}
+   \includegraphics[width=\textwidth]{formatacao/logoMTGS}
  \end{minipage} 
 }{
  \begin{minipage}[t]{0.3\textwidth}
    \includegraphics[width=\textwidth]{formatacao/logoIFG}
  \end{minipage}
 } 
- \textoC{1}{\normalsize \scshape \@ministerio \normalsize \upshape}
- \vspace{-0.6cm}
  \textoC{1}{\normalsize \scshape \@instituicao \normalsize \upshape}
  \vspace{-0.6cm}
  \textoC{1}{\normalsize \scshape \@reitoria \normalsize \upshape}
@@ -999,15 +994,12 @@
  \ifthenelse{\boolean{prem}}
 {
  \begin{minipage}[t]{0.3\textwidth}
+ \hspace*{-0.6in}
    \includegraphics[width=\textwidth]{formatacao/logoIFG}
  \end{minipage}
- \hspace{2cm}
- \begin{minipage}[b]{0.1\textwidth}
-   \includegraphics[width=\textwidth]{formatacao/logoBrasao}
- \end{minipage}
- \hspace{3cm}
+ \hspace{6.5cm}
  \begin{minipage}[b]{0.15\textwidth}
-   \includegraphics[width=\textwidth]{formatacao/logoMestrado}
+   \includegraphics[width=\textwidth]{formatacao/logoMTGS}
  \end{minipage} 
 }{} 
 \ifthenelse{\boolean{pree} \OR \boolean{pret}}
@@ -1018,8 +1010,6 @@
  \end{minipage}
 \end{center}
 }{} 
- \textoC{1}{\normalsize \scshape \@ministerio \normalsize \upshape}%
- \vspace{-0.6cm}
  \textoC{1}{\normalsize \scshape \@instituicao \normalsize \upshape}%
  \vspace{-0.6cm}
  \textoC{1}{\normalsize \scshape \@reitoria \normalsize \upshape}%
@@ -1114,6 +1104,8 @@
  \onehalfspacing%
  \normalfont%
  \clearpage%
+ \ifthenelse{\boolean{prem}}{
+    \assinatura}{}
 }
 
 %% Ficha catalográfica
@@ -1149,9 +1141,7 @@
      \fi
      \singlespacing
      \par
-     \textoC{1.8}{\normalsize \scshape \@ministerio \normalsize \upshape\\
-     \vspace{-0.3cm}
-     \normalsize \scshape \@instituicao \normalsize \upshape\\
+     \textoC{1.8}{\normalsize \scshape \@instituicao \normalsize \upshape\\
      \vspace{-0.3cm}
      \normalsize \scshape \@reitoria \normalsize \upshape\\
      \vspace{-0.3cm}
@@ -1219,6 +1209,48 @@
     \input{./pre/preBanca}
   }
 }{}}
+
+%% Folha de assinatura (Plano de Trabalho)
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\newcommand{\assinaturapm}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Prof. #1}\\#2} \vspace*{\stretch{0.2}}\par}
+\newcommand{\assinaturapf}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{Profa. #1}\\#2} \vspace*{\stretch{0.2}}\par}
+\newcommand{\assinaturad}[2]{\textoC{1}{\rule{.7\textwidth}{0.5pt}\\ \small \textbf{#1}\\#2} \vspace*{\stretch{0.2}}\par}
+\newcommand{\assinatura}{
+     \ifpdf
+      \pdfbookmark[1]{Folha de Assinatura}{pretexto.4}
+     \fi
+     \singlespacing
+     \par
+     \textoC{1.8}{\normalsize \scshape \@instituicao \normalsize \upshape\\
+     \vspace{-0.3cm}
+     \normalsize \scshape \@reitoria \normalsize \upshape\\
+     \vspace{-0.3cm}
+     \normalsize \scshape C\^{a}mpus\space\@campus \normalsize \upshape\\
+     \vspace{-0.3cm}
+     \normalsize \scshape \@tipocurso\space em \@curso \normalsize \upshape}%
+     \vspace*{\stretch{1}}
+     \par
+     \textoC{1.7}{\huge \textbf{\@titulo\relax} \normalsize}
+     \ifthenelse{\equal{\@subtitulo}{}}{}{
+      \textoC{1.2}{\Large \textbf{\@subtitulo\relax} \normalsize}}
+     \vspace*{\stretch{1}}
+     \par
+     \textoF{
+      Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \@orientador \ifthenelse{\equal{\@coorientador}{}}{ \ifthenelse{\equal{\@coorientadora}{}}{.}{ e \@coorientadora.}}{ e \@coorientador.} 
+     }
+     \vspace*{\stretch{1}}
+     \par
+     \assinaturad{\@autor}{Discente}
+     \ifthenelse{\equal{\@orientador}{}}
+      {\assinaturapf{\@orientadora}{Orientadora}}
+      {\assinaturapm{\@orientador}{Orientador}}
+     \ifthenelse{\equal{\@coorientador}{}}
+     {\ifthenelse{\equal{\@coorientadora}{}}{}
+       {\assinaturapf{\@coorientadora}{Coorientadora}}
+     }
+     {\assinaturapm{\@coorientador}{Coorientador}}
+}
+    
 
 %% Resumo do Currículo
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
