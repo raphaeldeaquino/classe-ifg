@@ -66,6 +66,8 @@
 % - Resumo incluído em pré-projeto
 % v1.16 : 08 dez 2021 ---------------------------------------------------------------------------
 % - Incluída folha de assinatura em pré-projeto
+% v1.17 : 09 dez 2021 ---------------------------------------------------------------------------
+% - Correção de bugs em pré-projetos
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -736,7 +738,7 @@
 \def\@makechapterhead#1{%
   \vspace*{20\p@}%
    {\interlinepenalty\@M
-    \raggedleft
+    %\raggedleft
     \par\nobreak
     \raggedright\Large\rm\bfseries\MakeUppercase{\thechapter\space\space\space\space\space#1} \par\nobreak\vskip -10\p@
     \vskip 40\p@
@@ -762,28 +764,6 @@
                    \@makeschapterhead{#1}%
                    \@afterheading
                  \fi}
-
-\ifthenelse{\boolean{old}}
-{
-\def\@makeschapterhead#1{%
-   \vspace*{20\p@}%
-  { \parindent \z@ \raggedright
-    \interlinepenalty\@M
-    \raggedright\Large\rm\bfseries\centering\MakeUppercase{#1} \par\nobreak \vskip -10\p@
-    \vskip 40\p@
-  }}
-}
-{
- \def\@makeschapterhead#1{%
-   \vspace*{20\p@}%
-  { \parindent \z@ \raggedright
-    \interlinepenalty\@M
-    \mghrulefill{0.5pt}\par\nobreak
-    \raggedright\Large\rm\bfseries #1 \par\nobreak \vskip -10\p@
-    \mghrulefill{0.5pt}\par\nobreak
-    \vskip 40\p@
-  }}
-}
 
 %% header and footer
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -924,7 +904,7 @@
 \renewcommand\tabularxcolumn[1]{>{\Centering}m{#1}}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\esuaggedleft\arraybackslash}p{#1}}
 \setlength\extrarowheight{10pt}
 \newcommand{\capa}{
 \ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
@@ -1373,7 +1353,6 @@
  \ifpdf
   \pdfbookmark[1]{Resumo}{pretexto.8}
  \fi
- \parindent0pt
  \vspace*{10\p@}%
   { \parindent \z@ \raggedright
     \interlinepenalty\@M
@@ -1384,20 +1363,22 @@
  \vspace{1.0cm}%
  
   \list{}{
-      \leftmargin=1.0cm
+      \leftmargin=0.7cm
       \labelwidth=\z@
       \listparindent=\z@
       \itemindent\listparindent
       \rightmargin\leftmargin}\item
 }
-{%
- \vspace{0.5cm}%
- \par%
- \noindent \arial \textbf{Palavras--chave} \normalfont \normalsize%
- \par%
- \indent \@chaves%
+{
+ \list{}{
+      \leftmargin=1.0cm
+      \labelwidth=\z@
+      \listparindent=\z@
+      \itemindent\listparindent
+      \rightmargin\leftmargin}\item[\hspace{0.86cm}\arial \textbf{Palavras--chave}] \normalfont \normalsize \@chaves% 
 }
 \input{./pre/preResumo}
+{\endlist}
 }{}
 }
 
