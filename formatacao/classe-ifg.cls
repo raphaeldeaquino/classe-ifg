@@ -70,6 +70,9 @@
 % - Correção de bugs em pré-projetos
 % v1.18 : 21 dez 2021 ---------------------------------------------------------------------------
 % - Adequação da posição do termo de aprovação
+% v1.19 : 11 fev 2022 ---------------------------------------------------------------------------
+% - Inclusão de notas para correção
+% - Adequação do sumário
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -396,7 +399,6 @@
 \setfloatadjustment{quadro}{\centering}
 
 \newcommand{\listofframes}{
-\addcontentsline{toc}{chapter}{\listquadroname}
 \listofquadros
 }
 \newcommand{\fontequa}[1]{
@@ -422,7 +424,6 @@
 \newcommand{\listofcodes}{
  \listof{codigo}{Lista de C\'{o}digos de Programas}
  \phantomsection
-\addcontentsline{toc}{chapter}{Lista de C\'{o}digos de Programas}
  }
 \RequirePackage{listings}
 \renewcommand{\lstlistingname}{Código}
@@ -438,6 +439,13 @@
 \definecolor{myblue}{RGB}{250,250,250}
 \definecolor{myyellow}{RGB}{234,234,234}
 \definecolor{mygreen}{RGB}{192,192,192}
+\def\purplecolorifnotalreadyblue{%
+    \extractcolorspec{.}\currentcolor
+    \extractcolorspec{blue}\stringcolor
+    \ifx\currentcolor\stringcolor\else
+        \color{ppurple}%
+    \fi
+}
 \lstset{
   frame=shadowbox,
   frameround=tttt,
@@ -536,6 +544,22 @@
   moredelim=[is][\itshape\textcolor{blue}]{||}{||},
   moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
 }
+\lstdefinelanguage{sql}
+{
+  identifierstyle=\color{black},
+  morekeywords={create, null, NULL, CREATE, TABLE, AUTO_INCREMENT, PRIMARY, KEY, DEFAULT, CHARSET, COLLATE, CONSTRAINT, FOREIGN, REFERENCES, int, NOT, varchar, datetime, ENGINE},% list your attributes here
+  basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
+  commentstyle=\color{pgrey},
+  morecomment=[s][\color{pgrey}]{...}{...},
+  morecomment=[l][\color{pgrey}]{\%},
+  morestring=[b]",
+  morestring=[b]',
+  morestring=[b]`,
+  keywordstyle=\color{ppurple},
+  stringstyle=\color{blue},
+  moredelim=[is][\itshape\textcolor{blue}]{||}{||},
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
 \lstdefinelanguage{Python}
 {
   identifierstyle=\color{black},
@@ -547,8 +571,8 @@
   morecomment=[s][\color{pgrey}]{'''}{'''},
   morecomment=[l][\color{pgrey}]{\#}
   morestring=[b]",
-  morestring=[b]',
-  keywordstyle=\color{ppurple},
+  morestring=**[d]{'},
+  keywordstyle=\purplecolorifnotalreadyblue,
   stringstyle=\color{blue},
   moredelim=[is][\itshape\textcolor{blue}]{||}{||},
   moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
@@ -577,6 +601,19 @@
                 {|}{{\textcolor{red}\textbar}}1
                 {\ -\ }{{\mdseries\ -\ }}3
                 {á}{{\'a}}1 {ã}{{\~a}}1 {à}{{\`a}}1 {â}{{\^a}}1 {é}{{\'e}}1 {ê}{{\^e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {õ}{{\~o}}1 {ò}{{\`o}}1 {ô}{{\^o}}1 {ú}{{\'u}}1 {ç}{{\c c}}1 {Á}{{\'A}}1 {Ã}{{\~A}}1 {À}{{\`A}}1 {Â}{{\^A}}1 {É}{{\'E}}1 {Ê}{{\^E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Õ}{{\~O}}1 {Ò}{{\`O}}1 {Ô}{{\^O}}1 {Ú}{{\'U}}1 {Ç}{{\c C}}1
+}
+\lstdefinelanguage{terraform}
+{
+  identifierstyle=\color{black},
+  morekeywords={variable,description,type,number,default,provider,version,region,resource,ami,instance_type,subnet_id,vpc_id,cidr_block,count,tags,for_each},% list your attributes here
+  basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
+  commentstyle=\color{pgrey},
+  morecomment=[s][\color{pgrey}]{'''}{'''},
+  morecomment=[l][\color{pgrey}]{\#},
+  morestring=**[d]{"},
+  morestring=[b]',
+  keywordstyle=\purplecolorifnotalreadyblue,
+  stringstyle=\color{blue}
 }
 \newcommand\JSONnumbervaluestyle{\color{red}}
 \newcommand\JSONstringvaluestyle{\color{blue}}
@@ -623,6 +660,10 @@
 \todo[linecolor=red,backgroundcolor=red!25,bordercolor=red]{#1}{} 
 }
 
+% %% ToDo e revisão
+% %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\RequirePackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcommand{\resolvido}[1]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green]{#1}{}}
 
 % %% Nomenclatura
 % %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -634,7 +675,6 @@
 % Faz o registro na tabela de siglas e insere os dados no corpo do documento
 \def\@@sigla#1#2{#2 (#1)\nomenclature{#1}{#2}}  % \sigla{}{}
 \newcommand{\listofacronym}{
-\addcontentsline{toc}{chapter}{Lista de Abreviaturas e Siglas}
 % Tamanho da Label da sigla
 \setlength{\nomlabelwidth}{0.15\hsize} 
 % Separa as abreviaturas de suas definicoes com pontos (....)
@@ -662,7 +702,6 @@
   {#1: #2}
 }
 \newcommand{\listofsymbols}{
-\addcontentsline{toc}{chapter}{Lista de Símbolos}
 \@makeschapterhead{Lista de Símbolos}
 \input{./pre/preSimbolos}
 \@starttoc{sim}
@@ -1449,6 +1488,19 @@
   \su@ExpandTwoArgs{#1}{#2}\su@IfSubStringInString
 }
 %%
+\newcommand*{\BeginNoToc}{%
+  \addtocontents{toc}{%
+    \edef\protect\SavedTocDepth{\protect\the\protect\value{tocdepth}}%
+  }%
+  \addtocontents{toc}{%
+    \protect\setcounter{tocdepth}{-10}%
+  }%
+}
+\newcommand*{\EndNoToc}{%
+  \addtocontents{toc}{%
+    \protect\setcounter{tocdepth}{\protect\SavedTocDepth}%
+  }%
+}
 \newcommand{\tabelas}[1][opt]
 {
 \ifpdf
@@ -1459,17 +1511,24 @@
 }{
 \IfSubStringInString{fig}{#1}
  {
-\addcontentsline{toc}{chapter}{\listfigurename} 
  \listoffigures\clearpage
  }{}
 \IfSubStringInString{tab}{#1}
- {\listoftables\clearpage
+ {
+ \BeginNoToc 
+ \listoftables
+ \EndNoToc
+ \clearpage
  }{}
 \IfSubStringInString{qua}{#1}
  {\listofframes\clearpage
  }{}
 \IfSubStringInString{alg}{#1}
- {\listofalgorithmes\clearpage
+ {
+ \BeginNoToc 
+ \listofalgorithmes
+ \EndNoToc
+ \clearpage
  }{}
 \IfSubStringInString{cod}{#1}
  {\listofcodes\clearpage
