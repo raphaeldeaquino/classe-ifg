@@ -73,11 +73,14 @@
 % v1.19 : 11 fev 2022 ---------------------------------------------------------------------------
 % - Inclusão de notas para correção
 % - Adequação do sumário
+% v1.20 : 13 may 2022 ---------------------------------------------------------------------------
+% - Tipo de documento relatório
 
 %%==================================================================
 %% classe-ifg Class Options
 %%==================================================================
 \RequirePackage{ifthen}
+\PassOptionsToPackage{hyphens}{url}
 
 \newboolean{tese} \setboolean{tese}{false}
 \newboolean{diss} \setboolean{diss}{true}
@@ -89,6 +92,7 @@
 \newboolean{prem} \setboolean{prem}{false}
 \newboolean{pree} \setboolean{pree}{false}
 \newboolean{pret} \setboolean{pret}{false}
+\newboolean{relat} \setboolean{relat}{false}
 \newboolean{old} \setboolean{old}{true}
 \newboolean{fancylayout} \setboolean{fancylayout}{false} 
 
@@ -103,6 +107,7 @@
  \setboolean{prem}{false}
  \setboolean{pree}{false}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{dissertacao}{
@@ -116,6 +121,7 @@
  \setboolean{prem}{false}
  \setboolean{pree}{false}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{qualificacaom}{
@@ -129,6 +135,7 @@
  \setboolean{prem}{false}
  \setboolean{pree}{false}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{monografia}{
@@ -142,6 +149,7 @@
  \setboolean{prem}{false}
  \setboolean{pree}{false}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{qualificacaoe}{
@@ -155,6 +163,7 @@
  \setboolean{prem}{false}
  \setboolean{pree}{false}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{tcc}{
@@ -168,6 +177,7 @@
  \setboolean{prem}{false}
  \setboolean{pree}{false}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{qualificacaot}{
@@ -181,6 +191,7 @@
  \setboolean{prem}{false}
  \setboolean{pree}{false}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{preprojetom}{
@@ -194,6 +205,7 @@
  \setboolean{prem}{true}
  \setboolean{pree}{false}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{preprojetoe}{
@@ -207,6 +219,7 @@
  \setboolean{prem}{false}
  \setboolean{pree}{true}
  \setboolean{pret}{false}
+ \setboolean{relat}{false}
 }
 
 \DeclareOption{preprojetot}{
@@ -220,6 +233,21 @@
  \setboolean{prem}{false}
  \setboolean{pree}{false}
  \setboolean{pret}{true}
+ \setboolean{relat}{false}
+}
+
+\DeclareOption{relatorio}{
+ \setboolean{tese}{false}
+ \setboolean{diss}{false}
+ \setboolean{qualm}{false}
+ \setboolean{mngr}{false}
+ \setboolean{tcc}{false}
+ \setboolean{qualt}{false}
+ \setboolean{quale}{false}
+ \setboolean{prem}{false}
+ \setboolean{pree}{false}
+ \setboolean{pret}{false}
+ \setboolean{relat}{true}
 }
  
  \DeclareOption{fancy}{
@@ -262,6 +290,7 @@
 \def\campus#1{\def\@campus{#1}}                 \campus{}
 \def\tipocurso#1{\def\@tipocurso{#1}}           \tipocurso{}
 \def\curso#1{\def\@curso{#1}}                   \curso{}
+\def\disciplina#1{\def\@disciplina{#1}}                   \disciplina{}
 \def\programa#1{\def\@programa{#1}}             \programa{}
 \def\linha#1{\def\@linha{#1}}                   \linha{}
 \def\concentracao#1{\def\@concentracao{#1}}     \concentracao{}
@@ -309,9 +338,11 @@
 \RequirePackage{lastpage}
 \RequirePackage{ifpdf} % running on pdfTeX?
 \ifpdf
+ \PassOptionsToPackage{hyphens}{url}
  \RequirePackage[pdftex,pagebackref=true]{hyperref}
  \pdfadjustspacing=1    %%% force LaTeX-like character spacing
 \else
+ \PassOptionsToPackage{hyphens}{url}
  \RequirePackage[dvips,breaklinks,pagebackref=true]{hyperref}
 \fi
 
@@ -846,7 +877,7 @@
 
 %% chapters
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
 \renewcommand\chapter{
   \@mkboth{}{}
   \thispagestyle{plain}
@@ -933,6 +964,9 @@
 }{
  \reitoria{Pr\'{o}-Reitoria de Pesquisa e P\'{o}s-Gradua\c{c}\~{a}o}
 }
+\ifthenelse{\boolean{relat}}{
+\ifthenelse{\equal{\unexpanded{\@tipocurso}}{Mestrado Profissional}}{ \reitoria{Pr\'{o}-Reitoria de Pesquisa e P\'{o}s-Gradua\c{c}\~{a}o} }{ \reitoria{Pr\'{o}-Reitoria de Ensino}  }
+}{}
 
 \newcommand{\margem}[1]{\hspace{0.5cm}\begin{minipage}[top]{13.0cm}#1\end{minipage}}
 \newcommand{\textoC}[2]{\begin{center}\linespread{#1}#2\end{center}}
@@ -948,7 +982,7 @@
 \newcolumntype{R}[1]{>{\esuaggedleft\arraybackslash}p{#1}}
 \setlength\extrarowheight{10pt}
 \newcommand{\capa}{
-\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
 }{
  \ifpdf
   \pdfbookmark[0]{Elementos Pr\'{e}-Textuais}{pretexto}
@@ -1023,7 +1057,7 @@
    \includegraphics[width=\textwidth]{formatacao/logoMTGS}
  \end{minipage} 
 }{} 
-\ifthenelse{\boolean{pree} \OR \boolean{pret}}
+\ifthenelse{\boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}
 {
 \begin{center}
  \begin{minipage}[t]{0.3\textwidth}
@@ -1073,10 +1107,19 @@
     	\ifthenelse{\equal{\@tipocurso}{Licenciatura}}{
         	\newcommand\grau{Licenciado}
     	}{
-    		\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado ou Licenciatura}{Tipo de curso inadequado para o documento}
+    		\ifthenelse{\equal{\@tipocurso}{Curso Superior de Tecnologia}}{
+        		\newcommand\grau{Tecnólogo}
+    		}{
+    			\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado, Licenciatura ou Curso Superior de Tecnologia}{Tipo de curso inadequado para o documento}
+    		}
     	}
     }
-    Trabalho de Conclus\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
+    \ifthenelse{\equal{\@tipocurso}{Curso Superior de Tecnologia}}{
+        Trabalho de Conclus\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.
+    }{
+    	Trabalho de Conclus\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.
+    }
+    }{}
   \ifthenelse{\boolean{qualt}}{
     \ifthenelse{\equal{\@tipocurso}{Bacharelado}}{
         \newcommand\grau{Bacharel}
@@ -1084,10 +1127,19 @@
     	\ifthenelse{\equal{\@tipocurso}{Licenciatura}}{
         	\newcommand\grau{Licenciado}
     	}{
-    		\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado ou Licenciatura}{Tipo de curso inadequado para o documento}
+    		\ifthenelse{\equal{\@tipocurso}{Curso Superior de Tecnologia}}{
+        		\newcommand\grau{Tecnólogo}
+    		}{
+    			\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado, Licenciatura ou Curso Superior de Tecnologia}{Tipo de curso inadequado para o documento}
+    		}
     	}
     }
-    Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
+    \ifthenelse{\equal{\@tipocurso}{Curso Superior de Tecnologia}}{
+        Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.
+    }{
+    	Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.
+    }
+    }{}
 \ifthenelse{\boolean{prem}}{
     \Large \textbf{Plano de Trabalho}}{}
 \ifthenelse{\boolean{pree}}{
@@ -1103,22 +1155,46 @@
     	}
     }
     Pr\'{e}-Projeto de Trabalho de Conclus\~{a}o de Curso apresentado ao curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
+    \ifthenelse{\boolean{relat}}{
+    \Large \textbf{Relat\'{o}rio de Disciplina}}{}
     }
  \vspace{0.2cm}
  \par%
  \ifthenelse{\equal{\@orientador}{}}
-  {\margemD{\textbf{Orientadora:} Profa. \@orientadora}}%
-  {\margemD{\textbf{Orientador:} Prof. \@orientador}}%
+  {
+  	\ifthenelse{\boolean{relat}}{
+  		\margemD{\textbf{Professora:} \@orientadora}
+  		\par%
+    	\margemD{\textbf{Disciplina:} \@disciplina}
+  	}{
+  		\margemD{\textbf{Orientadora:} Profa. \@orientadora}
+  	}  
+  }%
+  {
+  	\ifthenelse{\boolean{relat}}{
+  		\margemD{\textbf{Professor:} \@orientador}
+  		\par%
+    	\margemD{\textbf{Disciplina:} \@disciplina}
+  	}{
+  		\margemD{\textbf{Orientador:} Prof. \@orientador}
+  	}
+  }%
  \ifthenelse{\equal{\@coorientador}{}}
   {\ifthenelse{\equal{\@coorientadora}{}}
    {}
-   {\vspace{0.1cm}
+   {
+   \ifthenelse{\boolean{relat}}{}{
+   	\vspace{0.1cm}
     \par%
     \margemD{\textbf{Coorientadora:} Profa. \@coorientadora}}%
+    }
   }
-  {\vspace{0.1cm}
+  {
+  \ifthenelse{\boolean{relat}}{}{
+  \vspace{0.1cm}
    \par%
    \margemD{\textbf{Coorientador:} Prof. \@coorientador}}%
+   }
  \vspace*{\stretch{1}}%
  \par%
  \textoC{1}{\@campus, \@ano.}%
@@ -1144,6 +1220,14 @@
 \newcommand{\termo}{
 \ifthenelse{\boolean{tese} \OR \boolean{diss} \OR \boolean{mngr} \OR \boolean{tcc}}{
     \includepdf[pages={-},offset=0mm -30mm]{termo.pdf}
+    \ifthenelse{\equal{\@sautor}{}}{
+    }{
+        \includepdf[pages={-},offset=0mm -30mm]{termo2.pdf}
+    }
+    \ifthenelse{\equal{\@tautor}{}}{
+    }{
+        \includepdf[pages={-},offset=0mm -30mm]{termo3.pdf}
+    }
 }{}
 }
 
@@ -1346,7 +1430,7 @@
 %% Resumo
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \newcommand{\cresumo}{
-\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
 }{
 \newenvironment{resumo}{%
  \ifpdf
@@ -1388,7 +1472,7 @@
 }
 }
 \newcommand{\cresumopre}{
-\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
 \addcontentsline{toc}{chapter}{Resumo}
 \newenvironment{resumo}{%
  \ifpdf
@@ -1426,7 +1510,7 @@
 %% Abstract
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \newcommand{\cabstract}{
-\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
 }{
 \renewenvironment{abstract}[1]{%
  \ifpdf
@@ -1507,7 +1591,7 @@
  \pdfbookmark[0]{Sumário}{sumario}
 \fi
 \clearpage\singlespacing%
-\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret}}{
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
 }{
 \IfSubStringInString{fig}{#1}
  {
@@ -1539,11 +1623,11 @@
 \IfSubStringInString{sim}{#1}
  {\listofsymbols\clearpage
  }{}
- }
 \tableofcontents%
 \clearpage%
 \normalfont\pagestyle{fancy}%
 \onehalfspacing
+}
 \cresumopre
 }
 
