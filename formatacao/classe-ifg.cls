@@ -646,6 +646,29 @@
   keywordstyle=\purplecolorifnotalreadyblue,
   stringstyle=\color{blue}
 }
+\lstdefinelanguage{Go}
+{
+	identifierstyle=\color{black},
+	morekeywords={go, func, nil},% list your attributes here
+	morekeywords={context,constraint,check,message,critique,guard,fix,title,not,delete},% list your attributes here
+	morekeywords={for,in,if,or,new},% list your attributes here
+	morekeywords={ref,attr,val},% list your attributes here
+	morekeywords={try,catch,this,return},% list your attributes here
+	morekeywords={public,private,protected,static},% list your attributes here
+	morekeywords={boolean,float,int,null,true,false},% list your attributes here
+	morekeywords={if,else,switch,case,while},% list your attributes here
+	basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
+	commentstyle=\color{pgrey},
+	morecomment=[s][\color{darkgreen}]{/*}{*/},
+	morecomment=[l][\color{darkgreen}]{//},
+	morecomment=[l][\color{darkgreen}]{--},
+	morestring=[b]",
+	morestring=[b]',
+	keywordstyle=\color{ppurple},
+	stringstyle=\color{blue},
+	moredelim=[is][\itshape\textcolor{blue}]{||}{||},
+	moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
 \newcommand\JSONnumbervaluestyle{\color{red}}
 \newcommand\JSONstringvaluestyle{\color{blue}}
 % switch used as state variable
