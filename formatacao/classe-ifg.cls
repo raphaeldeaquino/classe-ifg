@@ -73,8 +73,10 @@
 % v1.19 : 11 fev 2022 ---------------------------------------------------------------------------
 % - Inclusão de notas para correção
 % - Adequação do sumário
-% v1.20 : 13 may 2022 ---------------------------------------------------------------------------
+% v1.20 : 13 mai 2022 ---------------------------------------------------------------------------
 % - Tipo de documento relatório
+% v1.21 : 24 ago 2022 ---------------------------------------------------------------------------
+% - Corrigido bug com hyperref
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -308,7 +310,7 @@
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \RequirePackage[english,portuguese,brazil]{babel} 	% Termos pré-definidos em Português
 \RequirePackage[T1]{fontenc}                      	% Hifeniza\c{c}\~{a}o correta em Português
-\RequirePackage[utf8x]{inputenc}                	% Inser\c{c}\~{a}o de acentos
+\RequirePackage{inputenc}                	% Inser\c{c}\~{a}o de acentos
 
 %% Fontes adicionais
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
