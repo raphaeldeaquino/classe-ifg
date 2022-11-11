@@ -77,6 +77,8 @@
 % - Tipo de documento relatório
 % v1.21 : 24 ago 2022 ---------------------------------------------------------------------------
 % - Corrigido bug com hyperref
+% v1.22 : 11 nov 2022 ---------------------------------------------------------------------------
+% - Corrigido numeração de páginas
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -305,6 +307,8 @@
 \LoadClass[a4paper,12pt]{report}
 \RequirePackage{texnames}
 \RequirePackage{lipsum}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
 
 % Hyphenation
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -421,13 +425,13 @@
 \newcommand{\quadroname}{Quadro}
 \newcommand{\quadrorefname}{Quadro}
 \newcommand{\chartautorefname}{Quadro}
-\newfloat{quadro}{tbp}{loq}[chapter]
+\newfloat{quadro}{tbp}{loq}[part]
 \floatname{quadro}{\quadroname}
 \floatstyle{plaintop}
 \restylefloat{quadro}
 \newlistof{quadros}{loq}{\listquadroname}
 \newlistentry{quadro}{loq}{0}
-\renewcommand{\thequadro}{\thechapter.\@arabic\c@quadro}
+\renewcommand{\thequadro}{\@arabic\c@quadro}
 \newcommand*\setfloatadjustment[2]{\@namedef{#1adjustment}{#2}}
 \setfloatadjustment{quadro}{\centering}
 
@@ -443,7 +447,7 @@
 
 %% Algoritmos
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\RequirePackage[ruled, algo2e, vlined, portuguese, algochapter]{algorithm2e}
+\RequirePackage[ruled, algo2e, vlined, portuguese]{algorithm2e}
 \renewcommand{\listofalgorithmes}{\begingroup
  \tocfile{\listalgorithmcfname}{loa}
  \endgroup}
@@ -452,7 +456,7 @@
 %% Códigos
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \floatstyle{ruled}  %%% options: plain, boxed, ruled
-\newfloat{codigo}{htbp}{loc}[chapter] %% numera captions com número de seção.
+\newfloat{codigo}{htbp}{loc}[part] %% numera captions com número de seção.
 \floatname{codigo}{C\'{o}digo}
 \newcommand{\listofcodes}{
  \listof{codigo}{Lista de C\'{o}digos de Programas}
@@ -905,14 +909,14 @@
 \ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
 \renewcommand\chapter{
   \@mkboth{}{}
-  \thispagestyle{plain}
+  \ifthenelse{\boolean{fancylayout}}{\thispagestyle{plain}}{}
   \global\@topnum\z@
   \@afterindentfalse
   \secdef\@chapter\@schapter}
 }{
 \renewcommand\chapter{\if@openright\cleardoublepage\else\clearpage\fi
   \@mkboth{}{}
-  \thispagestyle{plain}
+  \ifthenelse{\boolean{fancylayout}}{\thispagestyle{plain}}{}
   \global\@topnum\z@
   \@afterindentfalse
   \secdef\@chapter\@schapter}
@@ -1583,6 +1587,13 @@
 %%
 %% expands the first and second argument with
 %% \protected@edef and calls #3 with them:
+\newcommand{\emptypage}[1]{%
+  \cleardoublepage
+  \begingroup
+  \let\ps@plain\ps@empty
+  \pagestyle{empty}
+  #1
+  \cleardoublepage}
 \newcommand\su@ExpandTwoArgs[3]{%
   \protected@edef\su@SubString{#1}%
   \protected@edef\su@String{#2}%
@@ -1620,39 +1631,40 @@
 }{
 \IfSubStringInString{fig}{#1}
  {
- \listoffigures\clearpage
+ \emptypage\listoffigures\clearpage
  }{}
 \IfSubStringInString{tab}{#1}
  {
  \BeginNoToc 
- \listoftables
+ \emptypage\listoftables
  \EndNoToc
  \clearpage
  }{}
 \IfSubStringInString{qua}{#1}
- {\listofframes\clearpage
+ {\emptypage\listofframes\clearpage
  }{}
 \IfSubStringInString{alg}{#1}
  {
  \BeginNoToc 
- \listofalgorithmes
+ \emptypage\listofalgorithmes
  \EndNoToc
  \clearpage
  }{}
 \IfSubStringInString{cod}{#1}
- {\listofcodes\clearpage
+ {\emptypage\listofcodes\clearpage
  }{}
  \IfSubStringInString{sig}{#1}
- {\listofacronym\clearpage
+ {\emptypage\listofacronym\clearpage
  }{}
 \IfSubStringInString{sim}{#1}
- {\listofsymbols\clearpage
+ {\emptypage\listofsymbols\clearpage
  }{}
 \tableofcontents%
 \clearpage%
 \normalfont\pagestyle{fancy}%
 \onehalfspacing
 }
+\normalfont\pagestyle{fancy}%
 \cresumopre
 }
 
