@@ -79,6 +79,8 @@
 % - Corrigido bug com hyperref
 % v1.22 : 11 nov 2022 ---------------------------------------------------------------------------
 % - Corrigido numeração de páginas
+% v1.23 : 02 dez 2022 ---------------------------------------------------------------------------
+% - Alterada a fonte de Nimbus Roman para Latin Modern Roman
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -310,20 +312,22 @@
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
 
-% Hyphenation
-%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\RequirePackage[english,portuguese,brazil]{babel} 	% Termos pré-definidos em Português
-\RequirePackage[T1]{fontenc}                      	% Hifeniza\c{c}\~{a}o correta em Português
-\RequirePackage{inputenc}                	% Inser\c{c}\~{a}o de acentos
-
 %% Fontes adicionais
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\RequirePackage{amsfonts}
 \RequirePackage{silence}
 \WarningsOff[pslatex]
 \RequirePackage{pslatex}
 \RequirePackage{etoolbox}
 \newcommand{\arial}{\sf}
+\RequirePackage{calligra}
+
+% Hyphenation
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\RequirePackage[english,portuguese,brazil]{babel} 		% Termos pré-definidos em Português
+\RequirePackage{inputenc} 
+\RequirePackage{ae}
+\RequirePackage{lmodern}
+
 
 %% Verbatim
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
