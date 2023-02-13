@@ -380,7 +380,7 @@
 \newcommand{\fontefig}[1]{
     \footnotesize
     \vspace{0.2cm}
-    Fonte: #1
+    Fonte: #1.
 }
 
 
@@ -417,7 +417,7 @@
 \newcommand{\fontetab}[1]{
 	\centering
     \footnotesize
-    Fonte: #1
+    Fonte: #1.
 }
 
 
