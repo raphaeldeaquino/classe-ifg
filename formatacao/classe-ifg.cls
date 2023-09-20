@@ -81,6 +81,9 @@
 % - Corrigido numeração de páginas
 % v1.23 : 02 dez 2022 ---------------------------------------------------------------------------
 % - Alterada a fonte de Nimbus Roman para Latin Modern Roman
+% v1.24 : 20 set 2023 ---------------------------------------------------------------------------
+% - Remoção da seção "Sumário" de documentos: preprojetom, preprojetoe, preprojetot, e relatório
+% - Corrigindo numeração de quadros
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -429,13 +432,13 @@
 \newcommand{\quadroname}{Quadro}
 \newcommand{\quadrorefname}{Quadro}
 \newcommand{\chartautorefname}{Quadro}
-\newfloat{quadro}{tbp}{loq}[part]
+\newfloat{quadro}{tbp}{loq}[chapter]
 \floatname{quadro}{\quadroname}
 \floatstyle{plaintop}
 \restylefloat{quadro}
 \newlistof{quadros}{loq}{\listquadroname}
 \newlistentry{quadro}{loq}{0}
-\renewcommand{\thequadro}{\@arabic\c@quadro}
+\renewcommand{\thequadro}{\thechapter.\@arabic\c@quadro}
 \newcommand*\setfloatadjustment[2]{\@namedef{#1adjustment}{#2}}
 \setfloatadjustment{quadro}{\centering}
 
@@ -1627,12 +1630,12 @@
 }
 \newcommand{\tabelas}[1][opt]
 {
+\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
+}{
 \ifpdf
  \pdfbookmark[0]{Sumário}{sumario}
 \fi
 \clearpage\singlespacing%
-\ifthenelse{\boolean{prem} \OR \boolean{pree} \OR \boolean{pret} \OR \boolean{relat}}{
-}{
 \IfSubStringInString{fig}{#1}
  {
  \emptypage\listoffigures\clearpage
