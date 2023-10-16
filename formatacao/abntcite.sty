@@ -588,7 +588,7 @@
          %
          % here, a tricky \let\@citename\"b@\@citekey++IMPL"
          \expandafter\let\expandafter\@citename%
-             \csname b@\@citekey++IMPL\endcsname%
+             \csname b@\@citekey++EXPL\endcsname%
          \expandafter\let\expandafter\@citeyear%
              \csname b@\@citekey++YEAR\endcsname%
          \ifx\@citeprevious\@empty%
@@ -942,7 +942,7 @@
   \@for\@citekey:=#1\do %\@citekey contains the key
     {%
 %     \edef\@citekey{\expandafter\@firstofone\@citekey\@empty}%
-     \expandafter\let\expandafter\@citename\csname b@\@citekey++IMPL\endcsname%
+     \expandafter\let\expandafter\@citename\csname b@\@citekey++EXPL\endcsname%
      % writing on aux file
      \if@filesw\immediate\write\@auxout{\string\citation{\@citekey}}\fi%
      % if undefined bibitem
@@ -960,7 +960,7 @@
             \else%
               ; % echoing "; "
             \fi%
-            {\authorcapstyle\@citename\@}%
+            {\authorstyle\@citename\@}%
          \fi%
          \let\@citeprevious\@citename%
        }%

@@ -81,6 +81,8 @@
 % - Corrigido numeração de páginas
 % v1.23 : 02 dez 2022 ---------------------------------------------------------------------------
 % - Alterada a fonte de Nimbus Roman para Latin Modern Roman
+% v1.24 : 15 out 2023 ---------------------------------------------------------------------------
+% - Correção de inconsistências com normas ABNT
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -320,6 +322,7 @@
 \RequirePackage{etoolbox}
 \newcommand{\arial}{\sf}
 \RequirePackage{calligra}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 
 % Hyphenation
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -382,6 +385,14 @@
     \vspace{0.2cm}
     Fonte: #1.
 }
+\DeclareCaptionLabelSeparator{custom}{ -- }
+\captionsetup
+{
+    labelsep=custom
+}
+\RequirePackage{float}
+\floatstyle{plaintop}
+\restylefloat{figure}
 
 
 %% Subfigures
@@ -423,7 +434,6 @@
 
 %% Quadros
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\RequirePackage{float}
 \RequirePackage[titles]{./formatacao/tocloft}
 \newcommand{\listquadroname}{Lista de Quadros}
 \newcommand{\quadroname}{Quadro}
@@ -460,7 +470,7 @@
 %% Códigos
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \floatstyle{ruled}  %%% options: plain, boxed, ruled
-\newfloat{codigo}{htbp}{loc}[part] %% numera captions com número de seção.
+\newfloat{codigo}{htbp}{loc} 
 \floatname{codigo}{C\'{o}digo}
 \newcommand{\listofcodes}{
  \listof{codigo}{Lista de C\'{o}digos de Programas}
