@@ -83,6 +83,8 @@
 % - Alterada a fonte de Nimbus Roman para Latin Modern Roman
 % v1.24 : 15 out 2023 ---------------------------------------------------------------------------
 % - Correção de inconsistências com normas ABNT
+% v1.25 : 30 out 2023 ---------------------------------------------------------------------------
+% - Correção do tamanho da fonte em citações
 
 %%==================================================================
 %% classe-ifg Class Options

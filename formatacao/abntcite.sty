@@ -395,7 +395,7 @@
 
 
 
-\newcommand{\authorcapstyle}{\smaller}
+\newcommand{\authorcapstyle}{\relax}
 \newcommand{\authorstyle}{\relax}
 \newcommand{\yearstyle}{\relax}
 \newcommand{\optionaltextstyle}{\relax}
@@ -960,7 +960,7 @@
             \else%
               ; % echoing "; "
             \fi%
-            {\authorstyle\@citename\@}%
+            {\authorcapstyle\@citename\@}%
          \fi%
          \let\@citeprevious\@citename%
        }%
