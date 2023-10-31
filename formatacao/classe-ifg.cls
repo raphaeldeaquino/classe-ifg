@@ -85,6 +85,8 @@
 % - Correção de inconsistências com normas ABNT
 % v1.25 : 30 out 2023 ---------------------------------------------------------------------------
 % - Correção do tamanho da fonte em citações
+% v1.26 : 31 out 2023 ---------------------------------------------------------------------------
+% - Tipo fancy definido como padrão e incluído template Word :(
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -103,8 +105,8 @@
 \newboolean{pree} \setboolean{pree}{false}
 \newboolean{pret} \setboolean{pret}{false}
 \newboolean{relat} \setboolean{relat}{false}
-\newboolean{old} \setboolean{old}{true}
-\newboolean{fancylayout} \setboolean{fancylayout}{false} 
+\newboolean{old} \setboolean{old}{false}
+\newboolean{fancylayout} \setboolean{fancylayout}{true} 
 
 \DeclareOption{tese}{
  \setboolean{tese}{true}
@@ -216,6 +218,8 @@
  \setboolean{pree}{false}
  \setboolean{pret}{false}
  \setboolean{relat}{false}
+ \setboolean{fancylayout}{false}
+ \setboolean{old}{true}
 }
 
 \DeclareOption{preprojetoe}{
@@ -230,6 +234,8 @@
  \setboolean{pree}{true}
  \setboolean{pret}{false}
  \setboolean{relat}{false}
+ \setboolean{fancylayout}{false}
+ \setboolean{old}{true}
 }
 
 \DeclareOption{preprojetot}{
@@ -244,6 +250,8 @@
  \setboolean{pree}{false}
  \setboolean{pret}{true}
  \setboolean{relat}{false}
+ \setboolean{fancylayout}{false}
+ \setboolean{old}{true}
 }
 
 \DeclareOption{relatorio}{
@@ -258,6 +266,8 @@
  \setboolean{pree}{false}
  \setboolean{pret}{false}
  \setboolean{relat}{true}
+ \setboolean{fancylayout}{false}
+ \setboolean{old}{true}
 }
  
  \DeclareOption{fancy}{
