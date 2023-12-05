@@ -87,6 +87,8 @@
 % - Correção do tamanho da fonte em citações
 % v1.26 : 31 out 2023 ---------------------------------------------------------------------------
 % - Tipo fancy definido como padrão e incluído template Word :(
+% v1.27 : 29 nov 2023 ---------------------------------------------------------------------------
+% - Adicionado suporte a código JavaScript
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -610,7 +612,66 @@
 \lstdefinelanguage{sql}
 {
   identifierstyle=\color{black},
-  morekeywords={create, null, NULL, CREATE, TABLE, AUTO_INCREMENT, PRIMARY, KEY, DEFAULT, CHARSET, COLLATE, CONSTRAINT, FOREIGN, REFERENCES, int, NOT, varchar, datetime, ENGINE},% list your attributes here
+  morekeywords={select, SELECT,
+  	from, FROM,
+  	where, WHERE,
+  	and, AND,
+  	or, OR,
+  	not, NOT,
+  	insert, INSERT,
+  	update, UPDATE,
+  	delete, DELETE,
+  	create, CREATE,
+  	table, TABLE,
+  	alter, ALTER,
+  	drop, DROP,
+  	index, INDEX,
+  	primary, PRIMARY,
+  	key, KEY,
+  	foreign, FOREIGN,
+  	references, REFERENCES,
+  	distinct, DISTINCT,
+  	order, ORDER,
+  	by, BY,
+  	asc, ASC,
+  	desc, DESC,
+  	group, GROUP,
+  	having, HAVING,
+  	inner, INNER,
+  	join, JOIN,
+  	left, LEFT,
+  	right, RIGHT,
+  	outer, OUTER,
+  	union, UNION,
+  	all, ALL,
+  	as, AS,
+  	between, BETWEEN,
+  	in, IN,
+  	like, LIKE,
+  	is, IS,
+  	null, NULL,
+  	count, COUNT,
+  	avg, AVG,
+  	sum, SUM,
+  	max, MAX,
+  	min, MIN,
+  	distinct, DISTINCT,
+  	case, CASE,
+  	when, WHEN,
+  	then, THEN,
+  	else, ELSE,
+  	end, END,
+  	grant, GRANT,
+  	on, ON,
+  	to, TO,
+  	int, INT,
+  	into, INTO,
+  	varchar, VARCHAR,
+  	commit, COMMIT,
+  	begin, BEGIN,
+  	transaction, TRANSACTION,
+  	values, VALUES
+  },% list your attributes here
   basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
   commentstyle=\color{pgrey},
   morecomment=[s][\color{pgrey}]{...}{...},
@@ -621,7 +682,27 @@
   keywordstyle=\color{ppurple},
   stringstyle=\color{blue},
   moredelim=[is][\itshape\textcolor{blue}]{||}{||},
-  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%},
+  literate={>}{{{\color{blue}>}}}1 {=}{{{\color{blue}={}}}}1 {<}{{{\color{blue}<}}}1 {á}{{\'a}}1 {à}{{\`a}}1 {ã}{{\~a}}1 {é}{{\'e}}1 {ê}{{\^e}}1 {ë}{{\"e}}1 {í}{{\'i}}1 {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1 {õ}{{\~o}}1 {ó}{{\'o}}1 {ô}{{\^o}}1 {ú}{{\'u}}1 {0}{{\textcolor{red}{0}}}{1}%
+  {1}{{\textcolor{red}{1}}}{1}%
+  {2}{{\textcolor{red}{2}}}{1}%
+  {3}{{\textcolor{red}{3}}}{1}%
+  {4}{{\textcolor{red}{4}}}{1}%
+  {5}{{\textcolor{red}{5}}}{1}%
+  {6}{{\textcolor{red}{6}}}{1}%
+  {7}{{\textcolor{red}{7}}}{1}%
+  {8}{{\textcolor{red}{8}}}{1}%
+  {9}{{\textcolor{red}{9}}}{1}%
+  {.0}{{\textcolor{red}{.0}}}{2}% Following is to ensure that only periods
+  {.1}{{\textcolor{red}{.1}}}{2}% followed by a digit are changed.
+  {.2}{{\textcolor{red}{.2}}}{2}%
+  {.3}{{\textcolor{red}{.3}}}{2}%
+  {.4}{{\textcolor{red}{.4}}}{2}%
+  {.5}{{\textcolor{red}{.5}}}{2}%
+  {.6}{{\textcolor{red}{.6}}}{2}%
+  {.7}{{\textcolor{red}{.7}}}{2}%
+  {.8}{{\textcolor{red}{.8}}}{2}%
+  {.9}{{\textcolor{red}{.9}}}{2}%
 }
 \lstdefinelanguage{Python}
 {
@@ -703,35 +784,55 @@
 }
 \newcommand\JSONnumbervaluestyle{\color{red}}
 \newcommand\JSONstringvaluestyle{\color{blue}}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{punct}{red!60!black}
+\colorlet{numb}{magenta!60!black}
 % switch used as state variable
 \newif\ifcolonfoundonthisline
 \lstdefinelanguage{json}{
 	basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
-    showstringspaces    = false,
-  	keywords            = {false,true},
-  	alsoletter          = 0123456789.,
-  	morestring          = [s]{"}{"},
-  	stringstyle         = \ifcolonfoundonthisline\JSONstringvaluestyle\fi,
-  	MoreSelectCharTable =%
-    \lst@DefSaveDef{`:}\colon@json{\processColon@json},
-  	keywordstyle        = \ttfamily\bfseries,
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+	{:}{{{\color{punct}{:}}}}{1}
+	{,}{{{\color{punct}{,}}}}{1}
+	{\{}{{{\color{delim}{\{}}}}{1}
+	{\}}{{{\color{delim}{\}}}}}{1}
+	{[}{{{\color{delim}{[}}}}{1}
+	{]}{{{\color{delim}{]}}}}{1},
+	showstringspaces    = false,
+	keywords            = {false,true},
+	alsoletter          = 0123456789.,
+	morestring          = [s]{"}{"},
+	stringstyle         = \ifcolonfoundonthisline\JSONstringvaluestyle\fi,
+	MoreSelectCharTable =%
+	\lst@DefSaveDef{`:}\colon@json{\processColon@json},
+	keywordstyle        = \ttfamily\bfseries,
 }
 % flip the switch if a colon is found in Pmode
 \newcommand\processColon@json{%
-  \colon@json%
-  \ifnum\lst@mode=\lst@Pmode%
-    \global\colonfoundonthislinetrue%
-  \fi
+	\colon@json%
+	\ifnum\lst@mode=\lst@Pmode%
+	\global\colonfoundonthislinetrue%
+	\fi
 }
 
 \lst@AddToHook{Output}{%
-  \ifcolonfoundonthisline%
-    \ifnum\lst@mode=\lst@Pmode%
-      \def\lst@thestyle{\JSONnumbervaluestyle}%
-    \fi
-  \fi
-  %override by keyword style if a keyword is detected!
-  \lsthk@DetectKeywords% 
+	\ifcolonfoundonthisline%
+	\ifnum\lst@mode=\lst@Pmode%
+	\def\lst@thestyle{\JSONnumbervaluestyle}%
+	\fi
+	\fi
+	%override by keyword style if a keyword is detected!
+	\lsthk@DetectKeywords% 
 }
 
 % reset the switch at the end of line
@@ -744,6 +845,48 @@
 \newcommand{\listingnote}[1]{
 % Syntax: \begin{addmargin}[<left indentation>]{<indentation>}
 \todo[linecolor=red,backgroundcolor=red!25,bordercolor=red]{#1}{} 
+}
+
+\lstdefinelanguage{JavaScript}
+{
+	identifierstyle=\color{black},
+	morekeywords={break, case, catch, class, const, continue, debugger,
+		default, delete, do, else, export, extends, false, finally,
+		for, function, if, implements, import, in, instanceof,
+		interface, let, new, null, package, private, protected,
+		public, return, super, switch, this, throw, true, try,
+		typeof, var, void, while, with, yield, await},% list your attributes here
+	basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
+	commentstyle=\color{pgrey},
+	morecomment=[s][\color{pgrey}]{/*}{*/},
+	morecomment=[l][\color{pgrey}]{//},
+	morecomment=[l][\color{pgrey}]{--},
+	morestring=[b]",
+	morestring=[b]',
+	keywordstyle=\color{ppurple},
+	stringstyle=\color{blue},
+	moredelim=[is][\itshape\textcolor{blue}]{||}{||},
+	moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%},
+	literate={á}{{\'a}}1 {à}{{\`a}}1 {ã}{{\~a}}1 {é}{{\'e}}1 {ê}{{\^e}}1 {ë}{{\"e}}1 {í}{{\'i}}1 {ç}{{\c{c}}}1 {Ç}{{\c{C}}}1 {õ}{{\~o}}1 {ó}{{\'o}}1 {ô}{{\^o}}1 {ú}{{\'u}}1 {0}{{\textcolor{red}{0}}}{1}%
+	{1}{{\textcolor{red}{1}}}{1}%
+	{2}{{\textcolor{red}{2}}}{1}%
+	{3}{{\textcolor{red}{3}}}{1}%
+	{4}{{\textcolor{red}{4}}}{1}%
+	{5}{{\textcolor{red}{5}}}{1}%
+	{6}{{\textcolor{red}{6}}}{1}%
+	{7}{{\textcolor{red}{7}}}{1}%
+	{8}{{\textcolor{red}{8}}}{1}%
+	{9}{{\textcolor{red}{9}}}{1}%
+	{.0}{{\textcolor{red}{.0}}}{2}% Following is to ensure that only periods
+	{.1}{{\textcolor{red}{.1}}}{2}% followed by a digit are changed.
+	{.2}{{\textcolor{red}{.2}}}{2}%
+	{.3}{{\textcolor{red}{.3}}}{2}%
+	{.4}{{\textcolor{red}{.4}}}{2}%
+	{.5}{{\textcolor{red}{.5}}}{2}%
+	{.6}{{\textcolor{red}{.6}}}{2}%
+	{.7}{{\textcolor{red}{.7}}}{2}%
+	{.8}{{\textcolor{red}{.8}}}{2}%
+	{.9}{{\textcolor{red}{.9}}}{2}%
 }
 
 % %% ToDo e revisão
