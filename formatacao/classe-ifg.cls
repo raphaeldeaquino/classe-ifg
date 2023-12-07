@@ -89,6 +89,8 @@
 % - Tipo fancy definido como padrão e incluído template Word :(
 % v1.27 : 29 nov 2023 ---------------------------------------------------------------------------
 % - Adicionado suporte a código JavaScript
+% v1.28 : 06 dez 2023 ---------------------------------------------------------------------------
+% - Corrigidos bugs após aula para terceira turma
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -467,7 +469,9 @@
 \listofquadros
 }
 \newcommand{\fontequa}[1]{
-    \footnotesize
+	~\\
+	\vspace{0.3cm}
+	\footnotesize
     \centering
     Fonte: #1
 }

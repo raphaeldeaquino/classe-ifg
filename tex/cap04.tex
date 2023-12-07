@@ -363,6 +363,8 @@ font=\sffamily\bfseries,align=center,text width={1.5cm}}]
 \section{Tabelas}
 \label{sec:tabs} 
 
+Uma tabela é uma forma não discursiva de apresentar informações, das quais o dado numérico se destaca como informação central. Não deve ter barras laterais.
+
 Em tabelas, deve-se evitar usar cor de fundo diferente do branco e o uso de linhas grossas ou duplas. Ao relatar dados empíricos, não se deve usar mais dígitos decimais do aqueles que possam ser garantidos pela sua precisão e reprodutibilidade. Rótulos de tabelas devem ser colocados
 antes das mesmas (veja a Tabela \ref{tab:MarcMNem}).
 
@@ -785,6 +787,50 @@ Fonte: Referência a fonte da tabela.
 \end{center}
 \end{landscape}
 
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Quadros}
+\label{sec:quad} 
+
+Diferente de tabela, um quadro é uma forma discursiva de apresentar informações, das quais o dado textual se destaca como informação central. O código de se assemelha bastante ao de tabela.
+
+\begin{quadro}[!ht]
+  \centering
+  \caption{Distribuição das orientações}
+  \label{qua:orientacoes}
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Aluno(a)} & \textbf{Orientador(a)} \\
+    \hline
+    João & Paulo \\
+    Maria & Joaquim \\
+    Pedro & Marta \\
+    Ana & Joana \\
+    \hline
+  \end{tabular}
+  \fontequa{Elaborado pelo autor}
+\end{quadro}
+
+O Quadro \ref{qua:orientacoes} foi gerada usando o código a seguir.
+
+\begin{verbatim}
+\begin{quadro}[!ht]
+  \centering
+  \caption{Distribuição das orientações}
+  \label{qua:orientacoes}
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Aluno(a)} & \textbf{Orientador(a)} \\
+    \hline
+    João & Paulo \\
+    Maria & Joaquim \\
+    Pedro & Marta \\
+    Ana & Joana \\
+    \hline
+  \end{tabular}
+  \fontequa{Elaborado pelo autor}
+\end{quadro}
+\end{verbatim}
+
 %% - - - - - - - - - - - - - - - -- - - - - - - - - - - - - - - - - -
 \section{Algoritmos}
 \label{sec:algor} 
@@ -854,7 +900,7 @@ Códigos de programa podem ser importados, mantendo-se a formatação original, 
   \end{codigo}
 \end{center}
 
-Para inserir o código coloque na pasta \verb|prog| o arquivo com o conteúdo a ser inserido. Depois utilize o código a seguir. Atualmente a \textsf{classe-ifg} permite formatar códigos das linguagens XML, Java, Matlab e Python.
+Para inserir o código coloque na pasta \verb|prog| o arquivo com o conteúdo a ser inserido. Depois utilize o código a seguir. 
 
 \begin{verbatim}
 \begin{center}
@@ -866,6 +912,25 @@ Para inserir o código coloque na pasta \verb|prog| o arquivo com o conteúdo a 
   \end{codigo}
 \end{center}
 \end{verbatim}
+
+De maneira alternativa, quando se tratar de trechos menores, é possível inserir o código diretamente, conforme o código a seguir: 
+
+\begin{verbatim}
+\begin{center}
+ \begin{codigo}[H]
+   \small
+   \begin{lstlisting}[language=Python]
+   def soma(a, b):
+       return a + b
+   \end{lstlisting}
+   \caption{\texttt{soma()} }
+   \label{code:prog2}
+  \end{codigo}
+\end{center}
+\end{verbatim}
+
+
+Atualmente a \textsf{classe-ifg} permite formatar códigos das linguagens XML, Java, Matlab, Python, SQL, YAML, Terraform, Go, JSON e JavaScript. Se houver necessidade de novas linguagens solicite em \url{teclimpa@ifg.edu.br}.
 
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Teoremas, Corolários e Demonstrações}
