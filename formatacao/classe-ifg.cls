@@ -91,6 +91,8 @@
 % - Adicionado suporte a código JavaScript
 % v1.28 : 06 dez 2023 ---------------------------------------------------------------------------
 % - Corrigidos bugs após aula para terceira turma
+% v1.29 : 14 dez 2023 ---------------------------------------------------------------------------
+% - Adequações conforme ABNT NBR 14724:2011
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -409,6 +411,10 @@
 \RequirePackage{float}
 \floatstyle{plaintop}
 \restylefloat{figure}
+\RequirePackage[titles,subfigure]{./formatacao/tocloft}
+\newlength{\mylen}   
+\settowidth{\mylen}{\hspace*{-0.3cm}} 
+\addtolength{\cftfignumwidth}{\mylen} 
 
 
 %% Subfigures
@@ -446,11 +452,12 @@
     \footnotesize
     Fonte: #1.
 }
+\settowidth{\mylen}{\hspace*{-0.27cm}} 
+\addtolength{\cfttabnumwidth}{\mylen} 
 
 
 %% Quadros
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-\RequirePackage[titles]{./formatacao/tocloft}
 \newcommand{\listquadroname}{Lista de Quadros}
 \newcommand{\quadroname}{Quadro}
 \newcommand{\quadrorefname}{Quadro}
@@ -1110,7 +1117,7 @@
 \setlength{\cftbeforetoctitleskip}{0pt}
 \setlength{\cftbeforeloftitleskip}{0pt}
 \setlength{\cftbeforelottitleskip}{0pt}
-\renewcommand{\@dotsep}{9.0}
+\renewcommand{\cftdotsep}{1}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
 \renewcommand{\cftdot}{\hbox{.}}
 \renewcommand\cftsecfont{}
@@ -1299,9 +1306,9 @@
   \ifthenelse{\boolean{qualm}}{
     \@programa~do \@instituicao~- Qualifica\c{c}\~{a}o de \@tipocurso. \'{A}rea de Concentra\c{c}\~{a}o: Tecnologia de Sistemas de Produ\c{c}\~{a}o Limpa. Linha de Pesquisa: \@linha.}{}
   \ifthenelse{\boolean{mngr}}{
-    Monografia de Especializa\c{c}\~{a}o apresentada \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de Especialista em \@curso.}{}
+    Monografia de Especializa\c{c}\~{a}o apresentada \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tulo de Especialista em \@curso.}{}
   \ifthenelse{\boolean{quale}}{
-    Qualifica\c{c}\~{a}o de Especializa\c{c}\~{a}o realizada no curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a} do t\'{i}tudo de Especialista em \@curso.}{}
+    Qualifica\c{c}\~{a}o de Especializa\c{c}\~{a}o realizada no curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a} do t\'{i}tulo de Especialista em \@curso.}{}
   \ifthenelse{\boolean{tcc}}{
   	\ifthenelse{\equal{\@tipocurso}{Bacharelado}}{
         \newcommand\grau{Bacharel}
@@ -1317,9 +1324,9 @@
     	}
     }
     \ifthenelse{\equal{\@tipocurso}{Curso Superior de Tecnologia}}{
-        Trabalho de Conclus\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.
+        Trabalho de Conclus\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tulo de \grau~em \@curso.
     }{
-    	Trabalho de Conclus\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.
+    	Trabalho de Conclus\~{a}o de Curso apresentado \`{a} Coordena\c{c}\~{a}o do Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tulo de \grau~em \@curso.
     }
     }{}
   \ifthenelse{\boolean{qualt}}{
@@ -1337,15 +1344,15 @@
     	}
     }
     \ifthenelse{\equal{\@tipocurso}{Curso Superior de Tecnologia}}{
-        Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.
+        Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tulo de \grau~em \@curso.
     }{
-    	Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.
+    	Qualifica\c{c}\~{a}o de Trabalho de Conclus\~{a}o de Curso realizada no curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tulo de \grau~em \@curso.
     }
     }{}
 \ifthenelse{\boolean{prem}}{
     \Large \textbf{Plano de Trabalho}}{}
 \ifthenelse{\boolean{pree}}{
-    Pr\'{e}-Projeto de Especializa\c{c}\~{a}o apresentado ao curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a} do t\'{i}tudo de Especialista em \@curso.}{}
+    Pr\'{e}-Projeto de Especializa\c{c}\~{a}o apresentado ao curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a} do t\'{i}tulo de Especialista em \@curso.}{}
 \ifthenelse{\boolean{pret}}{
     \ifthenelse{\equal{\@tipocurso}{Bacharelado}}{
         \newcommand\grau{Bacharel}
@@ -1356,7 +1363,7 @@
     		\PackageError{classe-ifg}{Para TCC e qualificacao de TCC indique Bacharelado ou Licenciatura}{Tipo de curso inadequado para o documento}
     	}
     }
-    Pr\'{e}-Projeto de Trabalho de Conclus\~{a}o de Curso apresentado ao curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso.}{}
+    Pr\'{e}-Projeto de Trabalho de Conclus\~{a}o de Curso apresentado ao curso de \@tipocurso\space em \@curso\space como requisito parcial para obten\c{c}\~{a}o do t\'{i}tulo de \grau~em \@curso.}{}
     \ifthenelse{\boolean{relat}}{
     \Large \textbf{Relat\'{o}rio de Disciplina}}{}
     }
@@ -1485,7 +1492,7 @@
      }}{}
   \ifthenelse{\boolean{mngr}}{
   \textoF{
-      Monografia de Especializa\c{c}\~{a}o defendida no Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de Especialista em \@curso, aprovada em %
+      Monografia de Especializa\c{c}\~{a}o defendida no Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tulo de Especialista em \@curso, aprovada em %
         \@dia\ de\@mesP\ de \@ano, pela Banca Examinadora constitu\'{i}da pelos professores:
      }}{}
   \ifthenelse{\boolean{tcc}}{
@@ -1496,7 +1503,7 @@
         \newcommand\grau{Licenciado}
     }{}
     \textoF{
-      Trabalho de Conclus\~{a}o de Curso defendido no Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tudo de \grau~em \@curso, aprovada em %
+      Trabalho de Conclus\~{a}o de Curso defendido no Curso de \@tipocurso~em \@curso~como requisito parcial para obten\c{c}\~{a}o do t\'{i}tulo de \grau~em \@curso, aprovada em %
         \@dia\ de\@mesP\ de \@ano, pela Banca Examinadora constitu\'{i}da pelos professores:
      }}{}
      \vspace*{\stretch{1}}
@@ -1804,27 +1811,64 @@
 }{
 \IfSubStringInString{fig}{#1}
  {
- \emptypage\listoffigures\clearpage
+ \emptypage
+ 	{%
+	\let\oldnumberline\numberline%
+	\renewcommand{\numberline}[1]{\figurename~\oldnumberline{##1}--~~}%
+	%\newlength{\mylen}   
+    %\settowidth{\mylen}{\figurename~\oldnumberline\enspace--} 
+    %\addtolength{\cftfignumwidth}{\mylen} % add the extra space
+	\listoffigures%
+	\let\numberline\oldnumberline
+	}
+ \clearpage
  }{}
 \IfSubStringInString{tab}{#1}
  {
  \BeginNoToc 
- \emptypage\listoftables
+ \emptypage
+ {%
+	\let\oldnumberline\numberline%
+	\renewcommand{\numberline}[1]{Tabela~\oldnumberline{##1}--~~}%
+	\listoftables%
+	\let\numberline\oldnumberline
+ }
  \EndNoToc
  \clearpage
  }{}
 \IfSubStringInString{qua}{#1}
- {\emptypage\listofframes\clearpage
+ {\emptypage
+ {%
+	\let\oldnumberline\numberline%
+	\renewcommand{\numberline}[1]{Quadro~\oldnumberline{##1}--~~}%
+	\listofframes%
+	\let\numberline\oldnumberline
+ }
+ \clearpage
  }{}
 \IfSubStringInString{alg}{#1}
  {
  \BeginNoToc 
- \emptypage\listofalgorithmes
+ \emptypage
+ {%
+	\let\oldnumberline\numberline%
+	\renewcommand{\numberline}[1]{Algoritmo~\oldnumberline{##1}--~~}%
+	\listofalgorithmes%
+	\let\numberline\oldnumberline
+ }
  \EndNoToc
  \clearpage
  }{}
 \IfSubStringInString{cod}{#1}
- {\emptypage\listofcodes\clearpage
+ {
+ \emptypage
+ {%
+	\let\oldnumberline\numberline%
+	\renewcommand{\numberline}[1]{Código~\oldnumberline{##1}--~~}%
+	\listofcodes%
+	\let\numberline\oldnumberline
+ }
+ \clearpage
  }{}
  \IfSubStringInString{sig}{#1}
  {\emptypage\listofacronym\clearpage
@@ -1851,9 +1895,9 @@
 \newlength{\bibparskip}\setlength{\bibparskip}{10pt}
 
 \renewenvironment{thebibliography}[1]{%
-	\chapter*{Referências Bibliográficas}
+	\chapter*{Referências}
 	\refstepcounter{chapter}
-	\addcontentsline{toc}{chapter}{Referências Bibliográficas}
+	\addcontentsline{toc}{chapter}{Referências}
 	\bigskip
   \label{referbiblio}	\list{\@biblabel{\@arabic\c@enumiv}}{\settowidth\labelwidth{\@biblabel{#1}}%
 		\leftmargin\labelwidth\advance\leftmargin\labelsep%

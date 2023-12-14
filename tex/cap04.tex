@@ -221,7 +221,7 @@ Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os c
 \begin{figure}[ht!]
  \centering
  \includegraphics[width=0.60\textwidth]{./fig/logo-ifg}
- \caption{Esta figura é um exemplo de um rótulo de figura que ocupa mais de uma linha, devendo ser identado e justificado.}
+ \caption[Esta figura é um exemplo de um rótulo de figura]{Esta figura é um exemplo de um rótulo de figura que ocupa mais de uma linha, devendo ser identado e justificado.}
  \label{fig:exemploFig2}
 \fontefig{\cite{ifg2020}}
 \end{figure}
@@ -251,7 +251,7 @@ A classe \verb|subfigure| pode ser usada para a inclusão de figuras dentro de f
     \includegraphics[width=0.30\textwidth]{./fig/quadrado}
     \label{subfig:ex2}
    }
-   \caption{{\subref{subfig:ex1}} e {\subref{subfig:ex2}} representam dois exemplos do uso de subfiguras dentro de uma única figura.}
+   \caption[Subfiguras]{{\subref{subfig:ex1}} e {\subref{subfig:ex2}} representam dois exemplos do uso de subfiguras dentro de uma única figura.}
   \label{fig:subfiguras}
 \fontefig{Elaborado pelo autor}
 \end{figure}
@@ -557,7 +557,7 @@ A Tabela \ref{tab:longas} é um exemplo de tabela longa que ocupa várias págin
 \begin{verbatim}
 \setlongtables
 \begin{longtable}[c]{c|c|c|c|c|c}
-\caption{Exemplo de tabela longa que atravessa várias páginas.}
+\caption[Exemplo de tabela longa]{Exemplo de tabela longa que atravessa várias páginas.}
 \label{tab:longas}\\
 \hline
 \textbf{Campo1} & \textbf{Campo2} & \textbf{Campo3} & 
@@ -694,7 +694,7 @@ A \autoref{tab:longa} é um exemplo de tabela no modo paisagem e que ocupa tamb�
 \setlongtables
 \begin{landscape}
 \begin{longtable}[c]{c|c|c|c|c|c|c|c|c|c}
-\caption{Exemplo de tabela longa, em paisagem, que atravessa 
+\caption[Exemplo de tabela longa, em paisagem]{Exemplo de tabela longa, em paisagem, que atravessa 
 várias páginas.}\label{tab:longa}\\
 \hline
 \textbf{BOX1} & \textbf{BOX2} & \textbf{BOX3} & \textbf{BOX4} & 
@@ -734,7 +734,7 @@ Fonte: Referência a fonte da tabela.
 \setlongtables
 \begin{landscape}
 \begin{longtable}[c]{c|c|c|c|c|c|c|c|c|c}
-\caption{Exemplo de tabela longa, em paisagem, que atravessa várias páginas.}\label{tab:longa}\\
+\caption[Exemplo de tabela longa, em paisagem]{Exemplo de tabela longa, em paisagem, que atravessa várias páginas.}\label{tab:longa}\\
 \hline
 \textbf{BOX1} & \textbf{BOX2} & \textbf{BOX3} & \textbf{BOX4} & \textbf{BOX5} & \textbf{BOX6} & \textbf{BOX7} & \textbf{BOX8} & \textbf{BOX9} & \textbf{BOX10} \\
 \hline\hline
@@ -1080,9 +1080,9 @@ observar apenas o recuo \cite[5.3]{NBR10520:2002}.
 \end{citacao}
 \end{verbatim}
 
-\section{Referências Bibliográficas}
+\section{Referências}
 
-As referências bibliográficas utilizadas neste modelo estão de acordo com a Norma Brasileira ABNT 6023:2018 Informação e documentação - Referências - Elaboração \cite{abnt}. A seguir são apresentados exemplos em cada um das categorias, considerando somente os elementos essenciais. Adicionalmente, é apresentado o código \BibTeX~para geração da referência.
+As referências utilizadas neste modelo estão de acordo com a Norma Brasileira ABNT 6023:2018 Informação e documentação - Referências - Elaboração \cite{abnt}. A seguir são apresentados exemplos em cada um das categorias, considerando somente os elementos essenciais. Adicionalmente, é apresentado o código \BibTeX~para geração da referência.
 
 \subsection{Monografia no todo}\label{sec:monografia}
 
