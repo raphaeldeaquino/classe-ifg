@@ -95,6 +95,8 @@
 % - Adequações conforme ABNT NBR 14724:2011
 % v1.30 : 19 dez 2023 ---------------------------------------------------------------------------
 % - Removido recuo no resumo e no abstract
+% v1.31 : 19 dez 2023 ---------------------------------------------------------------------------
+% - Corrigido numeração de equações
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -333,6 +335,7 @@
 \RequirePackage{lipsum}
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
+\counterwithout{equation}{chapter}
 
 %% Fontes adicionais
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -1136,7 +1139,7 @@
 %% theorems environments
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \RequirePackage{amsmath}
-\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+\renewcommand{\theequation}{\arabic{equation}}
 \newtheorem{definition}{Defini\c{c}\~{a}o}[chapter]
 \newtheorem{theorem}[definition]{Teorema}
 \newtheorem{corollary}[definition]{Corol\'{a}rio}
