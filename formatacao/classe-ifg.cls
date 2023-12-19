@@ -93,6 +93,8 @@
 % - Corrigidos bugs após aula para terceira turma
 % v1.29 : 14 dez 2023 ---------------------------------------------------------------------------
 % - Adequações conforme ABNT NBR 14724:2011
+% v1.30 : 19 dez 2023 ---------------------------------------------------------------------------
+% - Removido recuo no resumo e no abstract
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -1663,9 +1665,7 @@
  \end{minipage}%
  \onehalfspacing%
  \vspace*{\stretch{2}}%
- \par%
- \noindent\begin{minipage}{15cm}%
- \end{minipage}%
+ \noindent
 }
 {%
  \vspace*{\stretch{3}}%
@@ -1743,9 +1743,7 @@
   \end{minipage}\onehalfspacing%
 \onehalfspacing
   \vspace*{\stretch{2}}%
-  \par%
-  \noindent\begin{minipage}{15cm}%
-  	 \end{minipage}%
+  \noindent
   }
   {%
   \vspace*{\stretch{3}}%
