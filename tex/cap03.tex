@@ -11,7 +11,7 @@ Para usar esta classe num documento \LaTeXe, coloque a pasta \verb|formatacao| n
 \begin{document}
 \end{verbatim}
 
-As opções da classe são \verb|tese| (para tese de doutorado), \verb|dissertacao| (para dissertação de mestrado), \verb|monografia| (para monografia de especialização), \verb|tcc| (para trabalho de conclusão de curso de graduação), \verb|qualificacaom| (para qualificação de mestrado), \verb|qualificacaoe| (para qualificação de especialização), \verb|qualificacaot| (para qualificação de TCC), \verb|preprojetom| (para pré-projeto de mestrado), \verb|preprojetoe| (para pré-projeto de especialização), \verb|preprojetom| (para pré-projeto de TCC). Se nenhuma opção for declarada, o documento é considerado como uma dissertação de mestrado. Adicionalmente, com a opção \verb|[nocolorlinks]| todos os {\em links} de navegação no texto ficam na cor preta. O ideal é usar esta opção para gerar o arquivo para impressão, pois a qualidade da impressão dos {\em links} fica com qualidade superior. No caso de defesa realizada online inclua a opção \verb|online| para que a folha de aprovação seja gerada sem o espaço para assinatura manual. Caso o curso opte por usar os títulos e cabeçalhos com estilo mais elaborado pode usar também a opção \verb|fancy|.
+As opções da classe são \verb|tese| (para tese de doutorado), \verb|dissertacao| (para dissertação de mestrado), \verb|monografia| (para monografia de especialização), \verb|tcc| (para trabalho de conclusão de curso de graduação), \verb|qualificacaom| (para qualificação de mestrado), \verb|qualificacaoe| (para qualificação de especialização), \verb|qualificacaot| (para qualificação de TCC), \verb|preprojetom| (para pré-projeto de mestrado), \verb|preprojetoe| (para pré-projeto de especialização), \verb|preprojetot| (para pré-projeto de TCC) e \verb|relatorio| (para relatório de disciplina). Se nenhuma opção for declarada, o documento é considerado como uma dissertação de mestrado.
 
 
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -34,12 +34,13 @@ Os parâmetros a seguir devem ser preenchidos para todos os tipos de documento:
 \item \verb|\dia| : Dia do mês da data de defesa (01--31);
 \item \verb|\mes| : Mês da data de defesa (01--12);
 \item \verb|\ano| : Ano da data de defesa (com quatro dígitos);
-\item \verb|\orientador| : Nome completo do orientador, começando pelo primeiro nome;
+\item \verb|\orientador| : Nome completo do orientador, começando pelo título e primeiro nome;
 \item \verb|\unidade| : Unidade do(a) orientador(a) dentro da instituição. No caso de haver mais de um departamento inclua o departamento, a sigla da instituição e o câmpus, como \textbf{Departamento IV - IFG / Câmpus Goiânia}. Em câmpus com um único departamento inclua somente a sigla da instituição e o câmpus, como \textbf{IFG / Câmpus Anápolis}.
-\item \verb|\orientadora| : Nome completo da orientadora, começando pelo primeiro nome; use este comando for orientadora e não orientador.
-\item \verb|\coorientador| : Nome completo do co-orientador, começando pelo primeiro nome;
-\item \verb|\unidadeco| : Unidade do(a) co-orientador(a) dentro da instituição. No caso de haver mais de um departamento inclua o departamento, a sigla da instituição e o câmpus, como \textbf{Departamento IV - IFG / Câmpus Goiânia}. Em câmpus com um único departamento inclua somente a sigla da instituição e o câmpus, como \textbf{IFG / Câmpus Anápolis}.
-\item \verb|\coorientadora| : Nome completo da coorientadora, começando pelo primeiro nome; use este comando e o próximo se for coorientadora e não coorientador.
+\item \verb|\orientadora| : Nome completo da orientadora, começando pelo título e primeiro nome; use este comando for orientadora e não orientador.
+\item \verb|\pcoorientador| : Nome completo do primeiro (ou único) coorientador, começando pelo título e primeiro nome;
+\item \verb|\unidadeco| : Unidade do(a) coorientador(a) dentro da instituição. No caso de haver mais de um departamento inclua o departamento, a sigla da instituição e o câmpus, como \textbf{Departamento IV - IFG / Câmpus Goiânia}. Em câmpus com um único departamento inclua somente a sigla da instituição e o câmpus, como \textbf{IFG / Câmpus Anápolis}.
+\item \verb|\pcoorientadora| : Nome completo da primeira (ou única) coorientadora, começando pelo título e primeiro nome; use este comando e se for coorientadora e não coorientador.
+\item \verb|\pcoorientador| : Nome completo do segundo coorientador, começando pelo título e primeiro nome. No caso de ser usado somente este comando e não \verb|\pcoorientador| ou \verb|\pcoorientadora| ele será considerado o único coorientador;
 \end{itemize}
 
 Os parâmetros a seguir devem ser preenchidos apenas para dissertações e  qualificações de mestrado:

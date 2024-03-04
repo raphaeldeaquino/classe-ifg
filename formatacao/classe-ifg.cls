@@ -97,6 +97,8 @@
 % - Removido recuo no resumo e no abstract
 % v1.31 : 19 dez 2023 ---------------------------------------------------------------------------
 % - Corrigido numeração de equações
+% v1.32 : 3 mar 2024 ---------------------------------------------------------------------------
+% - Incluído(a) segundo(a) coorientador(a)
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -300,8 +302,10 @@
 \def\tautor#1{\def\@tautor{#1}}                   \tautor{}
 \def\orientador#1{\def\@orientador{#1}}         \orientador{}
 \def\orientadora#1{\def\@orientadora{#1}}       \orientadora{}
-\def\coorientador#1{\def\@coorientador{#1}}     \coorientador{}
-\def\coorientadora#1{\def\@coorientadora{#1}}   \coorientadora{}
+\def\pcoorientador#1{\def\@pcoorientador{#1}}     \pcoorientador{}
+\def\pcoorientadora#1{\def\@pcoorientadora{#1}}   \pcoorientadora{}
+\def\scoorientador#1{\def\@scoorientador{#1}}     \scoorientador{}
+\def\scoorientadora#1{\def\@scoorientadora{#1}}   \scoorientadora{}
 \def\chaves#1{\def\@chaves{#1}}                 \chaves{}
 \def\keys#1{\def\@keys{#1}}                     \keys{}
 \def\dia#1{\def\@dia{#1}}                       \dia{}
@@ -316,7 +320,8 @@
 \def\instituicao#1{\def\@instituicao{#1}}       \instituicao{}
 \def\reitoria#1{\def\@reitoria{#1}}             \reitoria{}
 \def\unidade#1{\def\@unidade{#1}}               \unidade{}
-\def\unidadeco#1{\def\@unidadeco{#1}}           \unidadeco{}
+\def\unidadepco#1{\def\@unidadepco{#1}}           \unidadepco{}
+\def\unidadesco#1{\def\@unidadesco{#1}}           \unidadesco{}
 \def\campus#1{\def\@campus{#1}}                 \campus{}
 \def\tipocurso#1{\def\@tipocurso{#1}}           \tipocurso{}
 \def\curso#1{\def\@curso{#1}}                   \curso{}
@@ -722,20 +727,62 @@
 }
 \lstdefinelanguage{Python}
 {
-  identifierstyle=\color{black},
-  morekeywords={and, except, lambda, with, as, finally, nonlocal, while, assert, false, None, yield},% list your attributes here
-  morekeywords={break, for, not, class, from, or, continue, global, pass, def, if, raise, , del},% list your attributes here
-  morekeywords={import, return, elif, in, True, False, else, is, try},% list your attributes here
-  basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
-  commentstyle=\color{pgrey},
-  morecomment=[s][\color{pgrey}]{'''}{'''},
-  morecomment=[l][\color{pgrey}]{\#}
-  morestring=[b]",
-  morestring=**[d]{'},
-  keywordstyle=\purplecolorifnotalreadyblue,
-  stringstyle=\color{blue},
-  moredelim=[is][\itshape\textcolor{blue}]{||}{||},
-  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+	identifierstyle=\color{black},
+	morekeywords={and, except, lambda, with, as, finally, nonlocal, while, assert, false, None, yield},% list your attributes here
+	morekeywords={break, for, not, class, from, or, continue, global, pass, def, if, raise, , del},% list your attributes here
+	morekeywords={import, return, elif, in, True, False, else, is, try},% list your attributes here
+	basicstyle=\ttfamily\linespread{1.1}\bfseries\fontsize{7.5}{8.5}\selectfont,
+	commentstyle=\color{pgrey},
+	morecomment=[s][\color{pgrey}]{'''}{'''},
+	morecomment=[l][\color{pgrey}]{\#}
+	morestring=[b]",
+	morestring=[b]',
+	morestring=**[d]{'},
+	keywordstyle=\purplecolorifnotalreadyblue,
+	stringstyle=\color{blue},
+	moredelim=[is][\itshape\textcolor{blue}]{||}{||},
+	moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%},
+	mathescape=true,
+	literate = {á}{{\'a}}1 {ã}{{\~a}}1 {à}{{\`a}}1 {â}{{\^a}}1 {é}{{\'e}}1 {ê}{{\^e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {õ}{{\~o}}1 {ò}{{\`o}}1 {ô}{{\^o}}1 {ú}{{\'u}}1 {ç}{{\c c}}1 {Á}{{\'A}}1 {Ã}{{\~A}}1 {À}{{\`A}}1 {Â}{{\^A}}1 {É}{{\'E}}1 {Ê}{{\^E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Õ}{{\~O}}1 {Ò}{{\`O}}1 {Ô}{{\^O}}1 {Ú}{{\'U}}1 {Ç}{{\c C}}1 
+	{0}{{\textcolor{red}{0}}}{1}%  
+	{1}{{\textcolor{red}{1}}}{1}%
+	{2}{{\textcolor{red}{2}}}{1}%
+	{3}{{\textcolor{red}{3}}}{1}%
+	{4}{{\textcolor{red}{4}}}{1}%
+	{5}{{\textcolor{red}{5}}}{1}%
+	{6}{{\textcolor{red}{6}}}{1}%
+	{7}{{\textcolor{red}{7}}}{1}%
+	{8}{{\textcolor{red}{8}}}{1}%
+	{9}{{\textcolor{red}{9}}}{1}%
+	{.0}{{\textcolor{red}{.0}}}{2}% Following is to ensure that only periods
+	{.1}{{\textcolor{red}{.1}}}{2}% followed by a digit are changed.
+	{.2}{{\textcolor{red}{.2}}}{2}%
+	{.3}{{\textcolor{red}{.3}}}{2}%
+	{.4}{{\textcolor{red}{.4}}}{2}%
+	{.5}{{\textcolor{red}{.5}}}{2}%
+	{.6}{{\textcolor{red}{.6}}}{2}%
+	{.7}{{\textcolor{red}{.7}}}{2}%
+	{.8}{{\textcolor{red}{.8}}}{2}%
+	{.9}{{\textcolor{red}{.9}}}{2}%
+	{e-}{{\textcolor{red}{e-}}}{2}%
+	{-1}{{\textcolor{red}{-1}}}{2}%
+	{-2}{{\textcolor{red}{-2}}}{2}%
+	{-3}{{\textcolor{red}{-3}}}{2}%
+	{-4}{{\textcolor{red}{-4}}}{2}%
+	{-5}{{\textcolor{red}{-5}}}{2}%
+	{-6}{{\textcolor{red}{-6}}}{2}%
+	{-7}{{\textcolor{red}{-7}}}{2}%
+	{-8}{{\textcolor{red}{-8}}}{2}%
+	{-9}{{\textcolor{red}{-9}}}{2}%
+	{+1}{{\textcolor{red}{+1}}}{2}% 
+	{+2}{{\textcolor{red}{+2}}}{2}%
+	{+3}{{\textcolor{red}{+3}}}{2}%
+	{+4}{{\textcolor{red}{+4}}}{2}%
+	{+5}{{\textcolor{red}{+5}}}{2}%
+	{+6}{{\textcolor{red}{+6}}}{2}%
+	{+7}{{\textcolor{red}{+7}}}{2}%
+	{+8}{{\textcolor{red}{+8}}}{2}%
+	{+9}{{\textcolor{red}{+9}}}{2}%
 }
 \newcommand\YAMLcolonstyle{\color{red}\mdseries}
 \newcommand\YAMLkeystyle{\color{black}\bfseries}
@@ -1393,22 +1440,94 @@
   		\margemD{\textbf{Orientador:} Prof. \@orientador}
   	}
   }%
- \ifthenelse{\equal{\@coorientador}{}}
-  {\ifthenelse{\equal{\@coorientadora}{}}
-   {}
-   {
-   \ifthenelse{\boolean{relat}}{}{
-   	\vspace{0.1cm}
-    \par%
-    \margemD{\textbf{Coorientadora:} Profa. \@coorientadora}}%
-    }
+  \ifthenelse{\equal{\@pcoorientador}{}}{
+  	% Sem primeiro coorientador: 0XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 00XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 000X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0000
+  			}{
+  				% Com somente segunda coorientadora: 0001
+  				\vspace{0.1cm}
+   				\par%
+   				\margemD{\textbf{Coorientadora:} Profa. \@scoorientadora}%
+  			}
+  		}{
+  			% Com segundo coorientador: 001X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com segundo coorientador apenas: 0010
+  				\vspace{0.1cm}
+   				\par%
+   				\margemD{\textbf{Coorientador:} Prof. \@scoorientador}%
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 0011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeira coorientadora: 01XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 010X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0100
+  				\vspace{0.1cm}
+   				\par%
+   				\margemD{\textbf{Coorientadora:} Profa. \@pcoorientadora}%
+  			}{
+  				% Com primeira e segunda coorientadoras: 0101
+  				\vspace{0.1cm}
+   				\par%
+   				\margemD{\textbf{Coorientadoras:} Profa. \@pcoorientadora~e Profa. \@scoorientadora}%
+  			}
+  		}{
+  			% Com segundo coorientador: 011X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeira coorientadora e segundo coorientador: 0110
+  				\vspace{0.1cm}
+   				\par%
+   				\margemD{\textbf{Coorientadores:} Prof. \@pcoorientador~e Profa. \@scoorientadora}%
+  			}{
+  				% Com primeira coorientadora e segundo/a coorientador/a: 0111
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}
+  }{
+  	% Com primeiro coorientador: 1XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 10XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 100X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 1000
+  				\vspace{0.1cm}
+   				\par%
+   				\margemD{\textbf{Coorientador:} Prof. \@pcoorientador}%
+  			}{
+  				% Com primeiro corientador e segunda coorientadora: 1001
+  				\vspace{0.1cm}
+   				\par%
+   				\margemD{\textbf{Coorientadores:} Prof. \@pcoorientador~e Profa. \@scoorientadora}%
+  			}
+  		}{
+  			% Com segundo coorientador: 101X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeiro coorientador e segundo coorientador: 1010
+  				\vspace{0.1cm}
+   				\par%
+   				\margemD{\textbf{Coorientadores:} Prof. \@pcoorientador~e Prof. \@scoorientador}%
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 1011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeiro coorientador e primeira coorientadora: 11XX
+  		\PackageError{classe-ifg}{Primeiro coorientador e primeira coorientadora indicados}{Indique apenas um dos dois}
+  	}
   }
-  {
-  \ifthenelse{\boolean{relat}}{}{
-  \vspace{0.1cm}
-   \par%
-   \margemD{\textbf{Coorientador:} Prof. \@coorientador}}%
-   }
  \vspace*{\stretch{1}}%
  \par%
  \textoC{1}{\@campus, \@ano.}%
@@ -1516,12 +1635,83 @@
      \ifthenelse{\equal{\@orientador}{}}
       {\membra{\@orientadora}{\@unidade\\Presidente da Banca}}
       {\membro{\@orientador}{\@unidade\\Presidente da Banca}}
-     \ifthenelse{\equal{\@coorientador}{}}
-     {\ifthenelse{\equal{\@coorientadora}{}}{}
-       {\membra{\@coorientadora}{\@unidadeco}}
-     }
-     {\membro{\@coorientador}{\@unidadeco}}
-    }
+   \ifthenelse{\equal{\@pcoorientador}{}}{
+  	% Sem primeiro coorientador: 0XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 00XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 000X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0000
+  			}{
+  				% Com somente segunda coorientadora: 0001
+  				\membra{\@scoorientadora}{\@unidadesco}
+  			}
+  		}{
+  			% Com segundo coorientador: 001X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com segundo coorientador apenas: 0010
+  				\membro{\@scoorientador}{\@unidadesco}
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 0011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeira coorientadora: 01XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 010X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0100
+  				\membra{\@pcoorientadora}{\@unidadepco}
+  			}{
+  				% Com primeira e segunda coorientadoras: 0101
+  				\membra{\@pcoorientadora}{\@unidadepco}
+  				\membra{\@scoorientadora}{\@unidadesco}
+  			}
+  		}{
+  			% Com segundo coorientador: 011X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeira coorientadora e segundo coorientador: 0110
+  				\membro{\@pcoorientadora}{\@unidadepco}
+  				\membra{\@scoorientador}{\@unidadesco}
+  			}{
+  				% Com primeira coorientadora e segundo/a coorientador/a: 0111
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}
+  }{
+  	% Com primeiro coorientador: 1XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 10XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 100X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 1000
+  				\membro{\@pcoorientador}{\@unidadepco}
+  			}{
+  				% Com primeiro corientador e segunda coorientadora: 1001
+  				\membro{\@pcoorientadora}{\@unidadepco}
+  				\membra{\@scoorientadora}{\@unidadesco}
+  			}
+  		}{
+  			% Com segundo coorientador: 101X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeiro coorientador e segundo coorientador: 1010
+  				\membro{\@pcoorientador}{\@unidadepco}
+  				\membro{\@scoorientador}{\@unidadesco}
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 1011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeiro coorientador e primeira coorientadora: 11XX
+  		\PackageError{classe-ifg}{Primeiro coorientador e primeira coorientadora indicados}{Indique apenas um dos dois}
+  	}
+  }
+ }
     {%
      \clearpage%
     }
@@ -1554,20 +1744,179 @@
       \textoC{1.2}{\Large \textbf{\@subtitulo\relax} \normalsize}}
      \vspace*{\stretch{1}}
      \par
-     \textoF{
-      Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \@orientador \ifthenelse{\equal{\@coorientador}{}}{ \ifthenelse{\equal{\@coorientadora}{}}{.}{ e \@coorientadora.}}{ e \@coorientador.} 
-     }
+     \ifthenelse{\equal{\@pcoorientador}{}}{
+  	% Sem primeiro coorientador: 0XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 00XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 000X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0000
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}.
+     			}
+  			}{
+  				% Com somente segunda coorientadora: 0001
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}~e Profa. \scoorientadora.
+     			}
+  			}
+  		}{
+  			% Com segundo coorientador: 001X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com segundo coorientador apenas: 0010
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}~e Prof. \@scoorientador.
+     			}
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 0011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeira coorientadora: 01XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 010X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0100
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}~e Profa. \@pcoorientadora.
+     			}
+  			}{
+  				% Com primeira e segunda coorientadoras: 0101
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}, Profa. \@pcoorientadora~e Profa. \@scoorientadora.
+     			}
+  			}
+  		}{
+  			% Com segundo coorientador: 011X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeira coorientadora e segundo coorientador: 0110
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}, Profa. \@pcoorientadora~e Prof. \@scoorientador.
+     			}
+  			}{
+  				% Com primeira coorientadora e segundo/a coorientador/a: 0111
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}
+  }{
+  	% Com primeiro coorientador: 1XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 10XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 100X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 1000
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}~e Prof. \@pcoorientador.
+     			}
+  			}{
+  				% Com primeiro corientador e segunda coorientadora: 1001
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}, Prof. \@pcoorientador~e Profa. \@scoorientadora.
+     			}
+  			}
+  		}{
+  			% Com segundo coorientador: 101X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeiro coorientador e segundo coorientador: 1010
+  				\textoF{
+      				Plano de Trabalho apresentado ao \@programa\ do \@instituicao\ para solicita\c c\~ao oficial de registro do tema de pesquisa a ser desenvolvido no Mestrado Profissional em \@curso\ pelo(a) discente \@autor\ sob orienta\c c\~ao de \ifthenelse{\equal{\@orientador}{}}{Profa. \@orientadora}{Prof. \@orientador}, Prof. \@pcoorientador~e Prof. \@scoorientador.
+     			}
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 1011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeiro coorientador e primeira coorientadora: 11XX
+  		\PackageError{classe-ifg}{Primeiro coorientador e primeira coorientadora indicados}{Indique apenas um dos dois}
+  	}
+  }
      \vspace*{\stretch{1}}
      \par
      \assinaturad{\@autor}{Discente}
      \ifthenelse{\equal{\@orientador}{}}
       {\assinaturapf{\@orientadora}{Orientadora}}
       {\assinaturapm{\@orientador}{Orientador}}
-     \ifthenelse{\equal{\@coorientador}{}}
-     {\ifthenelse{\equal{\@coorientadora}{}}{}
-       {\assinaturapf{\@coorientadora}{Coorientadora}}
-     }
-     {\assinaturapm{\@coorientador}{Coorientador}}
+     \ifthenelse{\equal{\@pcoorientador}{}}{
+  	% Sem primeiro coorientador: 0XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 00XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 000X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0000
+  			}{
+  				% Com somente segunda coorientadora: 0001
+  				\assinaturapf{\@scorientadora}{Coorientadora}
+  			}
+  		}{
+  			% Com segundo coorientador: 001X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com segundo coorientador apenas: 0010
+  				\assinaturapm{\@scoorientador}{Coorientador}
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 0011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeira coorientadora: 01XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 010X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0100
+  				\assinaturapf{\@pcoorientadora}{Coorientadora}
+  			}{
+  				% Com primeira e segunda coorientadoras: 0101
+  				\assinaturapf{\@pcoorientadora}{Coorientadora}
+  				\assinaturapf{\@scoorientadora}{Coorientadora}
+  			}
+  		}{
+  			% Com segundo coorientador: 011X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeira coorientadora e segundo coorientador: 0110
+  				\assinaturapf{\@pcoorientadora}{Coorientadora}
+  				\assinaturapm{\@scoorientador}{Coorientador}
+  			}{
+  				% Com primeira coorientadora e segundo/a coorientador/a: 0111
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}
+  }{
+  	% Com primeiro coorientador: 1XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 10XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 100X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 1000
+  				\assinaturapm{\@pcooorientador}{Coorientador}
+  			}{
+  				% Com primeiro corientador e segunda coorientadora: 1001
+  				\assinaturapm{\@pcooorientador}{Coorientador}
+  				\assinaturapf{\@scoorientadora}{Coorientadora}
+  			}
+  		}{
+  			% Com segundo coorientador: 101X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeiro coorientador e segundo coorientador: 1010
+  				\assinaturapm{\@pcoorientador}{Coorientador}
+  				\assinaturapm{\@scoorientador}{Coorientador}
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 1011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeiro coorientador e primeira coorientadora: 11XX
+  		\PackageError{classe-ifg}{Primeiro coorientador e primeira coorientadora indicados}{Indique apenas um dos dois}
+  	}
+  }
 }
     
 
@@ -1664,7 +2013,78 @@
     \textbf{Autores:} \@autor,~\@sautor~e~\@tautor\\
  }
 \textbf{Orientador:} \@orientador\\
-\ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Coorientador:} \@coorientador}
+\ifthenelse{\equal{\@pcoorientador}{}}{
+  	% Sem primeiro coorientador: 0XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 00XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 000X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0000
+  			}{
+  				% Com somente segunda coorientadora: 0001
+  				\textbf{Coorientadora:} Profa. \@scoorientadora
+  			}
+  		}{
+  			% Com segundo coorientador: 001X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com segundo coorientador apenas: 0010
+  				\textbf{Coorientador:} Prof. \@scoorientador
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 0011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeira coorientadora: 01XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 010X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0100
+  				\textbf{Coorientadora:} Profa. \@pcoorientadora
+  			}{
+  				% Com primeira e segunda coorientadoras: 0101
+  				\textbf{Coorientadoras:} Profa. \@pcoorientadora~e Profa. \@scoorientadora
+  			}
+  		}{
+  			% Com segundo coorientador: 011X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeira coorientadora e segundo coorientador: 0110
+  				\textbf{Coorientadores:} Prof. \@pcoorientador~e Profa. \@scoorientadora
+  			}{
+  				% Com primeira coorientadora e segundo/a coorientador/a: 0111
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}
+  }{
+  	% Com primeiro coorientador: 1XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 10XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 100X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 1000
+  				\textbf{Coorientador:} Prof. \@pcoorientador
+  			}{
+  				% Com primeiro corientador e segunda coorientadora: 1001
+  				\textbf{Coorientadores:} Prof. \@pcoorientador~e Profa. \@scoorientadora
+  			}
+  		}{
+  			% Com segundo coorientador: 101X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeiro coorientador e segundo coorientador: 1010
+  				\textbf{Coorientadores:} Prof. \@pcoorientador~e Prof. \@scoorientador
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 1011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeiro coorientador e primeira coorientadora: 11XX
+  		\PackageError{classe-ifg}{Primeiro coorientador e primeira coorientadora indicados}{Indique apenas um dos dois}
+  	}
+  }
  \end{minipage}%
  \onehalfspacing%
  \vspace*{\stretch{2}}%
@@ -1742,7 +2162,78 @@
     \textbf{Authors:} \@autor,~\@sautor,~and~\@tautor\\
  }
 \textbf{Advisor:} \@orientador\\
-\ifthenelse{\equal{\@coorientador}{}}{}{\textbf{Coadvisor:} \@coorientador}
+\ifthenelse{\equal{\@pcoorientador}{}}{
+  	% Sem primeiro coorientador: 0XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 00XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 000X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0000
+  			}{
+  				% Com somente segunda coorientadora: 0001
+  				\textbf{Coadvisor:} Profa. \@scoorientadora
+  			}
+  		}{
+  			% Com segundo coorientador: 001X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com segundo coorientador apenas: 0010
+  				\textbf{Coadvisor:} Prof. \@scoorientador
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 0011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeira coorientadora: 01XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 010X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 0100
+  				\textbf{Coadvisor:} Prof. \@pcoorientadora
+  			}{
+  				% Com primeira e segunda coorientadoras: 0101
+  				\textbf{Coadvisors:} Prof. \@pcoorientadora~and Prof. \@scoorientadora
+  			}
+  		}{
+  			% Com segundo coorientador: 011X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeira coorientadora e segundo coorientador: 0110
+  				\textbf{Coadvisors:} Prof. \@pcoorientador~and Prof. \@scoorientadora
+  			}{
+  				% Com primeira coorientadora e segundo/a coorientador/a: 0111
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}
+  }{
+  	% Com primeiro coorientador: 1XXX
+  	\ifthenelse{\equal{\@pcoorientadora}{}}{
+  		% Sem primeira coorientadora: 10XX
+  		\ifthenelse{\equal{\@scoorientador}{}}{
+  			% Sem segundo coorientador: 100X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Sem segunda coorientadora: 1000
+  				\textbf{Coadvisor:} Prof. \@pcoorientador
+  			}{
+  				% Com primeiro corientador e segunda coorientadora: 1001
+  				\textbf{Coadvisors:} Prof. \@pcoorientador~and Prof. \@scoorientadora
+  			}
+  		}{
+  			% Com segundo coorientador: 101X
+  			\ifthenelse{\equal{\@scoorientadora}{}}{
+  				% Com primeiro coorientador e segundo coorientador: 1010
+  				\textbf{Coadvisors:} Prof. \@pcoorientador~and Prof. \@scoorientador
+  			}{
+  				% Com segundo coorientador e segunda coorientadora: 1011
+  				\PackageError{classe-ifg}{Segundo coorientador e segunda coorientadora indicados}{Indique apenas um dos dois}
+  			}
+  		}
+  	}{
+  		% Com primeiro coorientador e primeira coorientadora: 11XX
+  		\PackageError{classe-ifg}{Primeiro coorientador e primeira coorientadora indicados}{Indique apenas um dos dois}
+  	}
+  }
   \end{minipage}\onehalfspacing%
 \onehalfspacing
   \vspace*{\stretch{2}}%
