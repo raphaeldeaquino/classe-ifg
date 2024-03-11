@@ -933,6 +933,27 @@ De maneira alternativa, quando se tratar de trechos menores, é possível inseri
 Atualmente a \textsf{classe-ifg} permite formatar códigos das linguagens XML, Java, Matlab, Python, SQL, YAML, Terraform, Go, JSON e JavaScript. Se houver necessidade de novas linguagens solicite em \url{teclimpa@ifg.edu.br}.
 
 %% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\section{Equações}
+\label{sec:eq}
+
+O uso do ambiente \textsf{equation} permite a escrita de teoremas, como no exemplo a seguir:
+\begin{verbatim}
+\begin{equation}
+\label{eq:distancia}    
+\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+\end{equation}
+\end{verbatim}
+
+O resultado é o mostrado a seguir:
+
+Por definição, a distância euclidiana entre dois pontos bidimensionais  $(x_{1},y_{1})$ e $(x_{2},y_{2})$ é definida de acordo com a Equação~\ref{eq:distancia}:
+
+\begin{equation}
+\label{eq:distancia}    
+\sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
+\end{equation}
+
+%% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \section{Teoremas, Corolários e Demonstrações}
 \label{sec:teor}
  O uso do ambiente \textsf{theorem} permite a escrita de teoremas, como no exemplo a seguir:
@@ -1513,17 +1534,4 @@ MICROSOFT Project for Windows 95, version 4.1: project planning software. [S.l.]
 
 EXEMPLO 2 
 
-LOURES, Clarissa Lima. \textbf{Qual é a Diferença entre Inteligência Artificial, Machine Learning e Deep Learning?} 2020. Disponível em: https://medium.com/@clarissalloures/qual-é-a-diferença-entre-inteligência-artificial-machine-learning-e-deep-learning-dd9e7c9c5178. Acesso em: 05 fev. 2021.
-
-\begin{verbatim}
-@misc{loures20,
- title = {Qual é a Diferença entre Inteligência Artificial, Machine
- Learning e Deep Learning?},
- author = {Clarissa Lima Loures},
- url = {https://medium.com/@clarissalloures/qual-é-a-diferença-
- entre-inteligência-artificial-machine-learning-e-deep-learning-
- dd9e7c9c5178},
- urlaccessdate={05 fev. 2021},
- year = {2020}
-}
-\end{verbatim}
+LOURES, Clarissa Lima. \textbf{Qual é a Diferenç
