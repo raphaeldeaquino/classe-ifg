@@ -99,6 +99,8 @@
 % - Corrigido numeração de equações
 % v1.32 : 3 mar 2024 ---------------------------------------------------------------------------
 % - Incluído(a) segundo(a) coorientador(a)
+% v1.33 : 25 mar 2024 ---------------------------------------------------------------------------
+% - Corrigido problema com orientadora no resumo e abstract (issue #2)
 
 %%==================================================================
 %% classe-ifg Class Options
@@ -2012,7 +2014,11 @@
  }{
     \textbf{Autores:} \@autor,~\@sautor~e~\@tautor\\
  }
-\textbf{Orientador:} \@orientador\\
+\ifthenelse{\equal{\@orientador}{}}{
+	\textbf{Orientadora:} \@orientadora\\
+}{
+	\textbf{Orientador:} \@orientador\\
+}
 \ifthenelse{\equal{\@pcoorientador}{}}{
   	% Sem primeiro coorientador: 0XXX
   	\ifthenelse{\equal{\@pcoorientadora}{}}{
@@ -2161,7 +2167,11 @@
  }{
     \textbf{Authors:} \@autor,~\@sautor,~and~\@tautor\\
  }
-\textbf{Advisor:} \@orientador\\
+\ifthenelse{\equal{\@orientador}{}}{
+	\textbf{Advisor:} \@orientadora\\
+}{
+	\textbf{Advisor:} \@orientador\\
+}
 \ifthenelse{\equal{\@pcoorientador}{}}{
   	% Sem primeiro coorientador: 0XXX
   	\ifthenelse{\equal{\@pcoorientadora}{}}{
