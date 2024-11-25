@@ -1849,6 +1849,7 @@ FUNCTION {patent}
   format.organization new.sentence
   iso.year.label
   format.furtherresp new.sentence
+  format.btitle output new.sentence
   format.date output  new.block
   format.patent.number output new.sentence
   format.howpublished output  new.block
@@ -1865,10 +1866,10 @@ FUNCTION {format.thesis.type}
        {bbl.mthesis}
        {type$ "monography" =
           {bbl.monography}
-             {type$ "tcc" =
-          {bbl.tcc}
-	  {bbl.void}
-	        if$}
+          	{type$ "tcc" =
+          	{bbl.tcc}
+	  		{bbl.void}
+	  		 if$}
         if$}
      if$}
   if$
@@ -2052,7 +2053,7 @@ FUNCTION {set.default.abnt.variables}
   "$Revision: 1.45.2.1 $" extract.cvs.key 'abnt.bst.revision :=
   #0 'abnt.and.type     :=     % #0 "e"; #1 "&"
   "\emph" 'abnt.emphasize :=
-  #0 'abnt.cite.style :=       %default norm version for NBR10520
+  #1 'abnt.cite.style :=       %default norm version for NBR10520
                                %#0 \cite=(AUTHOR, YEAR)
 			       %#1 \cite=(Author, YEAR)
   #0 'abnt.experimental :=

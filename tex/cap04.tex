@@ -139,7 +139,7 @@ Resultado:
 \label{sec:figs} 
 Rótulos de figuras e tabelas devem ser centralizados se tiverem até uma linha (Figura~\ref{fig:exemploFig1}), caso contrário devem estar justificados e identados em ambas as margens, como mostrado na Figura ~\ref{fig:exemploFig2}. Essa formatação já é realizada automaticamente pela \textsf{classe-ifg}.
 
-Os compiladores \LaTeX\ provêem um mecanismo bastante simples para inclusão de figuras, o que pode ser feito com o auxílio de várias classes auxiliares (as mais comuns são \verb|graphic| e \verb|graphicx|). A \textsf{classe-ifg} usa o comando \verb|\includegraphics|, da classe \verb|graphicx|, para a inclusão de figuras e não é necessário você colocar a extensão do arquivo neste comando. Por exemplo, para a figura \ref{fig:exemploFig1} os comandos usados foram:
+Os compiladores \LaTeX\ provêem um mecanismo bastante simples para inclusão de figuras, o que pode ser feito com o auxílio de várias classes auxiliares (as mais comuns são \verb|graphic| e \verb|graphicx|). A \textsf{classe-ifg} usa o comando \verb|\includegraphics|, da classe \verb|graphicx|, para a inclusão de figuras e não é necessário você colocar a extensão do arquivo neste comando. Por exemplo, para a Figura \ref{fig:exemploFig1} os comandos usados foram:
 
 \begin{verbatim}
 \begin{figure}[ht!]
@@ -206,8 +206,8 @@ Para a inclusão das figuras \ref{fig:exemploFig1} à \ref{fig:exemploFig3} os c
   \includegraphics[width=0.40\textwidth]{./fig/foto-ifg}
   \caption{Câmpus Goiânia do IFG.}
   \label{fig:exemploFig3}
+  \fontefig{\cite{ifg2020}}
 \end{figure}
-\fontefig{\cite{ifg2020}}
 \end{verbatim}
 
 \begin{figure}[ht!]
@@ -1516,7 +1516,7 @@ BRASIL e parte da América do Sul: mapa político, escolar, rodoviário, turíst
 
 Inclui bases de dados, listas de discussão, programas de computador, redes sociais, mensagens eletrônicas, entre outros.
 
-Os elementos essenciais são: autor, título da informação ou serviço ou produto, versão ou edição (se houver), local, data e descrição física do meio eletrônico.
+Os elementos essenciais são: autor (ou organização), título da informação ou serviço ou produto, versão ou edição (se houver), local, data e descrição física do meio eletrônico.
 
 EXEMPLO 1 
 
@@ -1548,3 +1548,23 @@ LOURES, Clarissa Lima. \textbf{Qual é a Diferença entre Inteligência Artifici
  year = {2020}
 }
 \end{verbatim}
+
+O campo \verb|author| só deve ser usado quando a autoria do documento se referir a uma pessoa. Quando a autoria for uma organização deve ser trocado para \verb|organization|. Use o campo \verb|org-short| para indicar como citar a organização usando um nome mais curto como, por exemplo, sua sigla.\\
+
+EXEMPLO 3
+
+EMPRESA DE PESQUISA ENERGÉTICA. \textbf{EPE e ANEEL fortalecem parceria para intercâmbio técnico e compartilhamento de conhecimento}. 2024. Disponível em: https://www.epe.gov.br/pt/imprensa/noticias/epe-e-aneel-fortalecem-parceria-para-intercambio-tecnico-e-compartilhamento-de-conhecimento. Acesso em: 25 nov. 2024.
+
+\begin{verbatim}
+@misc{epe24,
+ title = {Qual é a Diferença entre Inteligência Artificial, Machine
+ Learning e Deep Learning?},
+ author = {Clarissa Lima Loures},
+ url = {https://www.epe.gov.br/pt/imprensa/noticias/
+ epe-e-aneel-fortalecem-parceria-para-intercambio-
+ tecnico-e-compartilhamento-de-conhecimento},
+ urlaccessdate={25 nov. 2024},
+ year = {2024}
+}
+\end{verbatim}
+

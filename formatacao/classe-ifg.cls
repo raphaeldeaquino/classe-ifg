@@ -101,6 +101,8 @@
 % - Incluído(a) segundo(a) coorientador(a)
 % v1.33 : 25 mar 2024 ---------------------------------------------------------------------------
 % - Corrigido problema com orientadora no resumo e abstract (issue #2)
+% v1.34 : 25 nov 2024 ---------------------------------------------------------------------------
+% - Corrigido erro com citações
 
 %%==================================================================
 %% classe-ifg Class Options
